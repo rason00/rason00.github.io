@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ECMAScript6," />
+  <meta name="keywords" content="Vue.js2.0," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="let 和 const 命令">
+<meta name="description" content="Vue组件通信">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ES6：let和const命令">
-<meta property="og:url" content="http://yoursite.com/2017/08/13/ES6：let和const命令/index.html">
+<meta property="og:title" content="Vue组件通信">
+<meta property="og:url" content="http://yoursite.com/2017/08/26/Vue组件通信/index.html">
 <meta property="og:site_name" content="Rason">
-<meta property="og:description" content="let 和 const 命令">
-<meta property="og:updated_time" content="2017-08-23T08:22:08.053Z">
+<meta property="og:description" content="Vue组件通信">
+<meta property="og:updated_time" content="2017-08-26T13:30:15.368Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ES6：let和const命令">
-<meta name="twitter:description" content="let 和 const 命令">
+<meta name="twitter:title" content="Vue组件通信">
+<meta name="twitter:description" content="Vue组件通信">
 
 
 
@@ -114,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/13/ES6：let和const命令/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/26/Vue组件通信/"/>
 
-  <title> ES6：let和const命令 | Rason </title>
+  <title> Vue组件通信 | Rason </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -272,7 +272,7 @@
             
             
               
-                ES6：let和const命令
+                Vue组件通信
               
             
           </h1>
@@ -284,8 +284,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-13T20:17:37+08:00" content="2017-08-13">
-              2017-08-13
+            <time itemprop="dateCreated" datetime="2017-08-26T18:54:31+08:00" content="2017-08-26">
+              2017-08-26
             </time>
           </span>
 
@@ -331,44 +331,39 @@
       
 
       
-        <h1 id="let-和-const-命令"><a href="#let-和-const-命令" class="headerlink" title="let 和 const 命令"></a>let 和 const 命令</h1><a id="more"></a>
-<h1 id="缘由："><a href="#缘由：" class="headerlink" title="缘由："></a>缘由：</h1><p>就是想学习下ES6，然后就去看了阮一峰的<a href="http://es6.ruanyifeng.com/" target="_blank" rel="external">ECMAScript 6 入门</a>，以下的算是一些学习笔记了，其实就是摘抄一些自己觉得是重点的例子，出处都是在阮一峰的ES6入门。</p>
-<h2 id="let"><a href="#let" class="headerlink" title="let"></a>let</h2><blockquote>
-<p>ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。</p>
+        <h1 id="Vue组件通信"><a href="#Vue组件通信" class="headerlink" title="Vue组件通信"></a>Vue组件通信</h1><a id="more"></a>
+<h2 id="父子组件通信"><a href="#父子组件通信" class="headerlink" title="父子组件通信"></a>父子组件通信</h2><blockquote>
+<p>通过<a href="https://cn.vuejs.org/v2/api/#props" target="_blank" rel="external">props</a>接收信息。</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  let a = 10;</div><div class="line">  var b = 1;</div><div class="line">&#125;</div><div class="line"></div><div class="line">a // ReferenceError: a is not defined.</div><div class="line">b // 1</div></pre></td></tr></table></figure>
-<blockquote>
-<p>不存在变量提升，let命令改变了语法行为，它所声明的变量一定要在声明后使用，否则报错。</p>
+<ul>
+<li><p>HTML</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;div id = &apos;app&apos;&gt;</div><div class="line">  &lt;!-- msg是需要传递过去的值 --&gt;</div><div class="line">  &lt;fu msg = &apos;fusay&apos;&gt;&lt;/fu&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>JS</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Vue.component(&apos;fu&apos;, &#123;</div><div class="line">  //模板中使用fu传来的值显示在p上</div><div class="line">  template: `</div><div class="line">    &lt;p&gt;&#123;&#123; this.msg &#125;&#125;&lt;/p&gt;</div><div class="line">  `,</div><div class="line">  //用props获取fu传来的值</div><div class="line">  props: [&apos;msg&apos;]</div><div class="line">&#125;)</div><div class="line">// 实例一个vue</div><div class="line">new Vue(&#123;</div><div class="line">  el: &apos;#app&apos;,</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="子父组件通信"><a href="#子父组件通信" class="headerlink" title="子父组件通信"></a>子父组件通信</h2><blockquote>
+<p>通过触发实例事件<a href="https://cn.vuejs.org/v2/api/#vm-emit-event-…args" target="_blank" rel="external">$emit</a>达到传参。</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// var 的情况</div><div class="line">console.log(foo); // 输出undefined</div><div class="line">var foo = 2;</div><div class="line"></div><div class="line">// let 的情况</div><div class="line">console.log(bar); // 报错ReferenceError</div><div class="line">let bar = 2;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>暂时性死区,只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。</p>
+<ul>
+<li><p>html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id = &apos;app&apos;&gt;</div><div class="line">  &lt;fu&gt;&lt;/fu&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>JS</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">Vue.component(&apos;fu&apos;, &#123;</div><div class="line">  //监听zi组件的触发事件，触发一个函数，显示传递过来的数值。</div><div class="line">  template: `</div><div class="line">    &lt;div&gt;</div><div class="line">      &lt;zi @showZi=&quot;showMsg&quot;&gt;&lt;/zi&gt;</div><div class="line">      zisay:&#123;&#123;zimsg&#125;&#125;</div><div class="line">    &lt;/div&gt;</div><div class="line">  `,</div><div class="line">  methods: &#123;</div><div class="line">    //触发的函数用来赋值</div><div class="line">    showMsg(data) &#123;</div><div class="line">      this.zimsg = data;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  data() &#123;</div><div class="line">    return &#123;</div><div class="line">      zimsg: &apos;&apos;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line">Vue.component(&apos;zi&apos;, &#123;</div><div class="line">  //添加click方法，实现点击显示内容</div><div class="line">  template: `</div><div class="line">  &lt;button @click=&apos;onClick()&apos;&gt;say&lt;/button&gt;</div><div class="line">  `,</div><div class="line">  methods: &#123;</div><div class="line">    onClick() &#123;</div><div class="line">      //click方法触发实例事件，第一个参数是触发实例的名称，第二个参数是触发实例的值（数据）</div><div class="line">      this.$emit(&apos;showZi&apos;, &apos;showzimsg&apos;);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">new Vue(&#123;</div><div class="line">  el: &apos;#app&apos;,</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="平行组件通信"><a href="#平行组件通信" class="headerlink" title="平行组件通信"></a>平行组件通信</h2><blockquote>
+<p>使用外部的时间调度器实现平行通信</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var tmp = 123;</div><div class="line">//因为下面if区域内重新声明了let tmp，所以外面的var tmp不能传递到if区域里面。</div><div class="line">if (true) &#123;</div><div class="line">  tmp = &apos;abc&apos;; // ReferenceError</div><div class="line">  let tmp;</div><div class="line">  // 因为在此声明了let，这个区域内的tmp都是读取这个声明的，而let没有变量提升，所以在之前用会报错。</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>不允许重复声明,let不允许在相同作用域内，重复声明同一个变量。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">// 报错</div><div class="line">function () &#123;</div><div class="line">  let a = 10;</div><div class="line">  var a = 1;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 报错</div><div class="line">function () &#123;</div><div class="line">  let a = 10;</div><div class="line">  let a = 1;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function func(arg) &#123;</div><div class="line">  let arg; // 报错</div><div class="line">&#125;</div><div class="line"></div><div class="line">function func(arg) &#123;</div><div class="line">  &#123;</div><div class="line">    let arg; // 不报错</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="const"><a href="#const" class="headerlink" title="const"></a>const</h2><blockquote>
-<p>const声明一个只读的常量。一旦声明，常量的值就不能改变。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">const PI = 3.1415;</div><div class="line">PI // 3.1415</div><div class="line"></div><div class="line">PI = 3;</div><div class="line">// TypeError: Assignment to constant variable.</div></pre></td></tr></table></figure>
-<blockquote>
-<p>const声明的变量不得改变值，这意味着，const一旦声明变量，就必须立即初始化，不能留到以后赋值。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">const foo;</div><div class="line">// SyntaxError: Missing initializer in const declaration(只声明不赋值会报错)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>const的作用域与let命令相同：只在声明所在的块级作用域内有效。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if (true) &#123;</div><div class="line">  const MAX = 5;</div><div class="line">&#125;</div><div class="line">MAX // Uncaught ReferenceError: MAX is not defined</div></pre></td></tr></table></figure>
-<blockquote>
-<p>const命令声明的常量也是不提升，同样存在暂时性死区，只能在声明的位置后面使用。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if (true) &#123;</div><div class="line">  console.log(MAX); // ReferenceError 在常量MAX声明之前就调用，结果报错。</div><div class="line">  const MAX = 5;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>const声明的常量，也与let一样不可重复声明。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var message = &quot;Hello!&quot;;</div><div class="line">let age = 25;</div><div class="line"></div><div class="line">// 以下两行都会报错</div><div class="line">const message = &quot;Goodbye!&quot;;</div><div class="line">const age = 30;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;app&quot;&gt;</div><div class="line">  &lt;one&gt;&lt;/one&gt;</div><div class="line">  &lt;two&gt;&lt;/two&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>JS</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">//设置外部调度器</div><div class="line">var e = new Vue();</div><div class="line"></div><div class="line">Vue.component(&apos;one&apos;, &#123;</div><div class="line">  //设置input按确定或按钮触发click时间后传递信息</div><div class="line">  template: `</div><div class="line">    &lt;div&gt;</div><div class="line">      &lt;input @keyup.enter=&apos;say&apos; v-model=&apos;oneSay&apos;&gt;</div><div class="line">      &lt;button @click=&apos;say&apos;&gt;say&lt;/button&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  `,</div><div class="line">  methods: &#123;</div><div class="line">    //click触发实例事件，使用外部调度器接收</div><div class="line">    say() &#123;</div><div class="line">      e.$emit(&apos;oneSaySomething&apos;, this.oneSay);</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  data() &#123;</div><div class="line">    return &#123;</div><div class="line">      oneSay: &apos;&apos;,</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line">Vue.component(&apos;two&apos;, &#123;</div><div class="line">  template: `</div><div class="line">    &lt;div&gt;</div><div class="line">      one say: &#123;&#123;receiveSay&#125;&#125;</div><div class="line">    &lt;/div&gt;</div><div class="line">    `,</div><div class="line">  mounted() &#123;</div><div class="line">    //存储this，因为下面e.后this将指定为e的外部调度器</div><div class="line">    let me = this;</div><div class="line">    //监听外部调度器中，one触发的实例方法</div><div class="line">    e.$on(&apos;oneSaySomething&apos;, (data) =&gt; &#123;</div><div class="line">      me.receiveSay = data;</div><div class="line">    &#125;)</div><div class="line">  &#125;,</div><div class="line">  data() &#123;</div><div class="line">    return &#123;</div><div class="line">      receiveSay: &apos;&apos;,</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">new Vue(&#123;</div><div class="line">  el: &apos;#app&apos;,</div><div class="line">&#125;)</div></pre></td></tr></table></figure></li>
+</ul>
 
       
     </div>
@@ -391,7 +386,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ECMAScript6/" rel="tag">#ECMAScript6</a>
+            <a href="/tags/Vue-js2-0/" rel="tag">#Vue.js2.0</a>
           
         </div>
       
@@ -400,17 +395,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/11/个人简历/" rel="next" title="个人简历">
-                <i class="fa fa-chevron-left"></i> 个人简历
+              <a href="/2017/08/13/ES6：let和const命令/" rel="next" title="ES6：let和const命令">
+                <i class="fa fa-chevron-left"></i> ES6：let和const命令
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/26/Vue组件通信/" rel="prev" title="Vue组件通信">
-                Vue组件通信 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -535,7 +526,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#let-和-const-命令"><span class="nav-number">1.</span> <span class="nav-text">let 和 const 命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缘由："><span class="nav-number">2.</span> <span class="nav-text">缘由：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#let"><span class="nav-number">2.1.</span> <span class="nav-text">let</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#const"><span class="nav-number">2.2.</span> <span class="nav-text">const</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue组件通信"><span class="nav-number">1.</span> <span class="nav-text">Vue组件通信</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#父子组件通信"><span class="nav-number">1.1.</span> <span class="nav-text">父子组件通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子父组件通信"><span class="nav-number">1.2.</span> <span class="nav-text">子父组件通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#平行组件通信"><span class="nav-number">1.3.</span> <span class="nav-text">平行组件通信</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
