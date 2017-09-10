@@ -98,7 +98,7 @@
 3.1：语法
 3.2：关键字和保留字
 3.3：变量">
-<meta property="og:updated_time" content="2017-09-10T09:16:48.730Z">
+<meta property="og:updated_time" content="2017-09-10T09:36:17.462Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript高级程序设计（3.1--3.3）">
 <meta name="twitter:description" content="内容涵盖
@@ -344,10 +344,13 @@
 
       
         <h1 id="内容涵盖"><a href="#内容涵盖" class="headerlink" title="内容涵盖"></a>内容涵盖</h1><ol>
-<li>第二章小结</li>
-<li>3.1：语法</li>
-<li>3.2：关键字和保留字</li>
-<li>3.3：变量<a id="more"></a>
+<li><a href="#2">第二章小结</a></li>
+<li><a href="#3.1">3.1：语法</a></li>
+<li><a href="#3.2">3.2：关键字和保留字</a></li>
+<li><a href="#3.3">3.3：变量</a></li>
+</ol>
+<a id="more"></a>
+<p><span id="2"></span></p>
 <h2 id="第二章（在-HTML-中使用-JavaScript-）小结"><a href="#第二章（在-HTML-中使用-JavaScript-）小结" class="headerlink" title="第二章（在 HTML 中使用 JavaScript ）小结"></a>第二章（在 HTML 中使用 JavaScript ）小结</h2><blockquote>
 <ol>
 <li>在包含外部 <code>JavaScript</code> 文件时，必须将 <code>src</code> 属性设置为指向相应文件的 <code>URL</code> 。而这个文件既可以是与包含它的页面位于同一个服务器的文件，也可以是其他任何域中的文件。  </li>
@@ -358,8 +361,7 @@
 <li>使用 <code>&lt;noscript&gt;</code> 元素可以指定在不支持脚本的浏览器中显示的代替内容。但在启用了脚本的情况下，浏览器不会显示 <code>&lt;noscript&gt;</code> 元素中的任何内容。</li>
 </ol>
 </blockquote>
-</li>
-</ol>
+<p><span id="3.1"></span></p>
 <h2 id="3-1-语法"><a href="#3-1-语法" class="headerlink" title="3.1 语法"></a>3.1 语法</h2><h3 id="3-1-1-区分大小写"><a href="#3-1-1-区分大小写" class="headerlink" title="3.1.1 区分大小写"></a>3.1.1 区分大小写</h3><p>第一个概念是 <strong>ECMAScript 中的一切（变量、函数名和操作符）都区分大小写</strong>。这就意味着，变量名 <code>test</code> 和 <code>Test</code> 分别表示两个完全不用的变量，而函数名不能使用 <code>typeOf</code> ,因为它是一个关键字（3.2节介绍关键字），但 <code>typeOf</code> 则完全可以是一个有效的函数名。</p>
 <h3 id="3-1-2-标识符"><a href="#3-1-2-标识符" class="headerlink" title="3.1.2 标识符"></a>3.1.2 标识符</h3><p>所谓标识符，就是指变量、函数、属性的名字，或者函数的参数。<strong>标识符可以是按照下列格式规则组合起来的一或多个字符：</strong></p>
 <blockquote>
@@ -383,6 +385,7 @@
 <blockquote>
 <p>在控制语句中使用代码块可以让编码意图更加清晰，而且也能降低修改代码时出错的几率。</p>
 </blockquote>
+<p><span id="3.2"></span></p>
 <h2 id="关键字和保留字"><a href="#关键字和保留字" class="headerlink" title="关键字和保留字"></a>关键字和保留字</h2><p>ECMA-262 描述了一组具有特定用途的关键字。按照规则，<strong>关键字也是语言保留的，不能用作标识符</strong>。以下就是 ECMAScript 的全部关键字：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">break       do          instanceof    typeof</div><div class="line">case        else        new           var</div><div class="line">catch       finally     return        void</div><div class="line">continue    for         switch        while</div><div class="line">debugger    function    this          with</div><div class="line">default     if          throw</div><div class="line">delete      in          try</div></pre></td></tr></table></figure>
 <p>保留字：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">abstract    enum        int           short</div><div class="line">boolean     export      interdace     staic</div><div class="line">byte        extends     long          super</div><div class="line">char        final       native        synchronized</div><div class="line">class       float       package       throws</div><div class="line">const       goto        private       transient</div><div class="line">debugger    implements  protected     volatile</div><div class="line">double      import      public</div></pre></td></tr></table></figure></p>
@@ -390,9 +393,13 @@
 <p>在严格模式下，第五版还对以下保留字施加了限制：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">implements  package     public</div><div class="line">interface   private     static</div><div class="line">let         protected   yield</div></pre></td></tr></table></figure></p>
 <p>在实现 ECMAScript 3 的 JavaScript 引擎中使用关键字作为标识符，会导致 “ Identifier Expected ” 错误。</p>
 <p>一般来说，最好都不要使用关键字和保留字作为标识符和属性名，以便与将来的 ECMAScript 版本兼容。</p>
-<h2 id="3-3-变量"><a href="#3-3-变量" class="headerlink" title="3.3 变量"></a>3.3 变量</h2><p>ECMAScript 的变量是松散型的，所谓松散型就是可以用来保存任何类型数据。定义变量时使用 <code>var</code> 操作符：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var message;</div></pre></td></tr></table></figure></p>
+<p><span id="3.3"></span></p>
+<h2 id="3-3变量"><a href="#3-3变量" class="headerlink" title="3.3变量"></a>3.3变量</h2><p>ECMAScript 的变量是松散型的，所谓松散型就是可以用来保存任何类型数据。定义变量时使用 <code>var</code> 操作符：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var message;</div></pre></td></tr></table></figure></p>
 <blockquote>
-<p>这行代码定义了一个名为 <code>message</code> 的变量,该变量保存一个特殊值–<code>undefined</code>（未初始化的变量皆保存此值）。因此定义变量时就可同时设置变量的值，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var message = &quot;hi&quot;;</div><div class="line">message = 100;        //有效，但不推荐</div></pre></td></tr></table></figure></p>
+<p>这行代码定义了一个名为 <code>message</code> 的变量,该变量保存一个特殊值–<code>undefined</code>（未初始化的变量皆保存此值）。因此定义变量时就可同时设置变量的值，如下：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var message = &quot;hi&quot;;</div><div class="line">message = 100;        //有效，但不推荐</div></pre></td></tr></table></figure>
+<blockquote>
 <p>虽然我们不建议修改变量所保存值的类型，但这种操作在 ECMAScript 中完全有效。</p>
 </blockquote>
 <p>有一点注意，使用 <code>var</code> 定义的变量将成为定义该变量的作用域的局部变量。也就是说，这个变量在函数退出后就会被销毁，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function test() &#123;</div><div class="line">  var message = &quot;hi&quot;;   //局部变量</div><div class="line">&#125;</div><div class="line">test();</div><div class="line">alert(message);         //报错</div></pre></td></tr></table></figure></p>
@@ -566,7 +573,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#内容涵盖"><span class="nav-number">1.</span> <span class="nav-text">内容涵盖</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章（在-HTML-中使用-JavaScript-）小结"><span class="nav-number">1.1.</span> <span class="nav-text">第二章（在 HTML 中使用 JavaScript ）小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-语法"><span class="nav-number">1.2.</span> <span class="nav-text">3.1 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-区分大小写"><span class="nav-number">1.2.1.</span> <span class="nav-text">3.1.1 区分大小写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-标识符"><span class="nav-number">1.2.2.</span> <span class="nav-text">3.1.2 标识符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-注释"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.1.3 注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-4-严格模式"><span class="nav-number">1.2.4.</span> <span class="nav-text">3.1.4 严格模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-5-语句"><span class="nav-number">1.2.5.</span> <span class="nav-text">3.1.5 语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键字和保留字"><span class="nav-number">1.3.</span> <span class="nav-text">关键字和保留字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-变量"><span class="nav-number">1.4.</span> <span class="nav-text">3.3 变量</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#内容涵盖"><span class="nav-number">1.</span> <span class="nav-text">内容涵盖</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章（在-HTML-中使用-JavaScript-）小结"><span class="nav-number">1.1.</span> <span class="nav-text">第二章（在 HTML 中使用 JavaScript ）小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-语法"><span class="nav-number">1.2.</span> <span class="nav-text">3.1 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-区分大小写"><span class="nav-number">1.2.1.</span> <span class="nav-text">3.1.1 区分大小写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-标识符"><span class="nav-number">1.2.2.</span> <span class="nav-text">3.1.2 标识符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-注释"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.1.3 注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-4-严格模式"><span class="nav-number">1.2.4.</span> <span class="nav-text">3.1.4 严格模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-5-语句"><span class="nav-number">1.2.5.</span> <span class="nav-text">3.1.5 语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键字和保留字"><span class="nav-number">1.3.</span> <span class="nav-text">关键字和保留字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3变量"><span class="nav-number">1.4.</span> <span class="nav-text">3.3变量</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
