@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="3.4 数据类型ECMAScript 中有5中简单数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number和String。还有一种复杂数据类型–Object。">
+<meta name="description" content="3.4 数据类型ECMAScript 中有 5 种简单数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number 和 String。还有一种复杂数据类型– Object。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript高级程序设计（3.4）">
 <meta property="og:url" content="http://yoursite.com/2017/09/11/JavaScript高级程序设计（3.4）/index.html">
 <meta property="og:site_name" content="Rason">
-<meta property="og:description" content="3.4 数据类型ECMAScript 中有5中简单数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number和String。还有一种复杂数据类型–Object。">
-<meta property="og:updated_time" content="2017-09-11T08:44:40.515Z">
+<meta property="og:description" content="3.4 数据类型ECMAScript 中有 5 种简单数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number 和 String。还有一种复杂数据类型– Object。">
+<meta property="og:updated_time" content="2017-09-11T09:04:23.991Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript高级程序设计（3.4）">
-<meta name="twitter:description" content="3.4 数据类型ECMAScript 中有5中简单数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number和String。还有一种复杂数据类型–Object。">
+<meta name="twitter:description" content="3.4 数据类型ECMAScript 中有 5 种简单数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number 和 String。还有一种复杂数据类型– Object。">
 
 
 
@@ -331,7 +331,7 @@
       
 
       
-        <h1 id="3-4-数据类型"><a href="#3-4-数据类型" class="headerlink" title="3.4 数据类型"></a>3.4 数据类型</h1><p><strong>ECMAScript 中有5中简单数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number和String。还有一种复杂数据类型–Object</strong>。<br><a id="more"></a></p>
+        <h1 id="3-4-数据类型"><a href="#3-4-数据类型" class="headerlink" title="3.4 数据类型"></a>3.4 数据类型</h1><p><strong>ECMAScript 中有 5 种简单数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number 和 String。还有一种复杂数据类型– Object</strong>。<br><a id="more"></a></p>
 <h1 id="内容涵盖"><a href="#内容涵盖" class="headerlink" title="内容涵盖"></a>内容涵盖</h1><ol>
 <li><a href="#3.4.1">3.4.1 Typeof操作符</a></li>
 <li><a href="#3.4.2">3.4.2 Undefined类型</a></li>
@@ -569,12 +569,14 @@
 <p>可以传参数(输出任意进制的字符串值)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var num = 10;</div><div class="line">alert(num.toString());    //&quot;10&quot;</div><div class="line">alert(num.toString(2));   //&quot;1010&quot;</div><div class="line">alert(num.toString(8));   //&quot;12&quot;</div><div class="line">alert(num.toString(10));   //&quot;10&quot;</div><div class="line">alert(num.toString(16));  //&quot;a&quot;</div></pre></td></tr></table></figure></p>
 <p>每一个字符串都有 <code>toString()</code> 方法，但是 <code>null</code> 和 <code>undefined</code> 值没有这个方法，那么，在不知道转换的值是不是这两个值的时候，还可以通过转型函数：</p>
 <ol>
-<li><code>String()</code>转型函数：这个函数能将任何类型的值转换为字符串。规则如下：</li>
+<li><code>String()</code>转型函数：这个函数能将任何类型的值转换为字符串。规则如下：<ol>
+<li>如果值有 toString() 方法，则调用该方法（没有参数）并返回结果；</li>
+<li>如果值是 nul ，则返回 “null”；</li>
+<li>如果值是 undefined ，则返回 “undefined”。</li>
 </ol>
-<pre><code>1. 如果值有 toString() 方法，则调用该方法（没有参数）并返回结果；
-2. 如果值是 nul ，则返回 &quot;null&quot;；
-3. 如果值是 undefined ，则返回 &quot;undefined&quot;。
-</code></pre><p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var value1 = 10;</div><div class="line">var value2 = true;</div><div class="line">var value3 = null;</div><div class="line">var value4;</div><div class="line"></div><div class="line">alert(String(value1));   //&quot;10&quot;</div><div class="line">alert(String(value2));   //&quot;true&quot;</div><div class="line">alert(String(value3));   //&quot;null&quot;</div><div class="line">alert(String(value4));   //&quot;undefined&quot;</div></pre></td></tr></table></figure></p>
+</li>
+</ol>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var value1 = 10;</div><div class="line">var value2 = true;</div><div class="line">var value3 = null;</div><div class="line">var value4;</div><div class="line"></div><div class="line">alert(String(value1));   //&quot;10&quot;</div><div class="line">alert(String(value2));   //&quot;true&quot;</div><div class="line">alert(String(value3));   //&quot;null&quot;</div><div class="line">alert(String(value4));   //&quot;undefined&quot;</div></pre></td></tr></table></figure></p>
 <p><span id="3.4.7"></span></p>
 <h2 id="3-4-7-Object类型"><a href="#3-4-7-Object类型" class="headerlink" title="3.4.7 Object类型"></a>3.4.7 Object类型</h2><p>ECMAScript 中的对象其实就是一组数据和功能的集合，对象可以通过执行 <code>new</code> 操作符后跟要创建的对象类型的名称来创建。如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var o = new Object();</div><div class="line">var o = new Object;     //有效，但不推荐！</div></pre></td></tr></table></figure></p>
 <p><strong>重要思想： <code>Object</code> 类型是所有它的实例的基础。换句话说， <code>Object</code> 类型所具有的任何属性和方法也同样存在于更具体的对象中。</strong></p>
