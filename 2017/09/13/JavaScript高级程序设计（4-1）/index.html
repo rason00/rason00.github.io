@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/09/13/JavaScript高级程序设计（4-1）/index.html">
 <meta property="og:site_name" content="Rason">
 <meta property="og:description" content="4.1 基本类型和引用类型的值ECMAScript 变量可能包含两种不同数据类型的值：基本类型值和引用类型值。基本类型值指的是简单的数据段，而引用类型值指那些可能由多个值构成的对象。">
-<meta property="og:updated_time" content="2017-09-13T11:29:55.267Z">
+<meta property="og:updated_time" content="2017-09-13T11:36:10.741Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript高级程序设计（4.1）">
 <meta name="twitter:description" content="4.1 基本类型和引用类型的值ECMAScript 变量可能包含两种不同数据类型的值：基本类型值和引用类型值。基本类型值指的是简单的数据段，而引用类型值指那些可能由多个值构成的对象。">
@@ -401,7 +401,7 @@
 <p>在检测基本数据类型时 typeof 是非常得力的助手，但在检测引用类型的值时，这个操作符的用处不大。</p>
 </blockquote>
 <p>通常，我们并不是想知道某个值是对象，而是想知道它是什么类型的对象。为此，ECMAScript 提供了 instanceof 操作符，如果变量是给定引用类型（根据它的原型链来识别；第 6 章将介绍原型链）的实例，那么 instanceof 操作符就会返回 true。请看下面的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">alert(person instanceof Object);  // 变量 person 是 Object 吗？</div><div class="line">alert(colors instanceof Array);   // 变量 colors 是 Array 吗？</div><div class="line">alert(pattern instanceof RegExp); // 变量 pattern 是 RegExp 吗？</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">alert(person instanceof Object);  // 变量 person 是 Object 吗？</div><div class="line">alert(colors instanceof Array);   // 变量 colors 是 Array 吗？</div><div class="line">alert(pattern instanceof RegExp); // 变量 pattern 是 RegExp 吗？</div><div class="line"></div><div class="line">var b = &apos;123&apos;;</div><div class="line">alert(b instanceof String);     //false</div><div class="line">alert(typeof b);                //string</div><div class="line"></div><div class="line">var c = new String(&quot;123&quot;);</div><div class="line">alert(c instanceof String);    //true</div><div class="line">alert(typeof c);               //object</div><div class="line"></div><div class="line">var arr = [1,2,3]; </div><div class="line">alert(arr instanceof Array);   // true</div></pre></td></tr></table></figure>
 <p>根据规定，<strong>所有引用类型的值都是 Object 的实例。因此，在检测一个引用类型值和 Object 构造函数时，instanceof 操作符始终会返回 true</strong>。</p>
 <p><strong>如果使用 instanceof 操作符检测基本类型的值，则该操作符始终会返回 false，因为基本类型不是对象</strong>。</p>
 <blockquote>
@@ -445,6 +445,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/14/JavaScript高级程序设计（4-2）/" rel="prev" title="JavaScript高级程序设计（4.2）">
+                JavaScript高级程序设计（4.2） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -512,7 +516,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">65</span>
+              <span class="site-state-item-count">66</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
