@@ -84,16 +84,19 @@
 
 
 
-<meta name="description" content="4.2 执行环境及作用域执行环境（execution context，也称为“环境”）是 JavaScript 中最为重要的一个概念。执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象（variable object），环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。">
+<meta name="description" content="4.2 执行环境及作用域执行环境（execution context，也称为“环境”）是 JavaScript 中最为重要的一个概念。执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象（variable object），环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。
+内容涵">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript高级程序设计（4.2）">
 <meta property="og:url" content="http://yoursite.com/2017/09/14/JavaScript高级程序设计（4.2）/index.html">
 <meta property="og:site_name" content="Rason">
-<meta property="og:description" content="4.2 执行环境及作用域执行环境（execution context，也称为“环境”）是 JavaScript 中最为重要的一个概念。执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象（variable object），环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。">
-<meta property="og:updated_time" content="2017-09-16T06:21:22.167Z">
+<meta property="og:description" content="4.2 执行环境及作用域执行环境（execution context，也称为“环境”）是 JavaScript 中最为重要的一个概念。执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象（variable object），环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。
+内容涵">
+<meta property="og:updated_time" content="2017-09-28T03:52:16.156Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript高级程序设计（4.2）">
-<meta name="twitter:description" content="4.2 执行环境及作用域执行环境（execution context，也称为“环境”）是 JavaScript 中最为重要的一个概念。执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象（variable object），环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。">
+<meta name="twitter:description" content="4.2 执行环境及作用域执行环境（execution context，也称为“环境”）是 JavaScript 中最为重要的一个概念。执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象（variable object），环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。
+内容涵">
 
 
 
@@ -332,7 +335,6 @@
 
       
         <h1 id="4-2-执行环境及作用域"><a href="#4-2-执行环境及作用域" class="headerlink" title="4.2 执行环境及作用域"></a>4.2 执行环境及作用域</h1><p><strong>执行环境（execution context，也称为“环境”）是 JavaScript 中最为重要的一个概念。执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每个执行环境都有一个与之关联的变量对象（variable object），环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它</strong>。</p>
-<a id="more"></a>
 <h1 id="内容涵盖"><a href="#内容涵盖" class="headerlink" title="内容涵盖"></a>内容涵盖</h1><ol>
 <li><a href="#4.2.1">延长作用域链</a></li>
 <li><a href="#4.2.2">没有块级作用域</a><ol>
@@ -341,6 +343,7 @@
 </ol>
 </li>
 </ol>
+<a id="more"></a>
 <p><strong>全局执行环境是最外围的一个执行环境</strong>。在 Web 浏览器中，全局执行环境被认为是 window 对象（第 7 章将详细讨论），因此所有全局变量和函数都是作为 window 对象的属性和方法创建的。<strong>某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁（全局执行环境直到应用程序退出——例如关闭网页或浏览器——时才会被销毁）</strong>。</p>
 <p><strong>每个函数都有自己的执行环境</strong>。当执行流进入一个函数时，函数的环境就会被推入一个环境栈中。而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。</p>
 <p><strong>当代码在一个环境中执行时，会创建变量对象的一个作用域链（scope chain）</strong>。作用域链的用途，是保证对执行环境有权访问的所有变量和函数的有序访问。<strong>作用域链的前端，始终都是当前执行的代码所在环境的变量对象</strong>。如果这个环境是函数，则将其活动对象（activation object）作为变量对象。活动对象在最开始时只包含一个变量，即 arguments 对象（这个对象在全局环境中是不存在的）。</p>
@@ -526,7 +529,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-count">81</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

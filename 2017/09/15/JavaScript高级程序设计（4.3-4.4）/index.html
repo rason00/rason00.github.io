@@ -84,16 +84,34 @@
 
 
 
-<meta name="description" content="4.3 垃圾收集JavaScript 具有自动垃圾收集机制，开发人员不用再关心内存使用问题，所需内存的分配以及无用内存的回收完全实现了自动管理。这种垃圾收集机制的原理其实很简单：找出那些不再继续使用的变量，然后释放其占用的内存。为此，垃圾收集器会按照固定的时间间隔（或代码执行中预定的收集时间），周期性地执行这一操作。">
+<meta name="description" content="4.3 垃圾收集JavaScript 具有自动垃圾收集机制，开发人员不用再关心内存使用问题，所需内存的分配以及无用内存的回收完全实现了自动管理。这种垃圾收集机制的原理其实很简单：找出那些不再继续使用的变量，然后释放其占用的内存。为此，垃圾收集器会按照固定的时间间隔（或代码执行中预定的收集时间），周期性地执行这一操作。
+内容涵盖
+标记清除
+引用计数
+性能问题
+管理内存
+第四章小结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript高级程序设计（4.3-4.4）">
 <meta property="og:url" content="http://yoursite.com/2017/09/15/JavaScript高级程序设计（4.3-4.4）/index.html">
 <meta property="og:site_name" content="Rason">
-<meta property="og:description" content="4.3 垃圾收集JavaScript 具有自动垃圾收集机制，开发人员不用再关心内存使用问题，所需内存的分配以及无用内存的回收完全实现了自动管理。这种垃圾收集机制的原理其实很简单：找出那些不再继续使用的变量，然后释放其占用的内存。为此，垃圾收集器会按照固定的时间间隔（或代码执行中预定的收集时间），周期性地执行这一操作。">
-<meta property="og:updated_time" content="2017-09-16T06:21:06.820Z">
+<meta property="og:description" content="4.3 垃圾收集JavaScript 具有自动垃圾收集机制，开发人员不用再关心内存使用问题，所需内存的分配以及无用内存的回收完全实现了自动管理。这种垃圾收集机制的原理其实很简单：找出那些不再继续使用的变量，然后释放其占用的内存。为此，垃圾收集器会按照固定的时间间隔（或代码执行中预定的收集时间），周期性地执行这一操作。
+内容涵盖
+标记清除
+引用计数
+性能问题
+管理内存
+第四章小结">
+<meta property="og:updated_time" content="2017-09-28T03:52:29.642Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript高级程序设计（4.3-4.4）">
-<meta name="twitter:description" content="4.3 垃圾收集JavaScript 具有自动垃圾收集机制，开发人员不用再关心内存使用问题，所需内存的分配以及无用内存的回收完全实现了自动管理。这种垃圾收集机制的原理其实很简单：找出那些不再继续使用的变量，然后释放其占用的内存。为此，垃圾收集器会按照固定的时间间隔（或代码执行中预定的收集时间），周期性地执行这一操作。">
+<meta name="twitter:description" content="4.3 垃圾收集JavaScript 具有自动垃圾收集机制，开发人员不用再关心内存使用问题，所需内存的分配以及无用内存的回收完全实现了自动管理。这种垃圾收集机制的原理其实很简单：找出那些不再继续使用的变量，然后释放其占用的内存。为此，垃圾收集器会按照固定的时间间隔（或代码执行中预定的收集时间），周期性地执行这一操作。
+内容涵盖
+标记清除
+引用计数
+性能问题
+管理内存
+第四章小结">
 
 
 
@@ -332,7 +350,6 @@
 
       
         <h1 id="4-3-垃圾收集"><a href="#4-3-垃圾收集" class="headerlink" title="4.3 垃圾收集"></a>4.3 垃圾收集</h1><p><strong>JavaScript 具有自动垃圾收集机制，开发人员不用再关心内存使用问题，所需内存的分配以及无用内存的回收完全实现了自动管理。这种垃圾收集机制的原理其实很简单：找出那些不再继续使用的变量，然后释放其占用的内存。为此，垃圾收集器会按照固定的时间间隔（或代码执行中预定的收集时间），周期性地执行这一操作</strong>。</p>
-<a id="more"></a>
 <h1 id="内容涵盖"><a href="#内容涵盖" class="headerlink" title="内容涵盖"></a>内容涵盖</h1><ol>
 <li><a href="#4.3.1">标记清除</a></li>
 <li><a href="#4.3.2">引用计数</a></li>
@@ -340,6 +357,7 @@
 <li><a href="#4.3.4">管理内存</a></li>
 <li><a href="#4.4">第四章小结</a></li>
 </ol>
+<a id="more"></a>
 <p>下面我们来分析一下函数中局部变量的正常生命周期。</p>
 <p>局部变量只在函数执行的过程中存在。而在这个过程中，会为局部变量在栈（或堆）内存上分配相应的空间，以便存储它们的值。然后在函数中使<br>用这些变量，直至函数执行结束。此时，局部变量就没有存在的必要了，因此可以释放它们的内存以供将来使用。在这种情况下，很容易判断变量是否还有存在的必要；但并非所有情况下都这么容易就能得出结论。</p>
 <p>垃圾收集器必须跟踪哪个变量有用哪个变量没用，对于不再有用的变量打上标记，以备将来收回其占用的内存。用于标识无用变量的策略可能会因实现而异，但具体到浏览器中的实现，则通常有两个策略。</p>
@@ -521,7 +539,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-count">81</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

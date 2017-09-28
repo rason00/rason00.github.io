@@ -84,16 +84,103 @@
 
 
 
-<meta name="description" content="3.5 操作符ECMA-262 描述了一组用于操作数据的操作符，包括算术操作符、位操作符（不讲此操作符）、关系操作符和相等操作符。">
+<meta name="description" content="3.5 操作符ECMA-262 描述了一组用于操作数据的操作符，包括算术操作符、位操作符（不讲此操作符）、关系操作符和相等操作符。
+内容涵盖
+一元操作符
+位操作符
+布尔操作符
+逻辑非
+逻辑与
+逻辑或
+
+
+乘性操作符
+乘法
+除法
+求模
+
+
+加性操作符
+加法
+减法
+
+
+关系操作符
+相等操作符
+相等和不相等
+全等和不全等
+
+
+条件操作符
+赋值操作符
+逗号操作符">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript高级程序设计（3.5）">
 <meta property="og:url" content="http://yoursite.com/2017/09/12/JavaScript高级程序设计（3.5）/index.html">
 <meta property="og:site_name" content="Rason">
-<meta property="og:description" content="3.5 操作符ECMA-262 描述了一组用于操作数据的操作符，包括算术操作符、位操作符（不讲此操作符）、关系操作符和相等操作符。">
-<meta property="og:updated_time" content="2017-09-16T06:20:23.561Z">
+<meta property="og:description" content="3.5 操作符ECMA-262 描述了一组用于操作数据的操作符，包括算术操作符、位操作符（不讲此操作符）、关系操作符和相等操作符。
+内容涵盖
+一元操作符
+位操作符
+布尔操作符
+逻辑非
+逻辑与
+逻辑或
+
+
+乘性操作符
+乘法
+除法
+求模
+
+
+加性操作符
+加法
+减法
+
+
+关系操作符
+相等操作符
+相等和不相等
+全等和不全等
+
+
+条件操作符
+赋值操作符
+逗号操作符">
+<meta property="og:updated_time" content="2017-09-28T03:50:35.037Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript高级程序设计（3.5）">
-<meta name="twitter:description" content="3.5 操作符ECMA-262 描述了一组用于操作数据的操作符，包括算术操作符、位操作符（不讲此操作符）、关系操作符和相等操作符。">
+<meta name="twitter:description" content="3.5 操作符ECMA-262 描述了一组用于操作数据的操作符，包括算术操作符、位操作符（不讲此操作符）、关系操作符和相等操作符。
+内容涵盖
+一元操作符
+位操作符
+布尔操作符
+逻辑非
+逻辑与
+逻辑或
+
+
+乘性操作符
+乘法
+除法
+求模
+
+
+加性操作符
+加法
+减法
+
+
+关系操作符
+相等操作符
+相等和不相等
+全等和不全等
+
+
+条件操作符
+赋值操作符
+逗号操作符">
 
 
 
@@ -331,7 +418,7 @@
       
 
       
-        <h1 id="3-5-操作符"><a href="#3-5-操作符" class="headerlink" title="3.5 操作符"></a>3.5 操作符</h1><p><strong>ECMA-262 描述了一组用于操作数据的操作符，包括算术操作符、位操作符（不讲此操作符）、关系操作符和相等操作符。</strong><br><a id="more"></a></p>
+        <h1 id="3-5-操作符"><a href="#3-5-操作符" class="headerlink" title="3.5 操作符"></a>3.5 操作符</h1><p><strong>ECMA-262 描述了一组用于操作数据的操作符，包括算术操作符、位操作符（不讲此操作符）、关系操作符和相等操作符。</strong></p>
 <h1 id="内容涵盖"><a href="#内容涵盖" class="headerlink" title="内容涵盖"></a>内容涵盖</h1><ol>
 <li><a href="#3.5.1">一元操作符</a></li>
 <li><a href="#3.5.2">位操作符</a></li>
@@ -360,10 +447,10 @@
 </li>
 <li><a href="#3.5.8">条件操作符</a></li>
 <li><a href="#3.5.9">赋值操作符</a></li>
-<li><a href="#3.5.10">逗号操作符</a></li>
+<li><a href="#3.5.10">逗号操作符</a><a id="more"></a>
+<span id="3.5.1"></span><h1 id="3-5-1-一元操作符"><a href="#3-5-1-一元操作符" class="headerlink" title="3.5.1 一元操作符"></a>3.5.1 一元操作符</h1></li>
 </ol>
-<p><span id="3.5.1"></span></p>
-<h1 id="3-5-1-一元操作符"><a href="#3-5-1-一元操作符" class="headerlink" title="3.5.1 一元操作符"></a>3.5.1 一元操作符</h1><p><strong>只能操作一个值的操作符叫做一元操作符。是 ECMAScript 中最简单的操作符。</strong></p>
+<p><strong>只能操作一个值的操作符叫做一元操作符。是 ECMAScript 中最简单的操作符。</strong></p>
 <h2 id="1-递增和递减操作符"><a href="#1-递增和递减操作符" class="headerlink" title="1. 递增和递减操作符"></a>1. 递增和递减操作符</h2><p>递增和递减操作符直接借鉴自 C，而且各有两个版本：<strong>前置型和后置型。顾名思义，前置型应该位于要操作的变量前，而后置型则应该位于要操作的变量之后。</strong></p>
 <p><strong>前置型：</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var age = 29;</div><div class="line">var anotherAge = --age + 2;</div><div class="line"></div><div class="line">alert(age);                 // 输出 28</div><div class="line">alert(anotherAge);          // 输出 30 </div><div class="line"></div><div class="line">var num1 = 1;</div><div class="line">var num2 = 20;</div><div class="line">var num3 = ++num1 + num2;   // 等于 22</div><div class="line">var num4 = num1 + num2;     // 等于 22</div></pre></td></tr></table></figure>
@@ -871,7 +958,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-count">81</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

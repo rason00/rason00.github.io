@@ -84,16 +84,34 @@
 
 
 
-<meta name="description" content="函数表达式函数表达式是 JavaScript 中的一个既强大又容易令人困惑的特性。第 5 章曾介绍过，定义函数的方式有两种：一种是函数声明，另一种就是函数表达式。">
+<meta name="description" content="7 函数表达式函数表达式是 JavaScript 中的一个既强大又容易令人困惑的特性。第 5 章曾介绍过，定义函数的方式有两种：一种是函数声明，另一种就是函数表达式。
+内容涵盖
+递归
+闭包
+闭包与变量
+关于 this 对象
+内存泄漏">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript高级程序设计(7.1-7.2)">
 <meta property="og:url" content="http://yoursite.com/2017/09/27/JavaScript高级程序设计（7.1-7.2）/index.html">
 <meta property="og:site_name" content="Rason">
-<meta property="og:description" content="函数表达式函数表达式是 JavaScript 中的一个既强大又容易令人困惑的特性。第 5 章曾介绍过，定义函数的方式有两种：一种是函数声明，另一种就是函数表达式。">
-<meta property="og:updated_time" content="2017-09-27T10:34:04.275Z">
+<meta property="og:description" content="7 函数表达式函数表达式是 JavaScript 中的一个既强大又容易令人困惑的特性。第 5 章曾介绍过，定义函数的方式有两种：一种是函数声明，另一种就是函数表达式。
+内容涵盖
+递归
+闭包
+闭包与变量
+关于 this 对象
+内存泄漏">
+<meta property="og:updated_time" content="2017-09-28T03:55:53.843Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript高级程序设计(7.1-7.2)">
-<meta name="twitter:description" content="函数表达式函数表达式是 JavaScript 中的一个既强大又容易令人困惑的特性。第 5 章曾介绍过，定义函数的方式有两种：一种是函数声明，另一种就是函数表达式。">
+<meta name="twitter:description" content="7 函数表达式函数表达式是 JavaScript 中的一个既强大又容易令人困惑的特性。第 5 章曾介绍过，定义函数的方式有两种：一种是函数声明，另一种就是函数表达式。
+内容涵盖
+递归
+闭包
+闭包与变量
+关于 this 对象
+内存泄漏">
 
 
 
@@ -331,9 +349,8 @@
       
 
       
-        <h1 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h1><p><strong>函数表达式是 JavaScript 中的一个既强大又容易令人困惑的特性。第 5 章曾介绍过，定义函数的方式有两种：一种是函数声明，另一种就是函数表达式。</strong></p>
-<a id="more"></a>
-<h1 id="7-内容涵盖"><a href="#7-内容涵盖" class="headerlink" title="7 内容涵盖"></a>7 内容涵盖</h1><ol>
+        <h1 id="7-函数表达式"><a href="#7-函数表达式" class="headerlink" title="7 函数表达式"></a>7 函数表达式</h1><p><strong>函数表达式是 JavaScript 中的一个既强大又容易令人困惑的特性。第 5 章曾介绍过，定义函数的方式有两种：一种是函数声明，另一种就是函数表达式。</strong></p>
+<h1 id="内容涵盖"><a href="#内容涵盖" class="headerlink" title="内容涵盖"></a>内容涵盖</h1><ol>
 <li><a href="#7.1">递归</a></li>
 <li><a href="#7.2">闭包</a><ol>
 <li><a href="#7.2.1">闭包与变量</a></li>
@@ -342,6 +359,7 @@
 </ol>
 </li>
 </ol>
+<a id="more"></a>
 <p>函数声明的语法是这样的。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function functionName(arg0, arg1, arg2) &#123;</div><div class="line"> //函数体</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>首先是 function 关键字，然后是函数的名字，这就是指定函数名的方式。Firefox、Safari、Chrome 和 Opera 都给函数定义了一个非标准的 name 属性，通过这个属性可以访问到给函数指定的名字。这个属性的值永远等于跟在 function 关键字后面的标识符。</p>
@@ -472,6 +490,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/09/28/JavaScript高级程序设计（7.3-7.5）/" rel="prev" title="JavaScript高级程序设计(7.3-7.5)">
+                JavaScript高级程序设计(7.3-7.5) <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -538,7 +560,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-count">81</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -595,7 +617,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#函数表达式"><span class="nav-number">1.</span> <span class="nav-text">函数表达式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-内容涵盖"><span class="nav-number">2.</span> <span class="nav-text">7 内容涵盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-1-递归"><span class="nav-number">3.</span> <span class="nav-text">7.1 递归</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-2-闭包"><span class="nav-number">4.</span> <span class="nav-text">7.2 闭包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-2-1-闭包与变量"><span class="nav-number">5.</span> <span class="nav-text">7.2.1 闭包与变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-2-2-关于-this-对象"><span class="nav-number">6.</span> <span class="nav-text">7.2.2 关于 this 对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-2-3-内存泄漏"><span class="nav-number">7.</span> <span class="nav-text">7.2.3 内存泄漏</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#7-函数表达式"><span class="nav-number">1.</span> <span class="nav-text">7 函数表达式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内容涵盖"><span class="nav-number">2.</span> <span class="nav-text">内容涵盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-1-递归"><span class="nav-number">3.</span> <span class="nav-text">7.1 递归</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-2-闭包"><span class="nav-number">4.</span> <span class="nav-text">7.2 闭包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-2-1-闭包与变量"><span class="nav-number">5.</span> <span class="nav-text">7.2.1 闭包与变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-2-2-关于-this-对象"><span class="nav-number">6.</span> <span class="nav-text">7.2.2 关于 this 对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-2-3-内存泄漏"><span class="nav-number">7.</span> <span class="nav-text">7.2.3 内存泄漏</span></a></li></ol></div>
             
           </div>
         </section>

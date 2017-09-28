@@ -84,16 +84,49 @@
 
 
 
-<meta name="description" content="5.6 基本包装类型ECMAScript 还提供了 3 个特殊的引用类型：Boolean、Number 和 String。这些类型与本章介绍的其他引用类型相似，但同时也具有与各自的基本类型相应的特殊行为。">
+<meta name="description" content="5.6 基本包装类型ECMAScript 还提供了 3 个特殊的引用类型：Boolean、Number 和 String。这些类型与本章介绍的其他引用类型相似，但同时也具有与各自的基本类型相应的特殊行为。
+内容涵盖
+Boolean 类型
+Number 类型
+String 类型
+字符方法
+字符串操作方法
+字符串位置方法
+trim() 方法
+字符串大小转换方法
+字符串的模式匹配方法
+localeCom">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript高级程序设计（5.6）">
 <meta property="og:url" content="http://yoursite.com/2017/09/20/JavaScript高级程序设计（5.6）/index.html">
 <meta property="og:site_name" content="Rason">
-<meta property="og:description" content="5.6 基本包装类型ECMAScript 还提供了 3 个特殊的引用类型：Boolean、Number 和 String。这些类型与本章介绍的其他引用类型相似，但同时也具有与各自的基本类型相应的特殊行为。">
-<meta property="og:updated_time" content="2017-09-21T06:20:12.479Z">
+<meta property="og:description" content="5.6 基本包装类型ECMAScript 还提供了 3 个特殊的引用类型：Boolean、Number 和 String。这些类型与本章介绍的其他引用类型相似，但同时也具有与各自的基本类型相应的特殊行为。
+内容涵盖
+Boolean 类型
+Number 类型
+String 类型
+字符方法
+字符串操作方法
+字符串位置方法
+trim() 方法
+字符串大小转换方法
+字符串的模式匹配方法
+localeCom">
+<meta property="og:updated_time" content="2017-09-28T03:53:48.797Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript高级程序设计（5.6）">
-<meta name="twitter:description" content="5.6 基本包装类型ECMAScript 还提供了 3 个特殊的引用类型：Boolean、Number 和 String。这些类型与本章介绍的其他引用类型相似，但同时也具有与各自的基本类型相应的特殊行为。">
+<meta name="twitter:description" content="5.6 基本包装类型ECMAScript 还提供了 3 个特殊的引用类型：Boolean、Number 和 String。这些类型与本章介绍的其他引用类型相似，但同时也具有与各自的基本类型相应的特殊行为。
+内容涵盖
+Boolean 类型
+Number 类型
+String 类型
+字符方法
+字符串操作方法
+字符串位置方法
+trim() 方法
+字符串大小转换方法
+字符串的模式匹配方法
+localeCom">
 
 
 
@@ -332,7 +365,6 @@
 
       
         <h1 id="5-6-基本包装类型"><a href="#5-6-基本包装类型" class="headerlink" title="5.6 基本包装类型"></a>5.6 基本包装类型</h1><p><strong>ECMAScript 还提供了 3 个特殊的引用类型：Boolean、Number 和 String。这些类型与本章介绍的其他引用类型相似，但同时也具有与各自的基本类型相应的特殊行为</strong>。</p>
-<a id="more"></a>
 <h1 id="内容涵盖"><a href="#内容涵盖" class="headerlink" title="内容涵盖"></a>内容涵盖</h1><ol>
 <li><a href="#5.6.1">Boolean 类型</a></li>
 <li><a href="#5.6.2">Number 类型</a></li>
@@ -349,6 +381,7 @@
 </ol>
 </li>
 </ol>
+<a id="more"></a>
 <p>实际上，每当读取一个基本类型值的时候，后台就会创建一个对应的基本包装类型的对象，从而让我们能够调用一些方法来操作这些数据。来看下面的例子。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var s1 = &quot;some text&quot;;</div><div class="line">var s2 = s1.substring(2);</div></pre></td></tr></table></figure>
 <p>这个例子中的变量 s1 包含一个字符串，字符串当然是基本类型值。而下一行调用了 s1 的substring() 方法，并将返回的结果保存在了 s2 中。<strong>我们知道，基本类型值不是对象，因而从逻辑上讲它们不应该有方法（尽管如我们所愿，它们确实有方法）</strong>。其实，<strong>为了让我们实现这种直观的操作，后台已经自动完成了一系列的处理</strong>。当第二行代码访问 s1 时，访问过程处于一种读取模式，也就是要从内存中读取这个字符串的值。而在读取模式中访问字符串时，后台都会自动完成下列处理。</p>
@@ -755,7 +788,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-count">81</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

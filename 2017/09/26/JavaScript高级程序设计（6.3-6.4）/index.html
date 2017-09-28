@@ -84,16 +84,34 @@
 
 
 
-<meta name="description" content="6.3 继承继承是 OO 语言中的一个最为人津津乐道的概念。许多 OO 语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。如前所述，由于函数没有签名，在 ECMAScript 中无法实现接口继承。ECMAScript 只支持实现继承，而且其实现继承主要是依靠原型链来实现的。">
+<meta name="description" content="6.3 继承继承是 OO 语言中的一个最为人津津乐道的概念。许多 OO 语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。如前所述，由于函数没有签名，在 ECMAScript 中无法实现接口继承。ECMAScript 只支持实现继承，而且其实现继承主要是依靠原型链来实现的。
+内容涵盖
+原型链
+别忘记默认的原型
+确定原型和实例的关系
+谨慎地定义方法
+原型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript高级程序设计(6.3-6.4)">
 <meta property="og:url" content="http://yoursite.com/2017/09/26/JavaScript高级程序设计（6.3-6.4）/index.html">
 <meta property="og:site_name" content="Rason">
-<meta property="og:description" content="6.3 继承继承是 OO 语言中的一个最为人津津乐道的概念。许多 OO 语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。如前所述，由于函数没有签名，在 ECMAScript 中无法实现接口继承。ECMAScript 只支持实现继承，而且其实现继承主要是依靠原型链来实现的。">
-<meta property="og:updated_time" content="2017-09-26T09:52:05.992Z">
+<meta property="og:description" content="6.3 继承继承是 OO 语言中的一个最为人津津乐道的概念。许多 OO 语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。如前所述，由于函数没有签名，在 ECMAScript 中无法实现接口继承。ECMAScript 只支持实现继承，而且其实现继承主要是依靠原型链来实现的。
+内容涵盖
+原型链
+别忘记默认的原型
+确定原型和实例的关系
+谨慎地定义方法
+原型">
+<meta property="og:updated_time" content="2017-09-28T03:55:38.743Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript高级程序设计(6.3-6.4)">
-<meta name="twitter:description" content="6.3 继承继承是 OO 语言中的一个最为人津津乐道的概念。许多 OO 语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。如前所述，由于函数没有签名，在 ECMAScript 中无法实现接口继承。ECMAScript 只支持实现继承，而且其实现继承主要是依靠原型链来实现的。">
+<meta name="twitter:description" content="6.3 继承继承是 OO 语言中的一个最为人津津乐道的概念。许多 OO 语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。如前所述，由于函数没有签名，在 ECMAScript 中无法实现接口继承。ECMAScript 只支持实现继承，而且其实现继承主要是依靠原型链来实现的。
+内容涵盖
+原型链
+别忘记默认的原型
+确定原型和实例的关系
+谨慎地定义方法
+原型">
 
 
 
@@ -332,7 +350,6 @@
 
       
         <h1 id="6-3-继承"><a href="#6-3-继承" class="headerlink" title="6.3 继承"></a>6.3 继承</h1><p><strong>继承是 OO 语言中的一个最为人津津乐道的概念。许多 OO 语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。如前所述，由于函数没有签名，在 ECMAScript 中无法实现接口继承。ECMAScript 只支持实现继承，而且其实现继承主要是依靠原型链来实现的</strong>。</p>
-<a id="more"></a>
 <h1 id="内容涵盖"><a href="#内容涵盖" class="headerlink" title="内容涵盖"></a>内容涵盖</h1><ol>
 <li><a href="#6.3.1">原型链</a><ol>
 <li><a href="#6.3.1.1">别忘记默认的原型</a></li>
@@ -352,6 +369,7 @@
 <li><a href="#6.3.6">寄生组合式继承</a></li>
 <li><a href="#6.4">第六章小结</a></li>
 </ol>
+<a id="more"></a>
 <p><span id="6.3.1"></span></p>
 <h1 id="6-3-1-原型链"><a href="#6-3-1-原型链" class="headerlink" title="6.3.1 原型链"></a>6.3.1 原型链</h1><p>ECMAScript 中描述了原型链的概念，<strong>并将原型链作为实现继承的主要方法</strong>。<strong>其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法</strong>。</p>
 <p>简单回顾一下构造函数、原型和实例的关系：每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。</p>
@@ -590,7 +608,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-count">81</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

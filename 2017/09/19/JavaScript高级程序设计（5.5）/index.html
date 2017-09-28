@@ -84,16 +84,34 @@
 
 
 
-<meta name="description" content="5.5 Function 类型每个函数都是 Function 类型的实例，而且都与其他引用类型一样具有属性和方法。由于函数是对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。">
+<meta name="description" content="5.5 Function 类型每个函数都是 Function 类型的实例，而且都与其他引用类型一样具有属性和方法。由于函数是对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。
+内容涵盖
+没有重载（深入理解）
+函数声明与函数表达式
+作为值的函数
+函数内部属性
+函数属性和方法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript高级程序设计（5.5）">
 <meta property="og:url" content="http://yoursite.com/2017/09/19/JavaScript高级程序设计（5.5）/index.html">
 <meta property="og:site_name" content="Rason">
-<meta property="og:description" content="5.5 Function 类型每个函数都是 Function 类型的实例，而且都与其他引用类型一样具有属性和方法。由于函数是对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。">
-<meta property="og:updated_time" content="2017-09-19T06:09:33.538Z">
+<meta property="og:description" content="5.5 Function 类型每个函数都是 Function 类型的实例，而且都与其他引用类型一样具有属性和方法。由于函数是对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。
+内容涵盖
+没有重载（深入理解）
+函数声明与函数表达式
+作为值的函数
+函数内部属性
+函数属性和方法">
+<meta property="og:updated_time" content="2017-09-28T03:53:36.812Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript高级程序设计（5.5）">
-<meta name="twitter:description" content="5.5 Function 类型每个函数都是 Function 类型的实例，而且都与其他引用类型一样具有属性和方法。由于函数是对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。">
+<meta name="twitter:description" content="5.5 Function 类型每个函数都是 Function 类型的实例，而且都与其他引用类型一样具有属性和方法。由于函数是对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。
+内容涵盖
+没有重载（深入理解）
+函数声明与函数表达式
+作为值的函数
+函数内部属性
+函数属性和方法">
 
 
 
@@ -332,7 +350,6 @@
 
       
         <h1 id="5-5-Function-类型"><a href="#5-5-Function-类型" class="headerlink" title="5.5 Function 类型"></a>5.5 Function 类型</h1><p><strong>每个函数都是 Function 类型的实例，而且都与其他引用类型一样具有属性和方法。由于函数是对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定</strong>。</p>
-<a id="more"></a>
 <h1 id="内容涵盖"><a href="#内容涵盖" class="headerlink" title="内容涵盖"></a>内容涵盖</h1><ol>
 <li><a href="#5.5.1">没有重载（深入理解）</a></li>
 <li><a href="#5.5.2">函数声明与函数表达式</a></li>
@@ -340,6 +357,7 @@
 <li><a href="#5.5.4">函数内部属性</a></li>
 <li><a href="#5.5.5">函数属性和方法</a></li>
 </ol>
+<a id="more"></a>
 <p>函数通常是使用函数声明语法定义的，如下面的例子所示。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function sum (num1, num2) &#123;</div><div class="line"> return num1 + num2;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 这与下面使用函数表达式定义函数的方式几乎相差无几。</div><div class="line"></div><div class="line">var sum = function(num1, num2)&#123;</div><div class="line"> return num1 + num2;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <blockquote>
@@ -565,7 +583,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-count">81</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
