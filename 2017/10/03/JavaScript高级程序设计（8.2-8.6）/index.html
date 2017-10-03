@@ -1,0 +1,1247 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript高级程序设计," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="内容涵盖
+location 对象
+查询字符串参数
+位置操作
+
+
+navigator 对象
+检测插件
+注册处理程序
+
+
+screen 对象
+history 对象
+第八章 小结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript高级程序设计(8.2-8.6)">
+<meta property="og:url" content="http://yoursite.com/2017/10/03/JavaScript高级程序设计（8.2-8.6）/index.html">
+<meta property="og:site_name" content="Rason">
+<meta property="og:description" content="内容涵盖
+location 对象
+查询字符串参数
+位置操作
+
+
+navigator 对象
+检测插件
+注册处理程序
+
+
+screen 对象
+history 对象
+第八章 小结">
+<meta property="og:updated_time" content="2017-10-03T03:10:23.479Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript高级程序设计(8.2-8.6)">
+<meta name="twitter:description" content="内容涵盖
+location 对象
+查询字符串参数
+位置操作
+
+
+navigator 对象
+检测插件
+注册处理程序
+
+
+screen 对象
+history 对象
+第八章 小结">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/03/JavaScript高级程序设计（8.2-8.6）/"/>
+
+  <title> JavaScript高级程序设计(8.2-8.6) | Rason </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c0b175368f6e60b955380864b509c3fc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s6.cnzz.com/stat.php?id=1259942288&web_id=1259942288" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Rason</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Rason 博客</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript高级程序设计(8.2-8.6)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-03T09:39:10+08:00" content="2017-10-03">
+              2017-10-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="内容涵盖"><a href="#内容涵盖" class="headerlink" title="内容涵盖"></a>内容涵盖</h1><ol>
+<li><a href="#8.2">location 对象</a><ol>
+<li><a href="#8.2.1">查询字符串参数</a></li>
+<li><a href="#8.2.2">位置操作</a></li>
+</ol>
+</li>
+<li><a href="#8.3">navigator 对象</a><ol>
+<li><a href="#8.3.1">检测插件</a></li>
+<li><a href="#8.3.2">注册处理程序</a></li>
+</ol>
+</li>
+<li><a href="#8.4">screen 对象</a></li>
+<li><a href="#8.5">history 对象</a></li>
+<li><a href="#8.6">第八章 小结</a></li>
+</ol>
+<a id="more"></a>
+<p><span id="8.2"></span></p>
+<h1 id="8-2-location-对象"><a href="#8-2-location-对象" class="headerlink" title="8.2 location 对象"></a>8.2 location 对象</h1><p><strong>location 是最有用的 BOM 对象之一，它提供了与当前窗口中加载的文档有关的信息，还提供了一些导航功能。事实上，location 对象是很特别的一个对象，因为它既是 window 对象的属性，也是 document 对象的属性；换句话说，window.location 和 document.location 引用的是同一个对象</strong>。</p>
+<p>location 对象的用处不只表现在它保存着当前文档的信息，还表现在它将 URL 解析为独立的片段，让开发人员可以通过不同的属性访问这些片段。下表列出了 location 对象的所有属性（注：省略了每个属性前面的 location 前缀）。</p>
+<table>
+<thead>
+<tr>
+<th>属 性 名</th>
+<th>例 子</th>
+<th>说 明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hash</td>
+<td>“#contents”</td>
+<td>返回URL中的hash（#号后跟零或多个字符），如果URL中不包含散列，则返回空字符串</td>
+</tr>
+<tr>
+<td>host</td>
+<td>“www.wrox.com:80”</td>
+<td>返回服务器名称和端口号（如果有）</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td>“www.wrox.com”</td>
+<td>返回不带端口号的服务器名称</td>
+</tr>
+<tr>
+<td>href</td>
+<td>“http:/www.wrox.com”</td>
+<td>返回当前加载页面的完整URL。而location对象的 toString() 方法也返回这个值</td>
+</tr>
+<tr>
+<td>pathname</td>
+<td>“/WileyCDA/“</td>
+<td>返回URL中的目录和（或）文件名</td>
+</tr>
+<tr>
+<td>port</td>
+<td>“8080”</td>
+<td>返回URL中指定的端口号。如果URL中不包含端口号，则这个属性返回空字符串</td>
+</tr>
+<tr>
+<td>protocol</td>
+<td>“http:”</td>
+<td>返回页面使用的协议。通常是http:或https:</td>
+</tr>
+<tr>
+<td>search</td>
+<td>“?q=javascript”</td>
+<td>返回URL的查询字符串。这个字符串以问号开头</td>
+</tr>
+</tbody>
+</table>
+<p><span id="8.2.1"></span></p>
+<h2 id="8-2-1-查询字符串参数"><a href="#8-2-1-查询字符串参数" class="headerlink" title="8.2.1 查询字符串参数"></a>8.2.1 查询字符串参数</h2><p>虽然通过上面的属性可以访问到 location 对象的大多数信息，但其中访问 URL 包含的查询字符串的属性并不方便。</p>
+<p>尽管 location.search 返回从问号到 URL 末尾的所有内容，但却没有办法逐个访问其中的每个查询字符串参数。为此，可以像下面这样创建一个函数，用以解析查询字符串，然后返回包含所有参数的一个对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">function getQueryStringArgs()&#123;</div><div class="line"> //取得查询字符串并去掉开头的问号</div><div class="line"> var qs = (location.search.length &gt; 0 ? location.search.substring(1) : &quot;&quot;),</div><div class="line"></div><div class="line"> //保存数据的对象</div><div class="line"> args = &#123;&#125;,</div><div class="line"></div><div class="line"> //取得每一项</div><div class="line"> items = qs.length ? qs.split(&quot;&amp;&quot;) : [],</div><div class="line"> item = null,</div><div class="line"> name = null,</div><div class="line"> value = null,</div><div class="line"> //在 for 循环中使用</div><div class="line"> i = 0,</div><div class="line"> len = items.length;</div><div class="line"> //逐个将每一项添加到 args 对象中</div><div class="line"> for (i=0; i &lt; len; i++)&#123;</div><div class="line"> item = items[i].split(&quot;=&quot;);</div><div class="line"> name = decodeURIComponent(item[0]);</div><div class="line"> value = decodeURIComponent(item[1]);</div><div class="line"> if (name.length) &#123;</div><div class="line"> args[name] = value;</div><div class="line"> &#125;</div><div class="line"> &#125;</div><div class="line"></div><div class="line"> return args;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这个函数的第一步是先去掉查询字符串开头的问号。当然，前提是 location.search 中必须要包含一或多个字符。然后，所有参数将被保存在 args 对象中，该对象以字面量形式创建。接下来，根据和号（&amp;）来分割查询字符串，并返回 name=value 格式的字符串数组。下面的 for 循环会迭代这个数组，然后再根据等于号分割每一项，从而返回第一项为参数名，第二项为参数值的数组。再使用 decodeURIComponent() 分别解码 name 和 value（因为查询字符串应该是被编码过的）。最后，将 name 作为 args 对象的属性，将 value 作为相应属性的值。</p>
+</blockquote>
+<p>下面给出了使用这个函数的示例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//假设查询字符串是?q=javascript&amp;num=10</div><div class="line">var args = getQueryStringArgs();</div><div class="line">alert(args[&quot;q&quot;]); //&quot;javascript&quot;</div><div class="line">alert(args[&quot;num&quot;]); //&quot;10&quot;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>可见，每个查询字符串参数都成了返回对象的属性。这样就极大地方便了对每个参数的访问。</p>
+</blockquote>
+<p><span id="8.2.2"></span></p>
+<h2 id="8-2-2-位置操作"><a href="#8-2-2-位置操作" class="headerlink" title="8.2.2 位置操作"></a>8.2.2 位置操作</h2><p>使用 location 对象可以通过很多方式来改变浏览器的位置。</p>
+<p>首先，也是最常用的方式，就是使用 <strong>assign() 方法并为其传递一个 URL</strong>，如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">location.assign(&quot;http://www.wrox.com&quot;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这样，就可以立即打开新 URL 并在浏览器的历史记录中生成一条记录。</p>
+</blockquote>
+<p><strong>如果是将 location.href 或 window.location 设置为一个 URL 值，也会以该值调用 assign() 方法</strong>。例如，下列两行代码与显式调用 assign() 方法的效果完全一样。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">window.location = &quot;http://www.wrox.com&quot;;</div><div class="line">location.href = &quot;http://www.wrox.com&quot;;</div></pre></td></tr></table></figure>
+<p><strong>在这些改变浏览器位置的方法中，最常用的是设置 location.href 属性</strong>。</p>
+<p>另外，修改location对象的其他属性也可以改变当前加载的页面。下面的例子展示了通过将hash、search、hostname、pathname 和 port 属性设置为新值来改变 URL。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//假设初始 URL 为 http://www.wrox.com/WileyCDA/</div><div class="line"></div><div class="line">//将 URL 修改为&quot;http://www.wrox.com/WileyCDA/#section1&quot;</div><div class="line">location.hash = &quot;#section1&quot;;</div><div class="line"></div><div class="line">//将 URL 修改为&quot;http://www.wrox.com/WileyCDA/?q=javascript&quot;</div><div class="line">location.search = &quot;?q=javascript&quot;;</div><div class="line"></div><div class="line">//将 URL 修改为&quot;http://www.yahoo.com/WileyCDA/&quot;</div><div class="line">location.hostname = &quot;www.yahoo.com&quot;;</div><div class="line"></div><div class="line">//将 URL 修改为&quot;http://www.yahoo.com/mydir/&quot;</div><div class="line">location.pathname = &quot;mydir&quot;;</div><div class="line"></div><div class="line">//将 URL 修改为&quot;http://www.yahoo.com:8080/WileyCDA/&quot;</div><div class="line">location.port = 8080;</div></pre></td></tr></table></figure>
+<p><strong>每次修改 location 的属性（hash 除外），页面都会以新 URL 重新加载</strong>。</p>
+<p>在 IE8、Firefox 1、Safari 2+、Opera 9+和 Chrome 中，修改 hash 的值会在浏览器的历史记录中生成一条新记录。在 IE 的早期版本中，hash 属性不会在用户单击“后退”和“前进”按钮时被更新，而只会在用户单击包含 hash 的 URL 时才会被更新。</p>
+<p><strong>当通过上述任何一种方式修改 URL 之后，浏览器的历史记录中就会生成一条新记录，因此用户通过单击“后退”按钮都会导航到前一个页面。要禁用这种行为，可以使用 replace() 方法</strong>。这个方法只接受一个参数，即要导航到的 URL；结果虽然会导致浏览器位置改变，但不会在历史记录中生成新记录。在调用 replace() 方法之后，用户不能回到前一个页面，来看下面的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line"> &lt;title&gt;You won&apos;t be able to get back here&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line"> &lt;body&gt;</div><div class="line"> &lt;p&gt;Enjoy this page for a second, because you won&apos;t be coming back here.&lt;/p&gt;</div><div class="line"> &lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line"> setTimeout(function () &#123;</div><div class="line"> location.replace(&quot;http://www.wrox.com/&quot;);</div><div class="line"> &#125;, 1000);</div><div class="line"> &lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>如果将这个页面加载到浏览器中，浏览器就会在 1 秒钟后重新定向到 www.wrox.com。然后，“后退”按钮将处于禁用状态，如果不重新输入完整的 URL，则无法返回示例页面。</p>
+</blockquote>
+<p>与位置有关的最后一个方法是 <strong>reload()，作用是重新加载当前显示的页面</strong>。</p>
+<p>如果调用 reload() 时不传递任何参数，页面就会以最有效的方式重新加载。也就是说，如果页面自上次请求以来并没有改变过，页面就会从浏览器缓存中重新加载。如果要强制从服务器重新加载，则需要像下面这样为该方法传递参数 true。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">location.reload(); //重新加载（有可能从缓存中加载）</div><div class="line">location.reload(true); //重新加载（从服务器重新加载）</div></pre></td></tr></table></figure>
+<p>位于 reload() 调用之后的代码可能会也可能不会执行，这要取决于网络延迟或系统资源等因素。为此，<strong>最好将 reload() 放在代码的最后一行</strong>。</p>
+<p><span id="8.3"></span></p>
+<h1 id="8-3-navigation-对象"><a href="#8-3-navigation-对象" class="headerlink" title="8.3 navigation 对象"></a>8.3 navigation 对象</h1><p>最早由 Netscape Navigator 2.0 引入的 navigator 对象，现在已经成为识别客户端浏览器的事实标准。虽然其他浏览器也通过其他方式提供了相同或相似的信息（例如，IE 中的 window.clientInformation 和 Opera 中的 window.opera），但 navigator 对象却是所有支持 JavaScript 的浏览器所共有的。与其他 BOM 对象的情况一样，每个浏览器中的 navigator 对象也都有一套自己的属性。下表列出了存在于所有浏览器中的属性和方法，以及支持它们的浏览器版本。</p>
+<table>
+<thead>
+<tr>
+<th>属性或方法</th>
+<th>说 明</th>
+<th>IE</th>
+<th>Firefox</th>
+<th>Safari/Chrome</th>
+<th>Opera</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>appCodeName</td>
+<td>浏览器的名称。通常都是Mozilla，即使在非Mozilla浏览器中也是如此</td>
+<td>3.0+</td>
+<td>1.0+</td>
+<td>1.0+</td>
+<td>7.0+</td>
+</tr>
+<tr>
+<td>appMinorVersion</td>
+<td>次版本信息</td>
+<td>4.0+</td>
+<td>－</td>
+<td>－</td>
+<td>9.5+</td>
+</tr>
+<tr>
+<td>appName</td>
+<td>完整的浏览器名称</td>
+<td>3.0+</td>
+<td>1.0+</td>
+<td>1.0+</td>
+<td>7.0+</td>
+</tr>
+<tr>
+<td>appVersion</td>
+<td>浏览器的版本。一般不与实际的浏览器版本对应</td>
+<td>3.0+</td>
+<td>1.0+</td>
+<td>1.0+</td>
+<td>7.0+</td>
+</tr>
+<tr>
+<td>buildID</td>
+<td>浏览器编译版本</td>
+<td>－</td>
+<td>2.0+</td>
+<td>－</td>
+<td>－</td>
+</tr>
+<tr>
+<td>cookieEnabled</td>
+<td>表示cookie是否启用</td>
+<td>4.0+</td>
+<td>1.0+</td>
+<td>1.0+</td>
+<td>7.0+</td>
+</tr>
+<tr>
+<td>cpuClass</td>
+<td>客户端计算机中使用的CPU类型（x86、68K、Alpha、PPC或Other）</td>
+<td>4.0+</td>
+<td>－</td>
+<td>－</td>
+<td>－</td>
+</tr>
+<tr>
+<td>javaEnabled()</td>
+<td>表示当前浏览器中是否启用了Java</td>
+<td>4.0+</td>
+<td>1.0+</td>
+<td>1.0+</td>
+<td>7.0+</td>
+</tr>
+<tr>
+<td>language</td>
+<td>浏览器的主语言</td>
+<td>－</td>
+<td>1.0+</td>
+<td>1.0+</td>
+<td>7.0+</td>
+</tr>
+<tr>
+<td>mimeTypes</td>
+<td>在浏览器中注册的MIME类型数组</td>
+<td>4.0+</td>
+<td>1.0+</td>
+<td>1.0+</td>
+<td>7.0+</td>
+</tr>
+<tr>
+<td>onLine</td>
+<td>表示浏览器是否连接到了因特网</td>
+<td>4.0+</td>
+<td>1.0+</td>
+<td>－</td>
+<td>9.5+</td>
+</tr>
+<tr>
+<td>opsProfile</td>
+<td>似乎早就不用了。查不到相关文档</td>
+<td>4.0+</td>
+<td>－</td>
+<td>－</td>
+<td>－</td>
+</tr>
+<tr>
+<td>oscpu</td>
+<td>客户端计算机的操作系统或使用的CPU</td>
+<td>－</td>
+<td>1.0+</td>
+<td>－</td>
+<td>－</td>
+</tr>
+<tr>
+<td>platform</td>
+<td>浏览器所在的系统平台</td>
+<td>4.0+</td>
+<td>1.0+</td>
+<td>1.0+</td>
+<td>7.0+</td>
+</tr>
+<tr>
+<td>plugins</td>
+<td>浏览器中安装的插件信息的数组</td>
+<td>4.0+</td>
+<td>1.0+</td>
+<td>1.0+</td>
+<td>7.0+</td>
+</tr>
+<tr>
+<td>preference()</td>
+<td>设置用户的首选项</td>
+<td>－</td>
+<td>1.5+</td>
+<td>－</td>
+<td>－</td>
+</tr>
+<tr>
+<td>product</td>
+<td>产品名称（如 Gecko）</td>
+<td>－</td>
+<td>1.0+</td>
+<td>1.0+</td>
+<td>－</td>
+</tr>
+<tr>
+<td>productSub</td>
+<td>关于产品的次要信息（如Gecko的版本）</td>
+<td>－</td>
+<td>1.0+</td>
+<td>1.0+</td>
+<td>－</td>
+</tr>
+<tr>
+<td>registerContentHandler()</td>
+<td>针对特定的MIME类型将一个站点注册为处理程序</td>
+<td>－</td>
+<td>2.0+</td>
+<td>－</td>
+<td>－</td>
+</tr>
+<tr>
+<td>registerProtocolHandler()</td>
+<td>针对特定的协议将一个站点注册为处理程序</td>
+<td>－</td>
+<td>2.0</td>
+<td>－</td>
+<td>－</td>
+</tr>
+<tr>
+<td>securityPolicy</td>
+<td>已经废弃。安全策略的名称。为了与Netscape Navigator 4向后兼容而保留下来</td>
+<td>－</td>
+<td>1.0+</td>
+<td>－</td>
+<td>－</td>
+</tr>
+<tr>
+<td>systemLanguage</td>
+<td>操作系统的语言</td>
+<td>4.0+</td>
+<td>－</td>
+<td>－</td>
+<td>－</td>
+</tr>
+<tr>
+<td>taintEnabled()</td>
+<td>已经废弃。表示是否允许变量被修改（taint）。为了与Netscape Navigator 3向后兼容而保留下来</td>
+<td>4.0+</td>
+<td>1.0+</td>
+<td>－</td>
+<td>7.0+</td>
+</tr>
+<tr>
+<td>userAgent</td>
+<td>浏览器的用户代理字符串</td>
+<td>3.0+</td>
+<td>1.0+</td>
+<td>1.0+</td>
+<td>7.0+</td>
+</tr>
+<tr>
+<td>userLanguage</td>
+<td>操作系统的默认语言</td>
+<td>4.0+</td>
+<td>－</td>
+<td>－</td>
+<td>7.0+</td>
+</tr>
+<tr>
+<td>userProfile</td>
+<td>借以访问用户个人信息的对象</td>
+<td>4.0+</td>
+<td>－</td>
+<td>－</td>
+<td>－</td>
+</tr>
+<tr>
+<td>vendor</td>
+<td>浏览器的品牌</td>
+<td>－</td>
+<td>1.0+</td>
+<td>1.0+</td>
+<td>－</td>
+</tr>
+<tr>
+<td>vendorSub</td>
+<td>有关供应商的次要信息</td>
+<td>－</td>
+<td>1.0+</td>
+<td>1.0+</td>
+<td>－</td>
+</tr>
+</tbody>
+</table>
+<p>表中的这些 navigator 对象的属性通常用于检测显示网页的浏览器类型（第 9 章会详细讨论）。</p>
+<p><span id="8.3.1"></span></p>
+<h2 id="8-3-1-检测插件"><a href="#8-3-1-检测插件" class="headerlink" title="8.3.1 检测插件"></a>8.3.1 检测插件</h2><p>检测浏览器中是否安装了特定的插件是一种最常见的检测例程。对于非 IE 浏览器，可以使用 plugins 数组来达到这个目的。该数组中的每一项都包含下列属性。</p>
+<ol>
+<li>name：插件的名字。</li>
+<li>description：插件的描述。</li>
+<li>filename：插件的文件名。</li>
+<li>length：插件所处理的 MIME 类型数量。</li>
+</ol>
+<p>一般来说，name 属性中会包含检测插件必需的所有信息，但有时候也不完全如此。在检测插件时，需要像下面这样循环迭代每个插件并将插件的 name 与给定的名字进行比较。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//检测插件（在 IE 中无效）</div><div class="line">function hasPlugin(name)&#123;</div><div class="line"> name = name.toLowerCase();</div><div class="line"> for (var i=0; i &lt; navigator.plugins.length; i++)&#123;</div><div class="line"> if (navigator. plugins [i].name.toLowerCase().indexOf(name) &gt; -1)&#123;</div><div class="line"> return true;</div><div class="line"> &#125;</div><div class="line"> &#125;</div><div class="line"> return false;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//检测 Flash</div><div class="line">alert(hasPlugin(&quot;Flash&quot;));</div><div class="line"></div><div class="line">//检测 QuickTime</div><div class="line">alert(hasPlugin(&quot;QuickTime&quot;));</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这个 hasPlugin() 函数接受一个参数：要检测的插件名。第一步是将传入的名称转换为小写形式，以便于比较。然后，迭代 plugins 数组，通过 indexOf() 检测每个 name 属性，以确定传入的名称是否出现在字符串的某个地方。比较的字符串都使用小写形式可以避免因大小写不一致导致的错误。而传入的参数应该尽可能具体，以避免混淆。应该说，像 Flash 和 QuickTime 这样的字符串就比较具体了，不容易导致混淆。在 Firefox、Safari、Opera 和 Chrome 中可以使用这种方法来检测插件。</p>
+</blockquote>
+<p><strong>每个插件对象本身也是一个 MimeType 对象的数组，这些对象可以通过方括号语法来访问</strong>。每个 MimeType 对象有 4 个属性：包含 MIME 类型描述的 description、回指插件对象的 enabledPlugin、表示与 MIME 类型对应的文件扩展名的字符串 suffixes（以逗号分隔）和表示完整 MIME 类型字符串的 type。</p>
+<p>检测 IE 中的插件比较麻烦，因为 IE 不支持 Netscape 式的插件。<strong>在 IE 中检测插件的唯一方式就是使用专有的 ActiveXObject 类型，并尝试创建一个特定插件的实例</strong>。</p>
+<p>IE 是以 COM 对象的方式实现插件的，而 COM 对象使用唯一标识符来标识。因此，要想检查特定的插件，就必须知道其 COM 标识符。</p>
+<p>例如，Flash 的标识符是 ShockwaveFlash.ShockwaveFlash。知道唯一标识符之后，就可以编写类似下面的函数来检测 IE 中是否安装相应插件了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">//检测 IE 中的插件</div><div class="line">function hasIEPlugin(name)&#123;</div><div class="line"> try &#123;</div><div class="line"> new ActiveXObject(name);</div><div class="line"> return true;</div><div class="line"> &#125; catch (ex)&#123;</div><div class="line"> return false;</div><div class="line"> &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//检测 Flash</div><div class="line">alert(hasIEPlugin(&quot;ShockwaveFlash.ShockwaveFlash&quot;));</div><div class="line"></div><div class="line">//检测 QuickTime</div><div class="line">alert(hasIEPlugin(&quot;QuickTime.QuickTime&quot;));</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在这个例子中，函数 hasIEPlugin()只接收一个 COM 标识符作为参数。在函数内部，首先会尝试创建一个 COM 对象的实例。之所以要在 try-catch 语句中进行实例化，是因为创建未知 COM 对象会导致抛出错误。这样，如果实例化成功，则函数返回 true；否则，如果抛出了错误，则执行 catch块，结果就会返回 false。例子最后检测 IE 中是否安装了 Flash 和 QuickTime 插件。</p>
+</blockquote>
+<p>鉴于检测这两种插件的方法差别太大，因此典型的做法是针对每个插件分别创建检测函数，而不是使用前面介绍的通用检测方法。来看下面的例子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">//检测所有浏览器中的 Flash</div><div class="line">function hasFlash()&#123;</div><div class="line"> var result = hasPlugin(&quot;Flash&quot;);</div><div class="line"> if (!result)&#123;</div><div class="line"> result = hasIEPlugin(&quot;ShockwaveFlash.ShockwaveFlash&quot;);</div><div class="line"> &#125;</div><div class="line"> return result;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//检测所有浏览器中的 QuickTime</div><div class="line">function hasQuickTime()&#123;</div><div class="line"> var result = hasPlugin(&quot;QuickTime&quot;);</div><div class="line"> if (!result)&#123;</div><div class="line"> result = hasIEPlugin(&quot;QuickTime.QuickTime&quot;);</div><div class="line"> &#125;</div><div class="line"> return result;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//检测 Flash</div><div class="line">alert(hasFlash());</div><div class="line"></div><div class="line">//检测 QuickTime</div><div class="line">alert(hasQuickTime());</div></pre></td></tr></table></figure>
+<blockquote>
+<p>上面代码中定义了两个函数：hasFlash()和 hasQuickTime()。每个函数都是先尝试使用不针对 IE 的插件检测方法。如果返回了 false（在 IE 中会这样），那么再使用针对 IE 的插件检测方法。如果 IE 的插件检测方法再返回 false，则整个方法也将返回 false。只要任何一次检测返回 true，整个方法都会返回 true。</p>
+</blockquote>
+<p><strong>plugins 集合有一个名叫 refresh() 的方法，用于刷新 plugins 以反映最新安装的插件</strong>。这个方法接收一个参数：表示是否应该重新加载页面的一个布尔值。如果将这个值设置为 true，则会重新加载包含插件的所有页面；否则，只更新 plugins 集合，不重新加载页面。</p>
+<p><span id="8.3.2"></span></p>
+<h2 id="8-3-2-注册处理程序"><a href="#8-3-2-注册处理程序" class="headerlink" title="8.3.2 注册处理程序"></a>8.3.2 注册处理程序</h2><p>Firefox 2为 navigator 对象新增了 registerContentHandler() 和 registerProtocolHandler() 方法（这两个方法是在 HTML5 中定义的，相关内容将在第 22 章讨论）。这两个方法可以让一个站点指明它可以处理特定类型的信息。</p>
+<p>随着 RSS 阅读器和在线电子邮件程序的兴起，注册处理程序就为像使用桌面应用程序一样默认使用这些在线应用程序提供了一种方式。</p>
+<p>其中，<strong>registerContentHandler() 方法接收三个参数：要处理的 MIME 类型、可以处理该 MIME 类型的页面的 URL 以及应用程序的名称</strong>。举个例子，要将一个站点注册为处理 RSS 源的处理程序，可以使用如下代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">navigator.registerContentHandler(&quot;application/rss+xml&quot;, &quot;http://www.somereader.com?feed=%s&quot;, &quot;Some Reader&quot;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>第一个参数是 RSS 源的 MIME 类型。第二个参数是应该接收 RSS 源 URL 的 URL，其中的 %s 表示 RSS 源 URL，由浏览器自动插入。当下一次请求 RSS 源时，浏览器就会打开指定的 URL，而相应的 Web 应用程序将以适当方式来处理该请求。</p>
+</blockquote>
+<p>Firefox 4 及之前版本只允许在 registerContentHandler() 方法中使用三个MIME 类型：application/rss+xml、application/atom+xml 和 application/vnd.mozilla.maybe. feed。这三个 MIME 类型的作用都一样，即为 RSS 或 ATOM 新闻源（feed）注册处理程序。</p>
+<p>类似的调用方式也适用于 <strong>registerProtocolHandler() 方法，它也接收三个参数：要处理的协议（例如，mailto 或 ftp）、处理该协议的页面的 URL 和应用程序的名称</strong>。例如，要想将一个应用程序注册为默认的邮件客户端，可以使用如下代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">navigator.registerProtocolHandler(&quot;mailto&quot;, &quot;http://www.somemailclient.com?cmd=%s&quot;, &quot;Some Mail Client&quot;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这个例子注册了一个 mailto 协议的处理程序，该程序指向一个基于 Web 的电子邮件客户端。同样，第二个参数仍然是处理相应请求的 URL，而%s 则表示原始的请求。</p>
+</blockquote>
+<p>Firefox 2 虽然实现了 registerProtocolHandler()，但该方法还不能用。Firefox 3 完整实现这个方法。</p>
+<p><span id="8.4"></span></p>
+<h1 id="8-4-screen-对象"><a href="#8-4-screen-对象" class="headerlink" title="8.4 screen 对象"></a>8.4 screen 对象</h1><p>JavaScript 中有几个对象在编程中用处不大，而 screen 对象就是其中之一。screen 对象基本上只用来表明客户端的能力，其中包括浏览器窗口外部的显示器的信息，如像素宽度和高度等。每个浏览器中的 screen 对象都包含着各不相同的属性，下表列出了所有属性及支持相应属性的浏览器。</p>
+<table>
+<thead>
+<tr>
+<th>属 性</th>
+<th>说 明</th>
+<th>IE</th>
+<th>Firefox</th>
+<th>Safari/Chrome</th>
+<th>Opera</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>availHeight</td>
+<td>屏幕的像素高度减系统部件高度之后的值（只读）</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>availLeft</td>
+<td>未被系统部件占用的最左侧的像素值（只读）</td>
+<td></td>
+<td>Y</td>
+<td>Y</td>
+<td></td>
+</tr>
+<tr>
+<td>availTop</td>
+<td>未被系统部件占用的最上方的像素值（只读）</td>
+<td></td>
+<td>Y</td>
+<td>Y</td>
+<td></td>
+</tr>
+<tr>
+<td>availWidth</td>
+<td>屏幕的像素宽度减系统部件宽度之后的值（只读）</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>bufferDepth</td>
+<td>读、写用于呈现屏外位图的位数</td>
+<td>Y</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>colorDepth</td>
+<td>用于表现颜色的位数；多数系统都是32（只读）</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>deviceXDPI</td>
+<td>屏幕实际的水平DPI（只读）</td>
+<td>Y</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>deviceYDPI</td>
+<td>屏幕实际的垂直DPI（只读）</td>
+<td>Y</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fontSmoothingEnabled</td>
+<td>表示是否启用了字体平滑（只读）</td>
+<td>Y</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>height</td>
+<td>屏幕的像素高度</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>left</td>
+<td>当前屏幕距左边的像素距离</td>
+<td></td>
+<td>Y</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>logicalXDPI</td>
+<td>屏幕逻辑的水平DPI（只读）</td>
+<td>Y</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>logicalYDPI</td>
+<td>屏幕逻辑的垂直DPI（只读）</td>
+<td>Y</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>pixelDepth</td>
+<td>屏幕的位深（只读）</td>
+<td></td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>top</td>
+<td>当前屏幕距上边的像素距离</td>
+<td></td>
+<td>Y</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>updateInterval</td>
+<td>读、写以毫秒表示的屏幕刷新时间间隔</td>
+<td>Y</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>width</td>
+<td>屏幕的像素宽度</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+</tbody>
+</table>
+<p>这些信息经常集中出现在测定客户端能力的站点跟踪工具中，但通常不会用于影响功能。不过，有时候也可能会用到其中的信息来调整浏览器窗口大小，使其占据屏幕的可用空间，例如：<code>window.resizeTo(screen.availWidth, screen.availHeight)</code>;前面曾经提到过，许多浏览器都会禁用调整浏览器窗口大小的能力，因此上面这行代码不一定在所有环境下都有效。</p>
+<p>涉及移动设备的屏幕大小时，情况有点不一样。运行 iOS 的设备始终会像是把设备竖着拿在手里一样，因此返回的值是 768×1024。而 Android 设备则会相应调用 screen.width 和 screen.height 的值。</p>
+<p><span id="8.5"></span></p>
+<h1 id="8-5-history-对象"><a href="#8-5-history-对象" class="headerlink" title="8.5 history 对象"></a>8.5 history 对象</h1><p>history 对象保存着用户上网的历史记录，从窗口被打开的那一刻算起。因为 history 是 window 对象的属性，因此每个浏览器窗口、每个标签页乃至每个框架，都有自己的 history 对象与特定的 window 对象关联。出于安全方面的考虑，开发人员无法得知用户浏览过的 URL。不过，借由用户访问过的页面列表，同样可以在不知道实际 URL 的情况下实现后退和前进。</p>
+<p><strong>使用 go() 方法可以在用户的历史记录中任意跳转，可以向后也可以向前</strong>。</p>
+<p><strong>这个方法接受一个参数，表示向后或向前跳转的页面数的一个整数值。负数表示向后跳转（类似于单击浏览器的“后退”按钮），正数表示向前跳转（类似于单击浏览器的“前进”按钮）</strong>。来看下面的例子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//后退一页</div><div class="line">history.go(-1);</div><div class="line"></div><div class="line">//前进一页</div><div class="line">history.go(1);</div><div class="line"></div><div class="line">//前进两页</div><div class="line">history.go(2);</div></pre></td></tr></table></figure>
+<p>也可以给 go() 方法传递一个字符串参数，此时浏览器会跳转到历史记录中包含该字符串的第一个位置——可能后退，也可能前进，具体要看哪个位置最近。如果历史记录中不包含该字符串，那么这个方法什么也不做，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//跳转到最近的 wrox.com 页面</div><div class="line">history.go(&quot;wrox.com&quot;);</div><div class="line"></div><div class="line">//跳转到最近的 nczonline.net 页面</div><div class="line">history.go(&quot;nczonline.net&quot;);</div></pre></td></tr></table></figure>
+<p>另外，还可以使用两个简写方法 back()和 forward()来代替 go()。顾名思义，这两个方法可以模仿浏览器的“后退”和“前进”按钮。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//后退一页</div><div class="line">history.back();</div><div class="line"></div><div class="line">//前进一页</div><div class="line">history.forward();</div></pre></td></tr></table></figure>
+<p>除了上述几个方法外，<strong>history 对象还有一个 length 属性，保存着历史记录的数量</strong>。这个数量包括所有历史记录，即所有向后和向前的记录。对于加载到窗口、标签页或框架中的第一个页面而言，history.length 等于 0。通过像下面这样测试该属性的值，可以确定用户是否一开始就打开了你的页面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if (history.length == 0)&#123;</div><div class="line"> //这应该是用户打开窗口后的第一个页面</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>虽然 history 并不常用，但在创建自定义的“后退”和“前进”按钮，以及检测当前页面是不是用户历史记录中的第一个页面时，还是必须使用它。</p>
+<p>当页面的 URL 改变时，就会生成一条历史记录。在 IE8 及更高版本、Opera、Firefox、Safari 3 及更高版本以及 Chrome 中，这里所说的改变包括 URL 中 hash 的变化（因此，设置 location.hash 会在这些浏览器中生成一条新的历史记录）。</p>
+<p><span id="8.6"></span></p>
+<h1 id="8-6-小结"><a href="#8-6-小结" class="headerlink" title="8.6 小结"></a>8.6 小结</h1><p>浏览器对象模型（BOM）以 window 对象为依托，表示浏览器窗口以及页面可见区域。同时，window 对象还是 ECMAScript 中的 Global 对象，因而所有全局变量和函数都是它的属性，且所有原生的构造函数及其他函数也都存在于它的命名空间下。本章讨论了下列 BOM 的组成部分。</p>
+<ol>
+<li>在使用框架时，每个框架都有自己的 window 对象以及所有原生构造函数及其他函数的副本。每个框架都保存在 frames 集合中，可以通过位置或通过名称来访问。</li>
+<li>有一些窗口指针，可以用来引用其他框架，包括父框架。</li>
+<li>top 对象始终指向最外围的框架，也就是整个浏览器窗口。</li>
+<li>parent 对象表示包含当前框架的框架，而 self 对象则回指 window。</li>
+<li>使用 location 对象可以通过编程方式来访问浏览器的导航系统。设置相应的属性，可以逐段或整体性地修改浏览器的 URL。</li>
+<li>调用 replace() 方法可以导航到一个新 URL，同时该 URL 会替换浏览器历史记录中当前显示的页面。</li>
+<li>navigator 对象提供了与浏览器有关的信息。到底提供哪些信息，很大程度上取决于用户的浏览器；不过，也有一些公共的属性（如 userAgent）存在于所有浏览器中。</li>
+</ol>
+<p>BOM 中还有两个对象：screen 和 history，但它们的功能有限。screen 对象中保存着与客户端显示器有关的信息，这些信息一般只用于站点分析。history 对象为访问浏览器的历史记录开了一个小缝隙，开发人员可以据此判断历史记录的数量，也可以在历史记录中向后或向前导航到任意页面。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript高级程序设计/" rel="tag">#JavaScript高级程序设计</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/29/JavaScript高级程序设计（8.1）/" rel="next" title="JavaScript高级程序设计(8.1)">
+                <i class="fa fa-chevron-left"></i> JavaScript高级程序设计(8.1)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://raw.githubusercontent.com/rason00/rason/gh-pages/img/rasonlogo.gif"
+               alt="Rason" />
+          <p class="site-author-name" itemprop="name">Rason</p>
+          <p class="site-description motion-element" itemprop="description">It's not insane！ It's ideal！A normal psychotic！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">83</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/rason00" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#内容涵盖"><span class="nav-number">1.</span> <span class="nav-text">内容涵盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-2-location-对象"><span class="nav-number">2.</span> <span class="nav-text">8.2 location 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-1-查询字符串参数"><span class="nav-number">2.1.</span> <span class="nav-text">8.2.1 查询字符串参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-2-位置操作"><span class="nav-number">2.2.</span> <span class="nav-text">8.2.2 位置操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-3-navigation-对象"><span class="nav-number">3.</span> <span class="nav-text">8.3 navigation 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-1-检测插件"><span class="nav-number">3.1.</span> <span class="nav-text">8.3.1 检测插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-2-注册处理程序"><span class="nav-number">3.2.</span> <span class="nav-text">8.3.2 注册处理程序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-4-screen-对象"><span class="nav-number">4.</span> <span class="nav-text">8.4 screen 对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-5-history-对象"><span class="nav-number">5.</span> <span class="nav-text">8.5 history 对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-6-小结"><span class="nav-number">6.</span> <span class="nav-text">8.6 小结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+
+
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!-- 添加访问量 开始 -->
+<!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<!-- 添加访问量 结束 -->
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rason</span>
+</div>
+
+<!-- 添加访问量开始 -->
+<!-- <div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div> -->
+<!-- 添加访问量结束 -->
+
+<!-- <div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+ -->
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
