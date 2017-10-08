@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ECMAScript6," />
+  <meta name="keywords" content="CSS学习," />
 
 
 
@@ -84,16 +84,19 @@
 
 
 
-<meta name="description" content="let 和 const 命令">
+<meta name="description" content="定义和用法position 属性规定元素的定位类型。
+说明这个属性定义建立元素布局所用的定位机制。任何元素都可以定位，不过绝对或固定元素会生成一个块级框，而不论该元素本身是什么类型。相对定位元素会相对于它在正常流中的默认位置偏移。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ES6：let和const命令">
-<meta property="og:url" content="http://yoursite.com/2017/08/13/ES6：let和const命令/index.html">
+<meta property="og:title" content="CSS学习：position">
+<meta property="og:url" content="http://yoursite.com/2017/10/08/CSS学习：position/index.html">
 <meta property="og:site_name" content="Rason">
-<meta property="og:description" content="let 和 const 命令">
-<meta property="og:updated_time" content="2017-08-23T08:22:08.053Z">
+<meta property="og:description" content="定义和用法position 属性规定元素的定位类型。
+说明这个属性定义建立元素布局所用的定位机制。任何元素都可以定位，不过绝对或固定元素会生成一个块级框，而不论该元素本身是什么类型。相对定位元素会相对于它在正常流中的默认位置偏移。">
+<meta property="og:updated_time" content="2017-10-08T09:41:58.223Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ES6：let和const命令">
-<meta name="twitter:description" content="let 和 const 命令">
+<meta name="twitter:title" content="CSS学习：position">
+<meta name="twitter:description" content="定义和用法position 属性规定元素的定位类型。
+说明这个属性定义建立元素布局所用的定位机制。任何元素都可以定位，不过绝对或固定元素会生成一个块级框，而不论该元素本身是什么类型。相对定位元素会相对于它在正常流中的默认位置偏移。">
 
 
 
@@ -114,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/13/ES6：let和const命令/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/08/CSS学习：position/"/>
 
-  <title> ES6：let和const命令 | Rason </title>
+  <title> CSS学习：position | Rason </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -272,7 +275,7 @@
             
             
               
-                ES6：let和const命令
+                CSS学习：position
               
             
           </h1>
@@ -284,8 +287,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-13T20:17:37+08:00" content="2017-08-13">
-              2017-08-13
+            <time itemprop="dateCreated" datetime="2017-10-08T16:10:26+08:00" content="2017-10-08">
+              2017-10-08
             </time>
           </span>
 
@@ -331,45 +334,108 @@
       
 
       
-        <h1 id="let-和-const-命令"><a href="#let-和-const-命令" class="headerlink" title="let 和 const 命令"></a>let 和 const 命令</h1><a id="more"></a>
-<h1 id="缘由："><a href="#缘由：" class="headerlink" title="缘由："></a>缘由：</h1><p>就是想学习下ES6，然后就去看了阮一峰的<a href="http://es6.ruanyifeng.com/" target="_blank" rel="external">ECMAScript 6 入门</a>，以下的算是一些学习笔记了，其实就是摘抄一些自己觉得是重点的例子，出处都是在阮一峰的ES6入门。</p>
-<h2 id="let"><a href="#let" class="headerlink" title="let"></a>let</h2><blockquote>
-<p>ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  let a = 10;</div><div class="line">  var b = 1;</div><div class="line">&#125;</div><div class="line"></div><div class="line">a // ReferenceError: a is not defined.</div><div class="line">b // 1</div></pre></td></tr></table></figure>
+        <h1 id="定义和用法"><a href="#定义和用法" class="headerlink" title="定义和用法"></a>定义和用法</h1><p>position 属性规定元素的定位类型。</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>这个属性定义建立元素布局所用的定位机制。任何元素都可以定位，不过绝对或固定元素会生成一个块级框，而不论该元素本身是什么类型。相对定位元素会相对于它在正常流中的默认位置偏移。</p>
+<a id="more"></a>
+<p>默认值：    static<br>继承性：    no<br>版本：    CSS2<br>JavaScript 语法：    object.style.position=”absolute”</p>
+<h1 id="可用的值"><a href="#可用的值" class="headerlink" title="可用的值"></a>可用的值</h1><table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>absolute</td>
+<td>生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。</td>
+</tr>
+<tr>
+<td>fixed</td>
+<td>生成绝对定位的元素，相对于浏览器窗口进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。</td>
+</tr>
+<tr>
+<td>relative</td>
+<td>生成相对定位的元素，相对于其正常位置进行定位。因此，”left:20” 会向元素的 LEFT 位置添加 20 像素。</td>
+</tr>
+<tr>
+<td>static</td>
+<td>默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>规定应该从父元素继承 position 属性的值。</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
-<p>不存在变量提升，let命令改变了语法行为，它所声明的变量一定要在声明后使用，否则报错。</p>
+<p><strong>以上内容原文出处：<a href="http://www.w3school.com.cn/cssref/pr_class_position.asp" target="_blank" rel="external">http://www.w3school.com.cn/cssref/pr_class_position.asp</a></strong></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// var 的情况</div><div class="line">console.log(foo); // 输出undefined</div><div class="line">var foo = 2;</div><div class="line"></div><div class="line">// let 的情况</div><div class="line">console.log(bar); // 报错ReferenceError</div><div class="line">let bar = 2;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>暂时性死区,只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var tmp = 123;</div><div class="line">//因为下面if区域内重新声明了let tmp，所以外面的var tmp不能传递到if区域里面。</div><div class="line">if (true) &#123;</div><div class="line">  tmp = &apos;abc&apos;; // ReferenceError</div><div class="line">  let tmp;</div><div class="line">  // 因为在此声明了let，这个区域内的tmp都是读取这个声明的，而let没有变量提升，所以在之前用会报错。</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>不允许重复声明,let不允许在相同作用域内，重复声明同一个变量。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">// 报错</div><div class="line">function () &#123;</div><div class="line">  let a = 10;</div><div class="line">  var a = 1;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 报错</div><div class="line">function () &#123;</div><div class="line">  let a = 10;</div><div class="line">  let a = 1;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function func(arg) &#123;</div><div class="line">  let arg; // 报错</div><div class="line">&#125;</div><div class="line"></div><div class="line">function func(arg) &#123;</div><div class="line">  &#123;</div><div class="line">    let arg; // 不报错</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="const"><a href="#const" class="headerlink" title="const"></a>const</h2><blockquote>
-<p>const声明一个只读的常量。一旦声明，常量的值就不能改变。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">const PI = 3.1415;</div><div class="line">PI // 3.1415</div><div class="line"></div><div class="line">PI = 3;</div><div class="line">// TypeError: Assignment to constant variable.</div></pre></td></tr></table></figure>
-<blockquote>
-<p>const声明的变量不得改变值，这意味着，const一旦声明变量，就必须立即初始化，不能留到以后赋值。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">const foo;</div><div class="line">// SyntaxError: Missing initializer in const declaration(只声明不赋值会报错)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>const的作用域与let命令相同：只在声明所在的块级作用域内有效。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if (true) &#123;</div><div class="line">  const MAX = 5;</div><div class="line">&#125;</div><div class="line">MAX // Uncaught ReferenceError: MAX is not defined</div></pre></td></tr></table></figure>
-<blockquote>
-<p>const命令声明的常量也是不提升，同样存在暂时性死区，只能在声明的位置后面使用。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if (true) &#123;</div><div class="line">  console.log(MAX); // ReferenceError 在常量MAX声明之前就调用，结果报错。</div><div class="line">  const MAX = 5;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>const声明的常量，也与let一样不可重复声明。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var message = &quot;Hello!&quot;;</div><div class="line">let age = 25;</div><div class="line"></div><div class="line">// 以下两行都会报错</div><div class="line">const message = &quot;Goodbye!&quot;;</div><div class="line">const age = 30;</div></pre></td></tr></table></figure>
+<h1 id="static"><a href="#static" class="headerlink" title="static"></a>static</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.static &#123;</div><div class="line">  position: static;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<div class="relative" style="border: solid #6AC5AC 3px; padding: 1em;"><span class="divTitle " style="background: #6AC5AC;">class=”static</span>static 是默认值。任意 position: static; 的元素不会被特殊的定位。一个 static 元素表示它不会被“positioned”，一个 position 属性被设置为其他值的元素表示它会被“positioned”。<br></div>
 
+<h1 id="relative"><a href="#relative" class="headerlink" title="relative"></a>relative</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">.relative1 &#123;</div><div class="line">  position: relative;</div><div class="line">&#125;</div><div class="line">.relative2 &#123;</div><div class="line">  position: relative;</div><div class="line">  top: -20px;</div><div class="line">  left: 20px;</div><div class="line">  background-color: white;</div><div class="line">  width: 500px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<div class="relative" style="border: solid #6AC5AC 3px; padding: 1em;"><span class="divTitle " style="background: #6AC5AC;">class=”relative1”</span>relative 表现的和 static 一样，除非你添加了一些额外的属性。<br></div>
+
+<div class="relative" style="width:500px; top: -20px; left: 20px; background-color: white; border: solid #D64078 3px; padding: 1em;"><span class="divTitle " style="background: #D64078;">class=”relative2”</span>在一个相对定位（position属性的值为relative）的元素上设置 top 、 right 、 bottom 和 left 属性会使其偏离其正常位置。其他的元素的位置则不会受该元素的影响发生位置改变来弥补它偏离后剩下的空隙。<br></div>
+
+<h1 id="fixed"><a href="#fixed" class="headerlink" title="fixed"></a>fixed</h1><p>一个固定定位（position属性的值为fixed）元素会相对于视窗来定位，这意味着即便页面滚动，它还是会停留在相同的位置。和 relative 一样， top 、 right 、 bottom 和 left 属性都可用。</p>
+<p>我相信你已经注意到页面右下角的固定定位元素。你现在可以仔细看看它，这里有它所使用的CSS：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.fixed &#123;</div><div class="line">  position: fixed;</div><div class="line">  bottom: 20px;</div><div class="line">  right: 100px;</div><div class="line">  width: 200px;</div><div class="line">  background-color: white;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>一个固定定位元素不会保留它原本在页面应有的空隙（脱离文档流）。</p>
+<div class="fixed" style="padding: 1em; border: solid #FDC72F 3px;"><span class="divTitle " style="background: #FDC72F;">class=”fixed”</span>Hello！暂时不用关注我哦。<br></div>
+
+<blockquote>
+<p><strong>注意：当父级元素有 transform 的元素，子级的 fixed 的特性将转换成 absolute</strong></p>
+</blockquote>
+<h1 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h1><p>absolute 是最棘手的 position 值。 absolute 与 fixed 的表现类似，但是它不是相对于视窗而是相对于最近的“positioned”祖先元素。如果绝对定位（position 属性的值为 absolute）的元素没有“positioned”祖先元素，那么它是相对于文档的 body 元素，并且它会随着页面滚动而移动。记住一个“positioned”元素是指 position 值不是 static 的元素。</p>
+<p>这里有一个简单的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">.relative &#123;</div><div class="line">  position: relative;</div><div class="line">  width: 600px;</div><div class="line">  height: 400px;</div><div class="line">&#125;</div><div class="line">.absolute &#123;</div><div class="line">  position: absolute;</div><div class="line">  top: 120px;</div><div class="line">  right: 0;</div><div class="line">  width: 300px;</div><div class="line">  height: 200px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<div class="relative1" style="padding: 1em; border: solid #6AC5AC 3px;"><span class="divTitle " style="background: #6AC5AC;">class=”relative”</span>这个元素是相对定位的。如果它是 position: static; ，那么它的绝对定位子元素会跳过它直接相对于body元素定位。<div class="absolute" style="padding: 1em; border: solid #D64078 3px;"><span class="divTitle " style="background: #D64078;">class=”absolute”</span>这个元素是绝对定位的。它相对于它的父元素定位。</div><br></div>
+
+<p><br></p>
+<blockquote>
+<p><strong>以上内容只是本人稍加整理，原文出处：<a href="http://zh.learnlayout.com/position.html" target="_blank" rel="external">http://zh.learnlayout.com/position.html</a></strong></p>
+</blockquote>
+<style>
+/* 父元素上有 transform 影响 fixed 强制覆盖 */ 
+.post-type-normal {
+      transform: none!important;
+}
+
+.divTitle {
+    position: absolute;
+    color: #414142;
+    line-height: 1em;
+    top: 0;
+    left: 0;
+    padding: 0 3px 3px 0;
+}
+
+.relative {
+  position: relative;
+}
+.relative1 {
+  position: relative;
+  width: 600px;
+  height: 400px;
+}
+.fixed {
+    position: fixed;
+    bottom: 20px;
+    right: 100px;
+    width: 200px;
+    background-color: white;
+    z-index: 9999;
+}
+.absolute {
+  position: absolute;
+  top: 120px;
+  right: 0;
+  width: 300px;
+  height: 200px;
+}
+</style>
       
     </div>
 
@@ -391,7 +457,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ECMAScript6/" rel="tag">#ECMAScript6</a>
+            <a href="/tags/CSS学习/" rel="tag">#CSS学习</a>
           
         </div>
       
@@ -400,17 +466,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/11/个人简历/" rel="next" title="个人简历">
-                <i class="fa fa-chevron-left"></i> 个人简历
+              <a href="/2017/10/08/JavaScript高级程序设计（10.1.2-10.1.3）/" rel="next" title="JavaScript高级程序设计(10.1.2-10.1.3)">
+                <i class="fa fa-chevron-left"></i> JavaScript高级程序设计(10.1.2-10.1.3)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/26/Vue组件通信/" rel="prev" title="Vue组件通信">
-                Vue组件通信 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -535,7 +597,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#let-和-const-命令"><span class="nav-number">1.</span> <span class="nav-text">let 和 const 命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缘由："><span class="nav-number">2.</span> <span class="nav-text">缘由：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#let"><span class="nav-number">2.1.</span> <span class="nav-text">let</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#const"><span class="nav-number">2.2.</span> <span class="nav-text">const</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义和用法"><span class="nav-number">1.</span> <span class="nav-text">定义和用法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可用的值"><span class="nav-number">3.</span> <span class="nav-text">可用的值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#static"><span class="nav-number">4.</span> <span class="nav-text">static</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#relative"><span class="nav-number">5.</span> <span class="nav-text">relative</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fixed"><span class="nav-number">6.</span> <span class="nav-text">fixed</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#absolute"><span class="nav-number">7.</span> <span class="nav-text">absolute</span></a></li></ol></div>
             
           </div>
         </section>
