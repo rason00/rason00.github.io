@@ -1,0 +1,693 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript高级程序设计," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="11 DOM 扩展对 DOM 的两个主要的扩展是 Selectors API（选择符 API）和 HTML5。这两个扩展都源自开发社区，而将某些常见做法及 API 标准化一直是众望所归。此外，还有一个不那么引人瞩目的 Element Traversal （元素遍历）规范，为 DOM 添加了一些属性。虽然前述两个主要规范（特别是 HTML5）已经涵盖了大量的 DOM 扩展，但专有扩展依然存在。本章也">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript高级程序设计(11.1-11.2)">
+<meta property="og:url" content="http://yoursite.com/2017/10/11/JavaScript高级程序设计（11.1-11.2）/index.html">
+<meta property="og:site_name" content="Rason">
+<meta property="og:description" content="11 DOM 扩展对 DOM 的两个主要的扩展是 Selectors API（选择符 API）和 HTML5。这两个扩展都源自开发社区，而将某些常见做法及 API 标准化一直是众望所归。此外，还有一个不那么引人瞩目的 Element Traversal （元素遍历）规范，为 DOM 添加了一些属性。虽然前述两个主要规范（特别是 HTML5）已经涵盖了大量的 DOM 扩展，但专有扩展依然存在。本章也">
+<meta property="og:updated_time" content="2017-10-11T04:47:20.481Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript高级程序设计(11.1-11.2)">
+<meta name="twitter:description" content="11 DOM 扩展对 DOM 的两个主要的扩展是 Selectors API（选择符 API）和 HTML5。这两个扩展都源自开发社区，而将某些常见做法及 API 标准化一直是众望所归。此外，还有一个不那么引人瞩目的 Element Traversal （元素遍历）规范，为 DOM 添加了一些属性。虽然前述两个主要规范（特别是 HTML5）已经涵盖了大量的 DOM 扩展，但专有扩展依然存在。本章也">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/11/JavaScript高级程序设计（11.1-11.2）/"/>
+
+  <title> JavaScript高级程序设计(11.1-11.2) | Rason </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c0b175368f6e60b955380864b509c3fc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s6.cnzz.com/stat.php?id=1259942288&web_id=1259942288" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Rason</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Rason 博客</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript高级程序设计(11.1-11.2)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-11T12:30:38+08:00" content="2017-10-11">
+              2017-10-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="11-DOM-扩展"><a href="#11-DOM-扩展" class="headerlink" title="11 DOM 扩展"></a>11 DOM 扩展</h1><p>对 DOM 的两个主要的扩展是 Selectors API（选择符 API）和 HTML5。这两个扩展都源自开发社区，而将某些常见做法及 API 标准化一直是众望所归。此外，还有一个不那么引人瞩目的 Element Traversal （元素遍历）规范，为 DOM 添加了一些属性。虽然前述两个主要规范（特别是 HTML5）已经涵盖了大量的 DOM 扩展，但专有扩展依然存在。本章也会介绍专有的 DOM 扩展。</p>
+<h1 id="内容涵盖"><a href="#内容涵盖" class="headerlink" title="内容涵盖"></a>内容涵盖</h1><ol>
+<li><a href="#11.1">选择符 API</a><ol>
+<li><a href="#11.1.1">querySelector() 方法</a></li>
+<li><a href="#11.1.2">querySelectorAll() 方法</a></li>
+<li><a href="#11.1.3">matchesSelector() 方法</a></li>
+</ol>
+</li>
+<li><a href="#11.2">元素遍历</a></li>
+</ol>
+<a id="more"></a>
+<p><span id="11.1"></span></p>
+<h1 id="11-1-选择符-API"><a href="#11-1-选择符-API" class="headerlink" title="11.1 选择符 API"></a>11.1 选择符 API</h1><p>众多 JavaScript 库中最常用的一项功能，就是根据 CSS 选择符选择与某个模式匹配的 DOM 元素。</p>
+<p>实际上，jQuery（www.jquery.com）的核心就是通过 CSS 选择符查询 DOM 文档取得元素的引用，从而抛开了 getElementById() 和 getElementsByTagName()。</p>
+<p>Selectors API（www.w3.org/TR/selectors-api/）是由 W3C 发起制定的一个标准，致力于让浏览器原生支持 CSS 查询。所有实现这一功能的 JavaScript 库都会写一个基础的 CSS 解析器，然后再使用已有的 DOM 方法查询文档并找到匹配的节点。尽管库开发人员在不知疲倦地改进这一过程的性能，但到头来都只能通过运行 JavaScript 代码来完成查询操作。而把这个功能变成原生 API 之后，解析和树查询操作可以在浏览器内部通过编译后的代码来完成，极大地改善了性能。</p>
+<p>Selectors API Level 1 的核心是两个方法：querySelector() 和 querySelectorAll()。在兼容的浏览器中，可以通过 Document 及 Element 类型的实例调用它们。目前已完全支持 Selectors API Level 1 的浏览器有 IE 8+、Firefox 3.5+、Safari 3.1+、Chrome 和 Opera 10+。</p>
+<p><span id="11.1.1"></span></p>
+<h2 id="11-1-1-querySelector-方法"><a href="#11-1-1-querySelector-方法" class="headerlink" title="11.1.1 querySelector() 方法"></a>11.1.1 querySelector() 方法</h2><p><strong>querySelector() 方法接收一个 CSS 选择符，返回与该模式匹配的第一个元素，如果没有找到匹配的元素，返回 null</strong>。请看下面的例子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//取得 body 元素</div><div class="line">var body = document.querySelector(&quot;body&quot;);</div><div class="line"></div><div class="line">//取得 ID 为&quot;myDiv&quot;的元素</div><div class="line">var myDiv = document.querySelector(&quot;#myDiv&quot;);</div><div class="line"></div><div class="line">//取得类为&quot;selected&quot;的第一个元素</div><div class="line">var selected = document.querySelector(&quot;.selected&quot;);</div><div class="line"></div><div class="line">//取得类为&quot;button&quot;的第一个图像元素</div><div class="line">var img = document.body.querySelector(&quot;img.button&quot;);</div></pre></td></tr></table></figure>
+<p><strong>通过 Document 类型调用 querySelector() 方法时，会在文档元素的范围内查找匹配的元素。而通过 Element 类型调用 querySelector() 方法时，只会在该元素后代元素的范围内查找匹配的元素</strong>。</p>
+<p>CSS 选择符可以简单也可以复杂，视情况而定。如果传入了不被支持的选择符，querySelector() 会抛出错误。</p>
+<p><span id="11.1.2"></span></p>
+<h2 id="11-1-2-querySelectorAll-方法"><a href="#11-1-2-querySelectorAll-方法" class="headerlink" title="11.1.2 querySelectorAll() 方法"></a>11.1.2 querySelectorAll() 方法</h2><p><strong>querySelectorAll() 方法接收的参数与 querySelector() 方法一样，都是一个 CSS 选择符，但返回的是所有匹配的元素而不仅仅是一个元素。这个方法返回的是一个 NodeList 的实例</strong>。</p>
+<p>具体来说，返回的值实际上是带有所有属性和方法的 NodeList，而其底层实现则类似于一组元素的快照，而非不断对文档进行搜索的动态查询。这样实现可以避免使用 NodeList 对象通常会引起的大多数性能问题。</p>
+<p><strong>只要传给 querySelectorAll() 方法的 CSS 选择符有效，该方法都会返回一个 NodeList 对象，而不管找到多少匹配的元素。如果没有找到匹配的元素，NodeList 就是空的</strong>。</p>
+<p>与 querySelector() 类似，能够调用 querySelectorAll() 方法的类型包括 Document、DocumentFragment 和 Element。下面是几个例子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//取得某 &lt;div&gt; 中的所有 &lt;em&gt; 元素（类似于 getElementsByTagName(&quot;em&quot;)）</div><div class="line">var ems = document.getElementById(&quot;myDiv&quot;).querySelectorAll(&quot;em&quot;);</div><div class="line"></div><div class="line">//取得类为&quot;selected&quot;的所有元素</div><div class="line">var selecteds = document.querySelectorAll(&quot;.selected&quot;);</div><div class="line"></div><div class="line">//取得所有 &lt;p&gt; 元素中的所有 &lt;strong&gt; 元素</div><div class="line">var strongs = document.querySelectorAll(&quot;p strong&quot;);</div></pre></td></tr></table></figure>
+<p>要取得返回的 NodeList 中的每一个元素，可以使用 item() 方法，也可以使用方括号语法，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var i, len, strong;</div><div class="line">for (i=0, len=strongs.length; i &lt; len; i++)&#123;</div><div class="line"> strong = strongs[i]; //或者 strongs.item(i)</div><div class="line"> strong.className = &quot;important&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>同样与 querySelector() 类似，如果传入了浏览器不支持的选择符或者选择符中有语法错误，querySelectorAll() 会抛出错误。</p>
+<p><span id="11.1.3"></span></p>
+<h2 id="11-1-3-matchesSelector-方法"><a href="#11-1-3-matchesSelector-方法" class="headerlink" title="11.1.3 matchesSelector() 方法"></a>11.1.3 matchesSelector() 方法</h2><p><strong>Selectors API Level 2 规范为 Element 类型新增了一个方法 matchesSelector()。这个方法接收一个参数，即 CSS 选择符，如果调用元素与该选择符匹配，返回 true；否则，返回 false</strong>。看例子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if (document.body.matchesSelector(&quot;body.page1&quot;))&#123;</div><div class="line"> //true</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在取得某个元素引用的情况下，使用这个方法能够方便地检测它是否会被 querySelector() 或 querySelectorAll() 方法返回。</p>
+<p>截至 2011 年年中，还没有浏览器支持 matchesSelector() 方法；不过，也有一些实验性的实现。IE 9+通过 msMatchesSelector() 支持该方法，Firefox 3.6+ 通过 mozMatchesSelector() 支持该方法，Safari 5+ 和 Chrome 通过 webkitMatchesSelector() 支持该方法。因此，<strong>如果你想使用这个方法，最好是编写一个包装函数</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">function matchesSelector(element, selector)&#123;</div><div class="line"> if (element.matchesSelector)&#123;</div><div class="line"> return element.matchesSelector(selector);</div><div class="line"> &#125; else if (element.msMatchesSelector)&#123;</div><div class="line"> return element.msMatchesSelector(selector);</div><div class="line"> &#125; else if (element.mozMatchesSelector)&#123;</div><div class="line"> return element.mozMatchesSelector(selector);</div><div class="line"> &#125; else if (element.webkitMatchesSelector)&#123;</div><div class="line"> return element.webkitMatchesSelector(selector);</div><div class="line"> &#125; else &#123;</div><div class="line"> throw new Error(&quot;Not supported.&quot;);</div><div class="line"> &#125;</div><div class="line">&#125;</div><div class="line">if (matchesSelector(document.body, &quot;body.page1&quot;))&#123;</div><div class="line"> //执行操作</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><span id="11.2"></span></p>
+<h1 id="11-2-元素遍历"><a href="#11-2-元素遍历" class="headerlink" title="11.2 元素遍历"></a>11.2 元素遍历</h1><p>对于元素间的空格，IE9 及之前版本不会返回文本节点，而其他所有浏览器都会返回文本节点。这样，就导致了在使用 childNodes 和 firstChild 等属性时的行为不一致。为了弥补这一差异，而同时又保持 DOM 规范不变，Element Traversal 规范（www.w3.org/TR/ElementTraversal/）新定义了一组属性。</p>
+<p>Element Traversal API 为 DOM 元素添加了以下 5 个属性。</p>
+<ol>
+<li>childElementCount：返回子元素（不包括文本节点和注释）的个数。</li>
+<li>firstElementChild：指向第一个子元素；firstChild 的元素版。</li>
+<li>lastElementChild：指向最后一个子元素；lastChild 的元素版。</li>
+<li>previousElementSibling：指向前一个同辈元素；previousSibling 的元素版。</li>
+<li>nextElementSibling：指向后一个同辈元素；nextSibling 的元素版。</li>
+</ol>
+<p>支持的浏览器为 DOM 元素添加了这些属性，利用这些元素不必担心空白文本节点，从而可以更方便地查找 DOM 元素了。</p>
+<p>下面来看一个例子。<strong>过去</strong>，要跨浏览器遍历某元素的所有子元素，需要像下面这样写代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var i,</div><div class="line"> len,</div><div class="line"> child = element.firstChild;</div><div class="line">while(child != element.lastChild)&#123;</div><div class="line"> if (child.nodeType == 1)&#123; //检查是不是元素</div><div class="line"> processChild(child);</div><div class="line"> &#125;</div><div class="line"> child = child.nextSibling;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而使用 Element Traversal <strong>新增的元素，代码会更简洁</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var i,</div><div class="line"> len,</div><div class="line"> child = element.firstElementChild;</div><div class="line">while(child != element.lastElementChild)&#123;</div><div class="line"> processChild(child); //已知其是元素</div><div class="line"> child = child.nextElementSibling;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>支持 Element Traversal 规范的浏览器有 IE 9+、Firefox 3.5+、Safari 4+、Chrome 和 Opera 10+。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript高级程序设计/" rel="tag">#JavaScript高级程序设计</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/10/CSS学习：居中/" rel="next" title="CSS学习：居中">
+                <i class="fa fa-chevron-left"></i> CSS学习：居中
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://raw.githubusercontent.com/rason00/rason/gh-pages/img/rasonlogo.gif"
+               alt="Rason" />
+          <p class="site-author-name" itemprop="name">Rason</p>
+          <p class="site-description motion-element" itemprop="description">It's not insane！ It's ideal！A normal psychotic！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">93</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/rason00" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#11-DOM-扩展"><span class="nav-number">1.</span> <span class="nav-text">11 DOM 扩展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内容涵盖"><span class="nav-number">2.</span> <span class="nav-text">内容涵盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-1-选择符-API"><span class="nav-number">3.</span> <span class="nav-text">11.1 选择符 API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-1-1-querySelector-方法"><span class="nav-number">3.1.</span> <span class="nav-text">11.1.1 querySelector() 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-1-2-querySelectorAll-方法"><span class="nav-number">3.2.</span> <span class="nav-text">11.1.2 querySelectorAll() 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-1-3-matchesSelector-方法"><span class="nav-number">3.3.</span> <span class="nav-text">11.1.3 matchesSelector() 方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-2-元素遍历"><span class="nav-number">4.</span> <span class="nav-text">11.2 元素遍历</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+
+
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!-- 添加访问量 开始 -->
+<!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<!-- 添加访问量 结束 -->
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rason</span>
+</div>
+
+<!-- 添加访问量开始 -->
+<!-- <div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div> -->
+<!-- 添加访问量结束 -->
+
+<!-- <div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+ -->
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
