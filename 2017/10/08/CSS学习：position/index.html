@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Rason">
 <meta property="og:description" content="定义和用法position 属性规定元素的定位类型。
 说明这个属性定义建立元素布局所用的定位机制。任何元素都可以定位，不过绝对或固定元素会生成一个块级框，而不论该元素本身是什么类型。相对定位元素会相对于它在正常流中的默认位置偏移。">
-<meta property="og:updated_time" content="2017-10-08T09:41:58.223Z">
+<meta property="og:updated_time" content="2017-10-11T06:28:31.507Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS学习：position">
 <meta name="twitter:description" content="定义和用法position 属性规定元素的定位类型。
@@ -386,7 +386,7 @@
 <div class="fixed" style="padding: 1em; border: solid #FDC72F 3px;"><span class="divTitle " style="background: #FDC72F;">class=”fixed”</span>Hello！暂时不用关注我哦。<br></div>
 
 <blockquote>
-<p><strong>注意：当父级元素有 transform 的元素，子级的 fixed 的特性将转换成 absolute</strong></p>
+<p><strong>注意：当父级元素有 transform 属性，子级的 fixed 的特性将转换成 absolute</strong></p>
 </blockquote>
 <h1 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h1><p>absolute 是最棘手的 position 值。 absolute 与 fixed 的表现类似，但是它不是相对于视窗而是相对于最近的“positioned”祖先元素。如果绝对定位（position 属性的值为 absolute）的元素没有“positioned”祖先元素，那么它是相对于文档的 body 元素，并且它会随着页面滚动而移动。记住一个“positioned”元素是指 position 值不是 static 的元素。</p>
 <p>这里有一个简单的例子：</p>
@@ -544,7 +544,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">93</span>
+              <span class="site-state-item-count">94</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
