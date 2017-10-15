@@ -124,7 +124,7 @@ CSS 规则
 客户区大小
 滚动大小
 确定元素大小">
-<meta property="og:updated_time" content="2017-10-15T03:40:25.315Z">
+<meta property="og:updated_time" content="2017-10-15T03:48:18.018Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript高级程序设计(12.2)">
 <meta name="twitter:description" content="内容涵盖
@@ -570,7 +570,10 @@ CSS 规则
 <p>所有这些偏移量属性都是只读的，而且每次访问它们都需要重新计算。因此，应该尽量避免重复访问这些属性；如果需要重复使用其中某些属性的值，可以将它们保存在局部变量中，以提高性能。</p>
 <p><span id="3.2"></span></p>
 <h3 id="2-客户区大小"><a href="#2-客户区大小" class="headerlink" title="2. 客户区大小"></a>2. 客户区大小</h3><p>元素的客户区大小（client dimension），指的是元素内容及其内边距所占据的空间大小。有关客户区大小的属性有两个：clientWidth 和 clientHeight。其中，clientWidth 属性是元素内容区宽度加上左右内边距宽度；clientHeight 属性是元素内容区高度加上上下内边距高度。</p>
-<p>从字面上看，客户区大小就是元素内部的空间大小，因此滚动条占用的空间不计算在内。最常用到<br>这些属性的情况，就是像第 8 章讨论的确定浏览器视口大小的时候。如下面的例子所示，要确定浏览器<br>视口大小，可以使用 document.documentElement 或 document.body（在 IE7 之前的版本中）的<br>clientWidth 和 clientHeight。<br>function getViewport(){<br> if (document.compatMode == “BackCompat”){<br> return {<br> width: document.body.clientWidth,<br> height: document.body.clientHeight<br> };<br> } else {<br> return {<br> width: document.documentElement.clientWidth,<br> height: document.documentElement.clientHeight<br> };<br> }<br>}<br>这个函数首先检查 document.compatMode 属性，以确定浏览器是否运行在混杂模式。Safari 3.1<br>之前的版本不支持这个属性，因此就会自动执行 else 语句。Chrome、Opera 和 Firefox 大多数情况下都<br>运行在标准模式下，因此它们也会前进到 else 语句。这个函数会返回一个对象，包含两个属性：width<br>和 height；表示浏览器视口（<html>或<body>元素）的大小。<br>与偏移量相似，客户区大小也是只读的，也是每次访问都要重新计算的。</body></html></p>
+<p>从字面上看，客户区大小就是元素内部的空间大小，因此滚动条占用的空间不计算在内。最常用到这些属性的情况，就是像第 8 章讨论的确定浏览器视口大小的时候。如下面的例子所示，要确定浏览器视口大小，可以使用 document.documentElement 或 document.body（在 IE7 之前的版本中）的 clientWidth 和 clientHeight。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function getViewport()&#123;</div><div class="line"> if (document.compatMode == &quot;BackCompat&quot;)&#123;</div><div class="line"> return &#123;</div><div class="line"> width: document.body.clientWidth,</div><div class="line"> height: document.body.clientHeight</div><div class="line"> &#125;;</div><div class="line"> &#125; else &#123;</div><div class="line"> return &#123;</div><div class="line"> width: document.documentElement.clientWidth,</div><div class="line"> height: document.documentElement.clientHeight</div><div class="line"> &#125;;</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个函数首先检查 document.compatMode 属性，以确定浏览器是否运行在混杂模式。Safari 3.1 之前的版本不支持这个属性，因此就会自动执行 else 语句。Chrome、Opera 和 Firefox 大多数情况下都运行在标准模式下，因此它们也会前进到 else 语句。这个函数会返回一个对象，包含两个属性：width 和 height；表示浏览器视口（<code>&lt;html&gt;</code> 或 <code>&lt;body&gt;</code> 元素）的大小。</p>
+<p>与偏移量相似，客户区大小也是只读的，也是每次访问都要重新计算的。</p>
 <p><span id="3.3"></span></p>
 <h3 id="3-滚动大小"><a href="#3-滚动大小" class="headerlink" title="3. 滚动大小"></a>3. 滚动大小</h3><p>最后要介绍的是滚动大小（scroll dimension），指的是包含滚动内容的元素的大小。有些元素（例如 <code>&lt;html&gt;</code> 元素），即使没有执行任何代码也能自动地添加滚动条；但另外一些元素，则需要通过 CSS 的 overflow 属性进行设置才能滚动。以下是 4 个与滚动大小相关的属性。</p>
 <ol>
