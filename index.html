@@ -274,6 +274,163 @@
             
               
                 
+                <a class="post-title-link" href="/2018/03/14/JavaScript-闭包/" itemprop="url">
+                  JavaScript-this
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-03-14T10:47:07+08:00" content="2018-03-14">
+              2018-03-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><p><strong><u>当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数实在当前词法作用域之外执行。</u></strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> a = <span class="number">2</span>;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(a); <span class="comment">// 2</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> bar;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> baz = foo();</div><div class="line"></div><div class="line">baz(); <span class="comment">// 2 &lt;== 这就是闭包！</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>函数<code>bar()</code>的词法作用域能够访问<code>foo()</code>的内部作用域。</p>
+</blockquote>
+<p>无论使用何种方式对函数类型的值进行传递，当函数在别处被调用时都可以观察到闭包。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> a = <span class="number">2</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(a); <span class="comment">// 2</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    bar(baz);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">fn</span>) </span>&#123;</div><div class="line">    fn(); <span class="comment">// &lt;== 这也是闭包！</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>把内部函数 baz 传递给 bar，当调用这个内部函数时（现在叫作fn），它涵盖<code>foo()</code>内部作用域的闭包就可以观察到了，因为它能够访问 a。</p>
+</blockquote>
+<p>传递函数也可以是间接的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fn;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> a = <span class="number">2</span>;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(a);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    fn = baz; <span class="comment">// 将 baz 分配给全局变量 fn</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    fn(); <span class="comment">// 闭包！</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">foo();</div><div class="line"></div><div class="line">bar(); <span class="comment">// 2</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>无论通过何种手段将内部函数传递到所在词法作用域以外，它都会持有对原始定义作用域的引用，无论在何处执行这个函数都会使用闭包。</p>
+</blockquote>
+<p>你已经写过的闭包</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">wait</span>(<span class="params">msg</span>) </span>&#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(msg);</div><div class="line">    &#125;, <span class="number">1000</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">wait(<span class="string">'something'</span>);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>timer 具有函数 wait(..) 的作用域闭包，wait(..) 在执行 1000 毫秒后，它的内部作用域没有消失，timer 函数依然可以访问传入的 msg 。</p>
+</blockquote>
+<p>或者jQuery的闭包</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">name, selector</span>) </span>&#123;</div><div class="line">    $(selector).click(<span class="function"><span class="keyword">function</span> <span class="title">activator</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(name);</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo(<span class="string">'sonmething1'</span>, <span class="string">'#test1'</span>);</div><div class="line">foo(<span class="string">'sonmething2'</span>, <span class="string">'#test2'</span>);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>上面 jq 代码个人理解为，函数传递，<code>foo()</code>里面把<code>activator()</code>传递给了 jq 里面的 click，当调用完<code>foo()</code>函数后，其没有被销毁，在外部其他地方触发了 click 时，依旧可以访问到其所在作用域中的参数 name，这就是闭包。</p>
+</blockquote>
+<p><strong><u>本质上无论何时何地，如果将函数（访问它们各自的词法作用域）当作第一级的值类型并到处传递，你就会看到闭包在这些函数中的应用。在定时器、事件监听器、Ajax请求、跨窗口通信、Web Workers或者任何其他的异步（或者同步）任务中，只要使用了回调函数，实际上就是在使用闭包！</u></strong></p>
+<h2 id="循环和闭包"><a href="#循环和闭包" class="headerlink" title="循环和闭包"></a>循环和闭包</h2><p>分别输出1～5</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++) &#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(i);</div><div class="line">    &#125;, i * <span class="number">1000</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 6 6 6 6 6</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>上面代码会输出 5 个 6，因为函数回调会在循环结束后才执行。事实上，哪怕定时设为0毫秒，里面的 timer 回调函数也是在循环结束后才执行，因此会输出 6。</p>
+</blockquote>
+<p>我们需要一个闭包作用域，IIFE（立即执行函数式）会通过声明并立即执行一个函数来创建作用域。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++) &#123;</div><div class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(i);</div><div class="line">        &#125;, i * <span class="number">1000</span>);</div><div class="line">    &#125;)();</div><div class="line">&#125;</div><div class="line"><span class="comment">// 6 6 6 6 6</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>事实上，这样还是不行，因为现在创建了一个立即执行函数的确有了一个封闭的作用域，但是作用域里面仅仅只有一个 setTimeout，其参数 i 并没有得到保存，以至于最后还是抓取其之上的作用域里的已执行完的 for 循环等于 6 的 i。</p>
+</blockquote>
+<p>设置一个变量存储 i</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++) &#123;</div><div class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">j</span>) </span>&#123;</div><div class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(j);</div><div class="line">        &#125;, j * <span class="number">1000</span>);</div><div class="line">    &#125;)(i); <span class="comment">// 把 i 当作参数传给立即执行函数里面的 j</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// 1 2 3 4 5</span></div></pre></td></tr></table></figure>
+<h2 id="重返块作用域"><a href="#重返块作用域" class="headerlink" title="重返块作用域"></a>重返块作用域</h2><p>使用 IIFE（立即执行函数式）在每次迭代时都穿件一个新的作用域。换句话说，每次迭代我们都需要一个块级作用域。而 ES6 中的 let 声明，可以用来劫持块级作用域，并且在这个块级作用域中声明一个变量。</p>
+<p>本质上这是将一个块转换成一个可以被关闭的作用域。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++) &#123;</div><div class="line">    <span class="keyword">let</span> j = i; <span class="comment">// 这就是闭包的块级作用域！</span></div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(j);</div><div class="line">    &#125;, j * <span class="number">1000</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 1 2 3 4 5</span></div></pre></td></tr></table></figure>
+<p><strong><u>上面的代码还可以修改，因为 for 循环头部的 <code>var i = 1;</code>有一个特殊行为。这个行为指出变量在循环过程中不止一次被声明，每次迭代都会声明，随后的每个迭代都会使用上一个迭代结束时的值来初始化这个变量。</u></strong></p>
+<p>因此我们可以这样修改上面的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++) &#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(i);</div><div class="line">    &#125;, i * <span class="number">1000</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 1 2 3 4 5</span></div></pre></td></tr></table></figure>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p><strong><u>当函数可以记住并访问所在的词法作用域，即使函数是在当前词法作用域之外执行，这时就产生了闭包。</u></strong></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2018/03/12/JavaScript-this/" itemprop="url">
                   JavaScript-this
                 </a>
@@ -863,143 +1020,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/15/JavaScript高级程序设计（12.2）/" itemprop="url">
-                  JavaScript高级程序设计(12.2)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-15T10:53:14+08:00" content="2017-10-15">
-              2017-10-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">学习笔记</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="内容涵盖"><a href="#内容涵盖" class="headerlink" title="内容涵盖"></a>内容涵盖</h1><ol>
-<li><a href="#12.2">样式</a><ol>
-<li><a href="#12.2.1">访问元素的样式</a><ol>
-<li><a href="#1.1">DOM 样式属性和方法</a></li>
-<li><a href="#1.2">计算的样式</a></li>
-</ol>
-</li>
-<li><a href="#12.2.2">操作样式表</a><ol>
-<li><a href="#2.1">CSS 规则</a></li>
-<li><a href="#2.2">创建规则</a></li>
-<li><a href="#2.3">删除规则</a></li>
-</ol>
-</li>
-<li><a href="#12.2.3">元素大小</a><ol>
-<li><a href="#3.1">偏移量</a></li>
-<li><a href="#3.2">客户区大小</a></li>
-<li><a href="#3.3">滚动大小</a></li>
-<li><a href="#3.4">确定元素大小</a></li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/10/15/JavaScript高级程序设计（12.2）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1045,7 +1065,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">101</span>
+              <span class="site-state-item-count">102</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
