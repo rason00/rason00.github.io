@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/03/12/JavaScript-this/index.html">
 <meta property="og:site_name" content="Rason">
 <meta property="og:description" content="thisthis到底是什么this 是在运行时进行绑定的，并不是在编写时绑定，他的上下文取决于函数调用时的各种条件。this 的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式。">
-<meta property="og:updated_time" content="2018-03-14T08:55:08.896Z">
+<meta property="og:updated_time" content="2018-03-14T09:09:23.805Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript-this">
 <meta name="twitter:description" content="thisthis到底是什么this 是在运行时进行绑定的，并不是在编写时绑定，他的上下文取决于函数调用时的各种条件。this 的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式。">
@@ -419,7 +419,7 @@
 <ol>
 <li><u><strong>函数是否在 new 中调用（new 绑定）？如果是，this 绑定的是新创建的对象。var bar = new foo()</strong></u></li>
 <li><u><strong>函数是否通过 call、apply （显式绑定）或者硬绑定调用？如果是，this 绑定的是指定的对象。var bar = foo.call(obj)</strong></u></li>
-<li><u><strong>函数是否在某个上下文对象重化工调用（隐式绑定）？如果是，this 绑定的是哪个上下文对象。var bar = obj.foo()</strong></u></li>
+<li><u><strong>函数是否在某个上下文对象重化工调用（隐式绑定）？如果是，this 绑定的是那个上下文对象。var bar = obj.foo()</strong></u></li>
 <li><u><strong>如果都不是的话，使用默认绑定。如果在严格模式下，就绑定到 undefuned，否则绑定到全局对象。var bar = foo()</strong></u></li>
 </ol>
 <h2 id="绑定例外"><a href="#绑定例外" class="headerlink" title="绑定例外"></a>绑定例外</h2><h3 id="被忽略的this"><a href="#被忽略的this" class="headerlink" title="被忽略的this"></a>被忽略的this</h3><p><strong><u>如果把 null 或者 undefined 作为 this 的绑定对象传入 call、apply 或者 bind，这些值在调用时会被忽略，实际应用的是默认绑定规则：</u></strong></p>
