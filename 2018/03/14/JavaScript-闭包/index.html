@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/03/14/JavaScript-闭包/index.html">
 <meta property="og:site_name" content="Rason">
 <meta property="og:description" content="闭包当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数实在当前词法作用域之外执行。">
-<meta property="og:updated_time" content="2018-03-14T02:51:52.491Z">
+<meta property="og:updated_time" content="2018-03-14T03:29:55.341Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript-闭包">
 <meta name="twitter:description" content="闭包当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数实在当前词法作用域之外执行。">
@@ -377,6 +377,9 @@
 <p>因此我们可以这样修改上面的代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++) &#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(i);</div><div class="line">    &#125;, i * <span class="number">1000</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 1 2 3 4 5</span></div></pre></td></tr></table></figure>
 <h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p><strong><u>当函数可以记住并访问所在的词法作用域，即使函数是在当前词法作用域之外执行，这时就产生了闭包。</u></strong></p>
+<blockquote>
+<p>以上笔记出自《你不知道的JavaScript》（上卷）</p>
+</blockquote>
 
       
     </div>
