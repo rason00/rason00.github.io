@@ -1,0 +1,843 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="webpack," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="webpack4 个人配置很久之前配过一份自用的webpack3，也一直在用，而4出来很久了，而且修改提升了很多，一直想升级成4，拖了很久，最近几天零零星星的时间，翻查资料，按着之前3的一些功能设置完成了一份4的配置，下面记录一下配置过程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack4 个人配置">
+<meta property="og:url" content="http://yoursite.com/2018/09/06/webpack4-个人配置/index.html">
+<meta property="og:site_name" content="Rason">
+<meta property="og:description" content="webpack4 个人配置很久之前配过一份自用的webpack3，也一直在用，而4出来很久了，而且修改提升了很多，一直想升级成4，拖了很久，最近几天零零星星的时间，翻查资料，按着之前3的一些功能设置完成了一份4的配置，下面记录一下配置过程。">
+<meta property="og:updated_time" content="2018-09-06T08:05:23.837Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webpack4 个人配置">
+<meta name="twitter:description" content="webpack4 个人配置很久之前配过一份自用的webpack3，也一直在用，而4出来很久了，而且修改提升了很多，一直想升级成4，拖了很久，最近几天零零星星的时间，翻查资料，按着之前3的一些功能设置完成了一份4的配置，下面记录一下配置过程。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/06/webpack4-个人配置/"/>
+
+  <title> webpack4 个人配置 | Rason </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c0b175368f6e60b955380864b509c3fc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s6.cnzz.com/stat.php?id=1259942288&web_id=1259942288" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Rason</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Rason 博客</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                webpack4 个人配置
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-09-06T16:04:31+08:00" content="2018-09-06">
+              2018-09-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="webpack4-个人配置"><a href="#webpack4-个人配置" class="headerlink" title="webpack4 个人配置"></a>webpack4 个人配置</h1><p>很久之前配过一份自用的webpack3，也一直在用，而4出来很久了，而且修改提升了很多，一直想升级成4，拖了很久，最近几天零零星星的时间，翻查资料，按着之前3的一些功能设置完成了一份4的配置，下面记录一下配置过程。<br><a id="more"></a></p>
+<blockquote>
+<p>源码已经放 <a href="https://github.com/rason00/Practice/tree/master/Webpack" target="_blank" rel="external">Github</a></p>
+</blockquote>
+<h2 id="设备"><a href="#设备" class="headerlink" title="设备"></a>设备</h2><figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt; 电脑：MacBook Pro</div><div class="line">&gt; cnpm：6.0.0</div><div class="line">&gt; node：8.9.0</div><div class="line">&gt; webpack：4.17.2</div><div class="line">&gt; 时间：2018-09-05</div></pre></td></tr></table></figure>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ol>
+<li>自动生成html</li>
+<li>自动清理dist文件夹</li>
+<li>本地服务器</li>
+<li>分离css</li>
+<li>分离css图片</li>
+<li>处理html图片</li>
+<li>配置sass</li>
+<li>自动添加css3前缀</li>
+<li>消除未使用的css</li>
+<li>配置babel</li>
+<li>引入jquery</li>
+<li>分割第三方js</li>
+<li>配置全局资源文件夹</li>
+<li>配置测试和生产环境</li>
+<li>配置多入口多页面</li>
+</ol>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p><strong>首先打开终端输入以下命令</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir demo 	// 创建demo文件夹</div><div class="line">cd demo 	// 进入demo文件夹</div><div class="line">npm init -y // 初始化</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注：// xxx 只是注释</p>
+</blockquote>
+<p>此时你的 <code>demo</code>文件夹里面的目录是如此的</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">demo</div><div class="line">|- package.json</div></pre></td></tr></table></figure>
+<p><strong>继续初始化目录成下面（以下目录仅是个人习惯）</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">demo</div><div class="line">|- /src				// 源码目录</div><div class="line">    |- /assets		// 全局资源目录</div><div class="line">	|- /css			// 样式目录</div><div class="line">		|- css.css</div><div class="line">		|- sass.sass</div><div class="line">	|- /images		// 图片目录</div><div class="line">		|- 1.png</div><div class="line">	|- /js			// js目录</div><div class="line">		|- index.js</div><div class="line">	|- /page		// 页面目录</div><div class="line">		|- index.html</div><div class="line">|- package.json</div></pre></td></tr></table></figure>
+<p><strong>安装<code>webpack</code>和<code>webpack-cli</code></strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install webpack webpack-cli --save-dev</div></pre></td></tr></table></figure>
+<blockquote>
+<p>完成后目录会多出 <code>node_modules</code> 的资源目录，无需理会</p>
+</blockquote>
+<p>添加配置文件（根目录新建 <code>webpack.config.js</code> 文件）</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">const path = require('path');</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  //入口</div><div class="line">  entry: &#123;</div><div class="line">      app: './src/js/index.js'</div><div class="line">  &#125;, // 对应初始化目录的js文件</div><div class="line">  // 插件</div><div class="line">  plugins: [],</div><div class="line">  //出口</div><div class="line">  output: &#123;</div><div class="line">    filename: '[name].js', // 输出的文件名</div><div class="line">    path: path.resolve(__dirname, 'dist') // 输出的路径</div><div class="line">  &#125;,</div><div class="line">  // 配置</div><div class="line">  module: &#123;</div><div class="line">    rules: []</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>以上是 <code>webpack.config.js</code> 文件初始化内容</p>
+</blockquote>
+<p><strong>NPM 脚本(NPM Scripts)</strong></p>
+<p><strong>package.json</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "name": "demo",</div><div class="line">  "version": "1.0.0",</div><div class="line">  "description": "",</div><div class="line">  "main": "index.js",</div><div class="line">  "scripts": &#123;</div><div class="line"><span class="addition">+	"build": "webpack",</span></div><div class="line">    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"</div><div class="line">  &#125;,</div><div class="line">  "keywords": [],</div><div class="line">  "author": "",</div><div class="line">  "license": "ISC",</div><div class="line">  "devDependencies": &#123;</div><div class="line">    "webpack": "^4.17.2",</div><div class="line">    "webpack-cli": "^3.1.0"</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>现在，可以使用 <code>npm run build</code> 命令了</p>
+</blockquote>
+<h3 id="1-自动生成html"><a href="#1-自动生成html" class="headerlink" title="1.自动生成html"></a>1.自动生成html</h3><p><strong>设定 HtmlWebpackPlugin</strong></p>
+<p>首先安装插件，并且调整 <code>webpack.config.js</code> 文件：</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install --save-dev html-webpack-plugin</div></pre></td></tr></table></figure>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">  const path = require('path');</div><div class="line"><span class="addition">+ const HtmlWebpackPlugin = require('html-webpack-plugin');</span></div><div class="line"></div><div class="line">  module.exports = &#123;</div><div class="line">    entry: &#123;</div><div class="line">      app: './src/js/index.js',</div><div class="line">    &#125;,</div><div class="line"><span class="addition">+   plugins: [</span></div><div class="line"><span class="addition">+     new HtmlWebpackPlugin(&#123;</span></div><div class="line"><span class="addition">+     template: './src/page/index.html', // 模版路径（可先在index.html里写些测试内容）</span></div><div class="line"><span class="addition">+     &#125;)</span></div><div class="line"><span class="addition">+   ],</span></div><div class="line">    output: &#123;</div><div class="line">      filename: '[name].js',</div><div class="line">      path: path.resolve(__dirname, 'dist')</div><div class="line">    &#125;</div><div class="line">  &#125;;</div></pre></td></tr></table></figure>
+<h3 id="2-清理-dist-文件夹"><a href="#2-清理-dist-文件夹" class="headerlink" title="2.清理 /dist 文件夹"></a>2.清理 <code>/dist</code> 文件夹</h3><figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install clean-webpack-plugin --save-dev</div></pre></td></tr></table></figure>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">  const path = require('path');</div><div class="line">  const HtmlWebpackPlugin = require('html-webpack-plugin');</div><div class="line"><span class="addition">+ const CleanWebpackPlugin = require('clean-webpack-plugin');</span></div><div class="line"></div><div class="line">  module.exports = &#123;</div><div class="line">    entry: &#123;</div><div class="line">      app: './src/js/index.js',</div><div class="line">    &#125;,</div><div class="line">    plugins: [</div><div class="line"><span class="addition">+     new CleanWebpackPlugin(['dist']),</span></div><div class="line">      new HtmlWebpackPlugin(&#123;</div><div class="line">        template: './src/page/index.html',</div><div class="line">      &#125;)</div><div class="line">    ],</div><div class="line">    output: &#123;</div><div class="line">      filename: '[name].bundle.js',</div><div class="line">      path: path.resolve(__dirname, 'dist')</div><div class="line">    &#125;</div><div class="line">  &#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>现在执行 <code>npm run build</code>，再检查 <code>/dist</code> 文件夹。如果一切顺利，你现在应该不会再看到旧的文件，只有构建后生成的文件！</p>
+</blockquote>
+<h3 id="3-本地服务器"><a href="#3-本地服务器" class="headerlink" title="3. 本地服务器"></a>3. 本地服务器</h3><p>使用<code>webpack-dev-server</code> 为你提供了一个简单的 web 服务器，并且能够实时重新加载(live reloading)。</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install --save-dev webpack-dev-server	//安装</div></pre></td></tr></table></figure>
+<p>修改配置文件，告诉开发服务器(dev server)，在哪里查找文件：</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">const path = require('path');</div><div class="line">const HtmlWebpackPlugin = require('html-webpack-plugin');</div><div class="line">const CleanWebpackPlugin = require('clean-webpack-plugin');</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  //入口</div><div class="line">  entry: &#123;</div><div class="line">    app: './src/js/index.js',</div><div class="line">  &#125;,</div><div class="line">  //出口</div><div class="line">  output: &#123;</div><div class="line">    filename: 'main.js', // 输出的文件名</div><div class="line">    path: path.resolve(__dirname, 'dist') // 输出的路径</div><div class="line">  &#125;,</div><div class="line">  // 插件</div><div class="line">  plugins: [</div><div class="line">      new CleanWebpackPlugin(['dist']),</div><div class="line">      new HtmlWebpackPlugin(&#123;</div><div class="line">        template: './src/page/index.html',</div><div class="line">      &#125;)</div><div class="line">  ],</div><div class="line">  // 配置</div><div class="line">  module: &#123;</div><div class="line">    rules: []</div><div class="line">  &#125;,</div><div class="line"><span class="addition">+ devServer: &#123;</span></div><div class="line"><span class="addition">+   contentBase: './dist'</span></div><div class="line"><span class="addition">+ &#125;,</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>以上配置告知 <code>webpack-dev-server</code>，在 <code>localhost:8080</code> 下建立服务，将 <code>dist</code> 目录下的文件，作为可访问文件。（注：现在你会看到浏览器会报一些 <code>mode</code> 警告，先不用理，后面会处理）</p>
+</blockquote>
+<p><strong>package.json</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "name": "demo",</div><div class="line">  "version": "1.0.0",</div><div class="line">  "description": "",</div><div class="line">  "main": "index.js",</div><div class="line">  "scripts": &#123;</div><div class="line"><span class="addition">+	"dev": "webpack-dev-server --open",  </span></div><div class="line">	"build": "webpack",</div><div class="line">    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"</div><div class="line">  &#125;,</div><div class="line">  "keywords": [],</div><div class="line">  "author": "",</div><div class="line">  "license": "ISC",</div><div class="line">  "devDependencies": &#123;</div><div class="line">    "clean-webpack-plugin": "^0.1.19",</div><div class="line">    "html-webpack-plugin": "^3.2.0",</div><div class="line">    "webpack": "^4.17.2",</div><div class="line">    "webpack-cli": "^3.1.0",</div><div class="line">    "webpack-dev-server": "^3.1.7"</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>现在，可以使用 <code>npm run dev</code> 命令打开本地服务器，在浏览器上看到 <code>/src/page/index.html</code>里的内容了</p>
+</blockquote>
+<h3 id="4-分离css"><a href="#4-分离css" class="headerlink" title="4.分离css"></a>4.分离css</h3><p><strong>加载 CSS</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install --save-dev style-loader css-loader</div></pre></td></tr></table></figure>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">const path = require('path');</div><div class="line">const HtmlWebpackPlugin = require('html-webpack-plugin');</div><div class="line">const CleanWebpackPlugin = require('clean-webpack-plugin');</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  //入口</div><div class="line">  entry: &#123;</div><div class="line">    app: './src/js/index.js',</div><div class="line">  &#125;,</div><div class="line">  //出口</div><div class="line">  output: &#123;</div><div class="line">    filename: 'main.js', // 输出的文件名</div><div class="line">    path: path.resolve(__dirname, 'dist') // 输出的路径</div><div class="line">  &#125;,</div><div class="line">  // 插件</div><div class="line">  plugins: [</div><div class="line">      new CleanWebpackPlugin(['dist']),</div><div class="line">      new HtmlWebpackPlugin(&#123;</div><div class="line">        template: './src/page/index.html',</div><div class="line">      &#125;)</div><div class="line">  ],</div><div class="line">  // 配置</div><div class="line">  module: &#123;</div><div class="line">  	rules: [</div><div class="line"><span class="addition">+       &#123;</span></div><div class="line"><span class="addition">+         test: /\.css$/,</span></div><div class="line"><span class="addition">+         use: [</span></div><div class="line"><span class="addition">+           'style-loader',</span></div><div class="line"><span class="addition">+           'css-loader'</span></div><div class="line"><span class="addition">+         ]</span></div><div class="line"><span class="addition">+       &#125;</span></div><div class="line">    ]</div><div class="line"> &#125;,</div><div class="line"> devServer: &#123;</div><div class="line">   contentBase: './dist'</div><div class="line"> &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>打开入口文件<code>/src/js/index.js</code>引入<code>css</code></p>
+<p><strong>index.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import '../css/css.css';</div></pre></td></tr></table></figure>
+<blockquote>
+<p>运行 <code>npm run dev</code> 命令，就可以在浏览器上看到页面样式的变化了。（注：自行在 <code>/src/css/css.css</code> 里添加对 <code>/src/page/index.html</code> 页面的样式处理）</p>
+</blockquote>
+<p><strong>打包分离css</strong></p>
+<p><code>webpack4</code> 中不再使用 <code>extract-text-webpack-plugin</code> 分离 <code>css</code> 而是使用 <code>mini-css-extract-plugin</code> 插件分离css</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install --save-dev mini-css-extract-plugin</div></pre></td></tr></table></figure>
+<p>修改配置</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">const path = require('path');</div><div class="line">const HtmlWebpackPlugin = require('html-webpack-plugin');</div><div class="line">const CleanWebpackPlugin = require('clean-webpack-plugin');</div><div class="line"><span class="addition">+ const MiniCssExtractPlugin = require("mini-css-extract-plugin");</span></div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  //入口</div><div class="line">  entry: &#123;</div><div class="line">    app: './src/js/index.js',</div><div class="line">  &#125;,</div><div class="line">  //出口</div><div class="line">  output: &#123;</div><div class="line">    filename: 'main.js', // 输出的文件名</div><div class="line">    path: path.resolve(__dirname, 'dist') // 输出的路径</div><div class="line">  &#125;,</div><div class="line">  // 插件</div><div class="line">  plugins: [</div><div class="line">      new CleanWebpackPlugin(['dist']),</div><div class="line">      new HtmlWebpackPlugin(&#123;</div><div class="line">        template: './src/page/index.html',</div><div class="line">      &#125;),</div><div class="line"><span class="addition">+     new MiniCssExtractPlugin(&#123;</span></div><div class="line"><span class="addition">+        filename: "css/[name].css",</span></div><div class="line"><span class="addition">+     &#125;),      </span></div><div class="line">  ],</div><div class="line">  // 配置</div><div class="line">  module: &#123;</div><div class="line">  	rules: [</div><div class="line">       &#123;</div><div class="line">         test: /\.css$/,</div><div class="line">         use: [</div><div class="line"><span class="addition">+         &#123;</span></div><div class="line"><span class="addition">+           loader: MiniCssExtractPlugin.loader, // 使用规则 </span></div><div class="line"><span class="addition">+			options: &#123;</span></div><div class="line"><span class="addition">+             publicPath: '../' // 处理分离路径问题</span></div><div class="line"><span class="addition">+           &#125;</span></div><div class="line"><span class="addition">+		  &#125;</span></div><div class="line"><span class="deletion">-           'style-loader',</span></div><div class="line">            'css-loader'</div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line"> &#125;,</div><div class="line"> devServer: &#123;</div><div class="line">   contentBase: './dist'</div><div class="line"> &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>现在运行 <code>npm run build</code> 命令，查看 <code>/dist</code> 文件目录，会看到一个分离出来的 <code>css</code> 文件夹，里面会有一个 <code>app.css</code> 文件，那个就是分离于 <code>/src/css/css.css</code> 文件的内容。（注：<code>app.css</code> 文件的名字是关联于入口 <code>app:xxxx</code> 中的 <code>app</code> 名字）</p>
+</blockquote>
+<h3 id="5-分离css图片"><a href="#5-分离css图片" class="headerlink" title="5.分离css图片"></a>5.分离css图片</h3><p><strong>加载图片</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install --save-dev file-loader</div></pre></td></tr></table></figure>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line">const path = require('path');</div><div class="line">const HtmlWebpackPlugin = require('html-webpack-plugin');</div><div class="line">const CleanWebpackPlugin = require('clean-webpack-plugin');</div><div class="line">const MiniCssExtractPlugin = require("mini-css-extract-plugin");</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  //入口</div><div class="line">  entry: &#123;</div><div class="line">    app: './src/js/index.js',</div><div class="line">  &#125;,</div><div class="line">  //出口</div><div class="line">  output: &#123;</div><div class="line">    filename: 'main.js', // 输出的文件名</div><div class="line">    path: path.resolve(__dirname, 'dist') // 输出的路径</div><div class="line">  &#125;,</div><div class="line">  // 插件</div><div class="line">  plugins: [</div><div class="line">      new CleanWebpackPlugin(['dist']),</div><div class="line">      new HtmlWebpackPlugin(&#123;</div><div class="line">        template: './src/page/index.html',</div><div class="line">      &#125;),</div><div class="line">      new MiniCssExtractPlugin(&#123;</div><div class="line">         filename: "css/[name].css",</div><div class="line">      &#125;),      </div><div class="line">  ],</div><div class="line">  // 配置</div><div class="line">  module: &#123;</div><div class="line">  	rules: [</div><div class="line">       &#123;</div><div class="line">         test: /\.css$/,</div><div class="line">         use: [</div><div class="line">          &#123;</div><div class="line">            loader: MiniCssExtractPlugin.loader, // 使用规则 </div><div class="line"> 			options: &#123;</div><div class="line">              publicPath: '../' // 处理分离路径问题</div><div class="line">            &#125;</div><div class="line"> 		  &#125;</div><div class="line">            'css-loader'</div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line"><span class="addition">+        &#123;</span></div><div class="line"><span class="addition">+           test: /\.(png|svg|jpg|gif)$/,</span></div><div class="line"><span class="addition">+           use: [&#123;</span></div><div class="line"><span class="addition">+             loader: 'file-loader',</span></div><div class="line"><span class="addition">+             options: &#123;</span></div><div class="line"><span class="addition">+               name: '[name].[ext]',</span></div><div class="line"><span class="addition">+               limit: 5, // 表示小于xxb图片转为base64,大于xxb的是路径</span></div><div class="line"><span class="addition">+               outputPath: 'images' //定义输出的图片文件夹</span></div><div class="line"><span class="addition">+             &#125;</span></div><div class="line"><span class="addition">+           &#125;]</span></div><div class="line"><span class="addition">+         &#125;,   </span></div><div class="line">    ]</div><div class="line"> &#125;,</div><div class="line"> devServer: &#123;</div><div class="line">   contentBase: './dist'</div><div class="line"> &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>运行 <code>npm run build</code> 命令，可以在 <code>dist</code> 目录里面看到 <code>images</code> 文件夹里面会有 <code>css</code> 里引入的图片。（注：自行在 <code>css</code> 中加入图片样式看效果）</p>
+</blockquote>
+<h3 id="6-处理html图片"><a href="#6-处理html图片" class="headerlink" title="6.处理html图片"></a>6.处理html图片</h3><p>现在 <code>css</code> 里引用的图片可以使用，但是在 <code>html</code> 中通过 <code>img</code> 标签引用的图片还是无法正常使用，需要进行以下配置。</p>
+<p><strong>安装 <code>html-loader</code></strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install --save-dev html-loader</div></pre></td></tr></table></figure>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line">const path = require('path');</div><div class="line">const HtmlWebpackPlugin = require('html-webpack-plugin');</div><div class="line">const CleanWebpackPlugin = require('clean-webpack-plugin');</div><div class="line">const MiniCssExtractPlugin = require("mini-css-extract-plugin");</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  //入口</div><div class="line">  entry: &#123;</div><div class="line">    app: './src/js/index.js',</div><div class="line">  &#125;,</div><div class="line">  //出口</div><div class="line">  output: &#123;</div><div class="line">    filename: 'main.js', // 输出的文件名</div><div class="line">    path: path.resolve(__dirname, 'dist') // 输出的路径</div><div class="line">  &#125;,</div><div class="line">  // 插件</div><div class="line">  plugins: [</div><div class="line">      new CleanWebpackPlugin(['dist']),</div><div class="line">      new HtmlWebpackPlugin(&#123;</div><div class="line">        template: './src/page/index.html',</div><div class="line">      &#125;),</div><div class="line">      new MiniCssExtractPlugin(&#123;</div><div class="line">         filename: "css/[name].css",</div><div class="line">      &#125;),      </div><div class="line">  ],</div><div class="line">  // 配置</div><div class="line">  module: &#123;</div><div class="line">  	rules: [</div><div class="line">       &#123;</div><div class="line">         test: /\.css$/,</div><div class="line">         use: [</div><div class="line">          &#123;</div><div class="line">            loader: MiniCssExtractPlugin.loader, // 使用规则 </div><div class="line"> 			options: &#123;</div><div class="line">              publicPath: '../' // 处理分离路径问题</div><div class="line">            &#125;</div><div class="line"> 		  &#125;</div><div class="line">            'css-loader'</div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">           test: /\.(png|svg|jpg|gif)$/,</div><div class="line">           use: [&#123;</div><div class="line">             loader: 'file-loader',</div><div class="line">             options: &#123;</div><div class="line">               name: '[name].[ext]',</div><div class="line">               limit: 5, // 表示小于xxb图片转为base64,大于xxb的是路径</div><div class="line">               outputPath: 'images' //定义输出的图片文件夹</div><div class="line">             &#125;</div><div class="line">           &#125;]</div><div class="line">         &#125;, </div><div class="line"><span class="addition">+      &#123;</span></div><div class="line"><span class="addition">+        test: /\.html$/,</span></div><div class="line"><span class="addition">+        use: [&#123;</span></div><div class="line"><span class="addition">+          loader: 'html-loader',</span></div><div class="line"><span class="addition">+          options: &#123;</span></div><div class="line"><span class="addition">+            minimize: true,</span></div><div class="line"><span class="addition">+            removeComments: false,</span></div><div class="line"><span class="addition">+            collapseWhitespace: false</span></div><div class="line"><span class="addition">+          &#125;</span></div><div class="line"><span class="addition">+        &#125;],</span></div><div class="line"><span class="addition">+      &#125;,</span></div><div class="line">    ]</div><div class="line"> &#125;,</div><div class="line"> devServer: &#123;</div><div class="line">   contentBase: './dist'</div><div class="line"> &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>运行 <code>npm run build</code> 命令，可以在 <code>dist</code> 目录里面看到 <code>images</code> 文件夹里面会有 <code>html</code> 里引入的图片。（注：自行在 <code>html</code> 中加入图片样式看效果）</p>
+</blockquote>
+<h3 id="7-配置sass"><a href="#7-配置sass" class="headerlink" title="7.配置sass"></a>7.配置sass</h3><p><strong>安装</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install sass-loader node-sass --save-dev</div></pre></td></tr></table></figure>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div></pre></td><td class="code"><pre><div class="line">const path = require('path');</div><div class="line">const HtmlWebpackPlugin = require('html-webpack-plugin');</div><div class="line">const CleanWebpackPlugin = require('clean-webpack-plugin');</div><div class="line">const MiniCssExtractPlugin = require("mini-css-extract-plugin");</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  //入口</div><div class="line">  entry: &#123;</div><div class="line">    app: './src/js/index.js',</div><div class="line">  &#125;,</div><div class="line">  //出口</div><div class="line">  output: &#123;</div><div class="line">    filename: 'main.js', // 输出的文件名</div><div class="line">    path: path.resolve(__dirname, 'dist') // 输出的路径</div><div class="line">  &#125;,</div><div class="line">  // 插件</div><div class="line">  plugins: [</div><div class="line">      new CleanWebpackPlugin(['dist']),</div><div class="line">      new HtmlWebpackPlugin(&#123;</div><div class="line">        template: './src/page/index.html',</div><div class="line">      &#125;),</div><div class="line">      new MiniCssExtractPlugin(&#123;</div><div class="line">         filename: "css/[name].css",</div><div class="line">      &#125;),      </div><div class="line">  ],</div><div class="line">  // 配置</div><div class="line">  module: &#123;</div><div class="line">  	rules: [</div><div class="line">       &#123;</div><div class="line">         test: /\.css$/,</div><div class="line">         use: [</div><div class="line">          &#123;</div><div class="line">            loader: MiniCssExtractPlugin.loader, // 使用规则 </div><div class="line"> 			options: &#123;</div><div class="line">              publicPath: '../' // 处理分离路径问题</div><div class="line">            &#125;</div><div class="line"> 		  &#125;</div><div class="line">            'css-loader'</div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">           test: /\.(png|svg|jpg|gif)$/,</div><div class="line">           use: [&#123;</div><div class="line">             loader: 'file-loader',</div><div class="line">             options: &#123;</div><div class="line">               name: '[name].[ext]',</div><div class="line">               limit: 5, // 表示小于xxb图片转为base64,大于xxb的是路径</div><div class="line">               outputPath: 'images' //定义输出的图片文件夹</div><div class="line">             &#125;</div><div class="line">           &#125;]</div><div class="line">         &#125;, </div><div class="line">        &#123;</div><div class="line">          test: /\.html$/,</div><div class="line">          use: [&#123;</div><div class="line">            loader: 'html-loader',</div><div class="line">            options: &#123;</div><div class="line">              minimize: true,</div><div class="line">              removeComments: false,</div><div class="line">              collapseWhitespace: false</div><div class="line">            &#125;</div><div class="line">          &#125;],</div><div class="line">        &#125;,</div><div class="line"><span class="addition">+        &#123;</span></div><div class="line"><span class="addition">+        test: /\.(sass|scss)$/,</span></div><div class="line"><span class="addition">+        use: [</span></div><div class="line"><span class="addition">+          // 分离sass</span></div><div class="line"><span class="addition">+          &#123;</span></div><div class="line"><span class="addition">+            loader: MiniCssExtractPlugin.loader,</span></div><div class="line"><span class="addition">+            options: &#123;</span></div><div class="line"><span class="addition">+              publicPath: "../"</span></div><div class="line"><span class="addition">+            &#125;</span></div><div class="line"><span class="addition">+          &#125;,</span></div><div class="line"><span class="addition">+          "css-loader",</span></div><div class="line"><span class="addition">+          "sass-loader"</span></div><div class="line"><span class="addition">+        ]</span></div><div class="line"><span class="addition">+      &#125;,</span></div><div class="line">    ]</div><div class="line"> &#125;,</div><div class="line"> devServer: &#123;</div><div class="line">   contentBase: './dist'</div><div class="line"> &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p><strong>/src/js/index.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="deletion">- import '../css/css.css';</span></div><div class="line"><span class="addition">+ import '../css/scss.scss';</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>修改 <code>index</code> 中的引入，现在运行<code>npm run dev</code> 可以在浏览器看到页面效果，同时运行 <code>npm run build</code> 可以在 <code>dist/css</code> 文件夹里看到打包分离出来的 <code>css</code> 文件（注：自行在 <code>scss.scss</code> 中添加样式以便看效果）</p>
+</blockquote>
+<h3 id="8-自动添加css3前缀"><a href="#8-自动添加css3前缀" class="headerlink" title="8.自动添加css3前缀"></a>8.自动添加css3前缀</h3><p>编写使用 <code>css3</code> 样式需要添加各浏览器的前缀，现在可以配置成自动添加各个浏览器前缀</p>
+<p><strong>安装</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install --save-dev postcss-loader autoprefixer</div></pre></td></tr></table></figure>
+<p><strong>根目录新建 <code>postcss.config.js</code></strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  plugins: &#123;</div><div class="line">    'autoprefixer': &#123;</div><div class="line">      browsers: [</div><div class="line">        'iOS &gt;= 7', </div><div class="line">        'Android &gt;= 4.1',</div><div class="line">        'last 10 Chrome versions',</div><div class="line">        'last 10 Firefox versions',</div><div class="line">        'Safari &gt;= 6',</div><div class="line">        'ie &gt; 8'</div><div class="line">      ]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div></pre></td><td class="code"><pre><div class="line">const path = require('path');</div><div class="line">const HtmlWebpackPlugin = require('html-webpack-plugin');</div><div class="line">const CleanWebpackPlugin = require('clean-webpack-plugin');</div><div class="line">const MiniCssExtractPlugin = require("mini-css-extract-plugin");</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  //入口</div><div class="line">  entry: &#123;</div><div class="line">    app: './src/js/index.js',</div><div class="line">  &#125;,</div><div class="line">  //出口</div><div class="line">  output: &#123;</div><div class="line">    filename: 'main.js', // 输出的文件名</div><div class="line">    path: path.resolve(__dirname, 'dist') // 输出的路径</div><div class="line">  &#125;,</div><div class="line">  // 插件</div><div class="line">  plugins: [</div><div class="line">      new CleanWebpackPlugin(['dist']),</div><div class="line">      new HtmlWebpackPlugin(&#123;</div><div class="line">        template: './src/page/index.html',</div><div class="line">      &#125;),</div><div class="line">      new MiniCssExtractPlugin(&#123;</div><div class="line">         filename: "css/[name].css",</div><div class="line">      &#125;),      </div><div class="line">  ],</div><div class="line">  // 配置</div><div class="line">  module: &#123;</div><div class="line">  	rules: [</div><div class="line">       &#123;</div><div class="line">         test: /\.css$/,</div><div class="line">         use: [</div><div class="line">          &#123;</div><div class="line">            loader: MiniCssExtractPlugin.loader, // 使用规则 </div><div class="line"> 			options: &#123;</div><div class="line">              publicPath: '../' // 处理分离路径问题</div><div class="line">            &#125;</div><div class="line"> 		  &#125;</div><div class="line">            'css-loader',</div><div class="line"><span class="addition">+            "postcss-loader"</span></div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">           test: /\.(png|svg|jpg|gif)$/,</div><div class="line">           use: [&#123;</div><div class="line">             loader: 'file-loader',</div><div class="line">             options: &#123;</div><div class="line">               name: '[name].[ext]',</div><div class="line">               limit: 5, // 表示小于xxb图片转为base64,大于xxb的是路径</div><div class="line">               outputPath: 'images' //定义输出的图片文件夹</div><div class="line">             &#125;</div><div class="line">           &#125;]</div><div class="line">         &#125;, </div><div class="line">        &#123;</div><div class="line">          test: /\.html$/,</div><div class="line">          use: [&#123;</div><div class="line">            loader: 'html-loader',</div><div class="line">            options: &#123;</div><div class="line">              minimize: true,</div><div class="line">              removeComments: false,</div><div class="line">              collapseWhitespace: false</div><div class="line">            &#125;</div><div class="line">          &#125;],</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">        test: /\.(sass|scss)$/,</div><div class="line">        use: [</div><div class="line">          // 分离sass</div><div class="line">          &#123;</div><div class="line">            loader: MiniCssExtractPlugin.loader,</div><div class="line">            options: &#123;</div><div class="line">              publicPath: "../"</div><div class="line">            &#125;</div><div class="line">          &#125;,</div><div class="line">          "css-loader",</div><div class="line">          "sass-loader",</div><div class="line"><span class="addition">+          "postcss-loader"</span></div><div class="line">        ]</div><div class="line">      &#125;,</div><div class="line">    ]</div><div class="line"> &#125;,</div><div class="line"> devServer: &#123;</div><div class="line">   contentBase: './dist'</div><div class="line"> &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>运行 <code>npm run build</code> 可以看到打包出来的样式文件效果如下。（注：以下知识个人测试样式）</p>
+</blockquote>
+<p><strong>/dist/css/app.css</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.test &#123;</div><div class="line">  width: 100px;</div><div class="line">  height: 100px;</div><div class="line">  background: url(../images/1.png);</div><div class="line">  -webkit-transform: rotate(45deg);</div><div class="line">      -ms-transform: rotate(45deg);</div><div class="line">          transform: rotate(45deg); &#125;</div></pre></td></tr></table></figure>
+<h3 id="9-消除未使用的css"><a href="#9-消除未使用的css" class="headerlink" title="9.消除未使用的css"></a>9.消除未使用的css</h3><p>如果项目中有很多写了但是没有使用的样式，打包出来的话会影响文件大小，现在配置一下，打包时自动消除未使用的样式</p>
+<p><strong>安装</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install --save-dev purifycss-webpack purify-css</div></pre></td></tr></table></figure>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line">const path = require('path');</div><div class="line">const HtmlWebpackPlugin = require('html-webpack-plugin');</div><div class="line">const CleanWebpackPlugin = require('clean-webpack-plugin');</div><div class="line">const MiniCssExtractPlugin = require("mini-css-extract-plugin");</div><div class="line"><span class="addition">+ const glob = require('glob');</span></div><div class="line"><span class="addition">+ const PurifyCSSPlugin = require('purifycss-webpack');</span></div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  //入口</div><div class="line">  entry: &#123;</div><div class="line">    app: './src/js/index.js',</div><div class="line">  &#125;,</div><div class="line">  //出口</div><div class="line">  output: &#123;</div><div class="line">    filename: 'main.js', // 输出的文件名</div><div class="line">    path: path.resolve(__dirname, 'dist') // 输出的路径</div><div class="line">  &#125;,</div><div class="line">  // 插件</div><div class="line">  plugins: [</div><div class="line">      new CleanWebpackPlugin(['dist']),</div><div class="line">      new HtmlWebpackPlugin(&#123;</div><div class="line">        template: './src/page/index.html',</div><div class="line">      &#125;),</div><div class="line">      new MiniCssExtractPlugin(&#123;</div><div class="line">         filename: "css/[name].css",</div><div class="line">      &#125;),  </div><div class="line"><span class="addition">+      new PurifyCSSPlugin(&#123;</span></div><div class="line"><span class="addition">+       paths: glob.sync(path.join(__dirname, 'src/page/*.html')),// 对应需要消除css的目录文件</span></div><div class="line"><span class="addition">+     &#125;),</span></div><div class="line">  ],</div><div class="line">  // 配置</div><div class="line">  module: &#123;</div><div class="line">  	rules: [</div><div class="line">       &#123;</div><div class="line">         test: /\.css$/,</div><div class="line">         use: [</div><div class="line">          &#123;</div><div class="line">            loader: MiniCssExtractPlugin.loader, // 使用规则 </div><div class="line"> 			options: &#123;</div><div class="line">              publicPath: '../' // 处理分离路径问题</div><div class="line">            &#125;</div><div class="line"> 		  &#125;</div><div class="line">            'css-loader',</div><div class="line">            "postcss-loader"</div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">           test: /\.(png|svg|jpg|gif)$/,</div><div class="line">           use: [&#123;</div><div class="line">             loader: 'file-loader',</div><div class="line">             options: &#123;</div><div class="line">               name: '[name].[ext]',</div><div class="line">               limit: 5, // 表示小于xxb图片转为base64,大于xxb的是路径</div><div class="line">               outputPath: 'images' //定义输出的图片文件夹</div><div class="line">             &#125;</div><div class="line">           &#125;]</div><div class="line">         &#125;, </div><div class="line">        &#123;</div><div class="line">          test: /\.html$/,</div><div class="line">          use: [&#123;</div><div class="line">            loader: 'html-loader',</div><div class="line">            options: &#123;</div><div class="line">              minimize: true,</div><div class="line">              removeComments: false,</div><div class="line">              collapseWhitespace: false</div><div class="line">            &#125;</div><div class="line">          &#125;],</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">        test: /\.(sass|scss)$/,</div><div class="line">        use: [</div><div class="line">          // 分离sass</div><div class="line">          &#123;</div><div class="line">            loader: MiniCssExtractPlugin.loader,</div><div class="line">            options: &#123;</div><div class="line">              publicPath: "../"</div><div class="line">            &#125;</div><div class="line">          &#125;,</div><div class="line">          "css-loader",</div><div class="line">          "sass-loader",</div><div class="line">          "postcss-loader"</div><div class="line">        ]</div><div class="line">      &#125;,</div><div class="line">    ]</div><div class="line"> &#125;,</div><div class="line"> devServer: &#123;</div><div class="line">   contentBase: './dist'</div><div class="line"> &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>现在可以在样式文件里加入一些没用的代码，然后运行 <code>npm run build</code> 在 <code>/dist/css</code> 目录里的文件查看，可以看到没用的样式都没有被打包出来。</p>
+</blockquote>
+<h3 id="10-配置babel"><a href="#10-配置babel" class="headerlink" title="10.配置babel"></a>10.配置babel</h3><p><code>es6</code> 书写代码十分方便，但是项目上还是需要转换成 <code>es5</code> 比较保险，现在通过配置 <code>babel</code> 打包时可以自动转换，就可以放心写 <code>es6</code> 风格代码了</p>
+<p><strong>安装</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install --save-dev babel-loader@8.0.0-beta.0 @babel/core @babel/preset-env</div></pre></td></tr></table></figure>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div></pre></td><td class="code"><pre><div class="line">const path = require('path');</div><div class="line">const HtmlWebpackPlugin = require('html-webpack-plugin');</div><div class="line">const CleanWebpackPlugin = require('clean-webpack-plugin');</div><div class="line">const MiniCssExtractPlugin = require("mini-css-extract-plugin");</div><div class="line">const glob = require('glob');</div><div class="line">const PurifyCSSPlugin = require('purifycss-webpack');</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  //入口</div><div class="line">  entry: &#123;</div><div class="line">    app: './src/js/index.js',</div><div class="line">  &#125;,</div><div class="line">  //出口</div><div class="line">  output: &#123;</div><div class="line">    filename: 'main.js', // 输出的文件名</div><div class="line">    path: path.resolve(__dirname, 'dist') // 输出的路径</div><div class="line">  &#125;,</div><div class="line">  // 插件</div><div class="line">  plugins: [</div><div class="line">      new CleanWebpackPlugin(['dist']),</div><div class="line">      new HtmlWebpackPlugin(&#123;</div><div class="line">        template: './src/page/index.html',</div><div class="line">      &#125;),</div><div class="line">      new MiniCssExtractPlugin(&#123;</div><div class="line">         filename: "css/[name].css",</div><div class="line">      &#125;),  </div><div class="line">      new PurifyCSSPlugin(&#123;</div><div class="line">       paths: glob.sync(path.join(__dirname, 'src/page/*.html')),// 对应需要消除css的目录文件</div><div class="line">     &#125;),</div><div class="line">  ],</div><div class="line">  // 配置</div><div class="line">  module: &#123;</div><div class="line">  	rules: [</div><div class="line">       &#123;</div><div class="line">         test: /\.css$/,</div><div class="line">         use: [</div><div class="line">          &#123;</div><div class="line">            loader: MiniCssExtractPlugin.loader, // 使用规则 </div><div class="line"> 			options: &#123;</div><div class="line">              publicPath: '../' // 处理分离路径问题</div><div class="line">            &#125;</div><div class="line"> 		  &#125;</div><div class="line">            'css-loader',</div><div class="line">            "postcss-loader"</div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">           test: /\.(png|svg|jpg|gif)$/,</div><div class="line">           use: [&#123;</div><div class="line">             loader: 'file-loader',</div><div class="line">             options: &#123;</div><div class="line">               name: '[name].[ext]',</div><div class="line">               limit: 5, // 表示小于xxb图片转为base64,大于xxb的是路径</div><div class="line">               outputPath: 'images' //定义输出的图片文件夹</div><div class="line">             &#125;</div><div class="line">           &#125;]</div><div class="line">         &#125;, </div><div class="line">        &#123;</div><div class="line">          test: /\.html$/,</div><div class="line">          use: [&#123;</div><div class="line">            loader: 'html-loader',</div><div class="line">            options: &#123;</div><div class="line">              minimize: true,</div><div class="line">              removeComments: false,</div><div class="line">              collapseWhitespace: false</div><div class="line">            &#125;</div><div class="line">          &#125;],</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            test: /\.(sass|scss)$/,</div><div class="line">            use: [</div><div class="line">              // 分离sass</div><div class="line">              &#123;</div><div class="line">                loader: MiniCssExtractPlugin.loader,</div><div class="line">                options: &#123;</div><div class="line">                  publicPath: "../"</div><div class="line">                &#125;</div><div class="line">              &#125;,</div><div class="line">              "css-loader",</div><div class="line">              "sass-loader",</div><div class="line">              "postcss-loader"</div><div class="line">            ]</div><div class="line">       &#125;,</div><div class="line"><span class="addition">+       &#123;</span></div><div class="line"><span class="addition">+            test: /\.js$/,</span></div><div class="line"><span class="addition">+            exclude: /(node_modules|bower_components)/,</span></div><div class="line"><span class="addition">+            use: &#123;</span></div><div class="line"><span class="addition">+              loader: 'babel-loader',</span></div><div class="line"><span class="addition">+              options: &#123;</span></div><div class="line"><span class="addition">+                presets: ['@babel/preset-env']</span></div><div class="line"><span class="addition">+              &#125;</span></div><div class="line"><span class="addition">+            &#125;</span></div><div class="line"><span class="addition">+       &#125;</span></div><div class="line">    ]</div><div class="line"> &#125;,</div><div class="line"> devServer: &#123;</div><div class="line">   contentBase: './dist'</div><div class="line"> &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>现在在 <code>/src/js/index.js</code> 里面写入 <code>es6</code> 风格代码，然后 <code>npm run build</code> 后查看打包后的 <code>js</code> 可以看到代码都被转换成 <code>es5</code> 风格了。</p>
+</blockquote>
+<h3 id="11-引入jquery"><a href="#11-引入jquery" class="headerlink" title="11.引入jquery"></a>11.引入jquery</h3><p>由于个人项目需求，很多时候都会用上 <code>jquery</code> 所以在这里把 <code>jquery</code> 也进行了配置。</p>
+<p><strong>安装</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install --save-dev jquery</div></pre></td></tr></table></figure>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div></pre></td><td class="code"><pre><div class="line">const path = require('path');</div><div class="line">const HtmlWebpackPlugin = require('html-webpack-plugin');</div><div class="line">const CleanWebpackPlugin = require('clean-webpack-plugin');</div><div class="line">const MiniCssExtractPlugin = require("mini-css-extract-plugin");</div><div class="line">const glob = require('glob');</div><div class="line">const PurifyCSSPlugin = require('purifycss-webpack');</div><div class="line"><span class="addition">+ const webpack = require('webpack');</span></div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  //入口</div><div class="line">  entry: &#123;</div><div class="line">    app: './src/js/index.js',</div><div class="line">  &#125;,</div><div class="line">  //出口</div><div class="line">  output: &#123;</div><div class="line">    filename: 'main.js', // 输出的文件名</div><div class="line">    path: path.resolve(__dirname, 'dist') // 输出的路径</div><div class="line">  &#125;,</div><div class="line">  // 插件</div><div class="line">  plugins: [</div><div class="line">      new CleanWebpackPlugin(['dist']),</div><div class="line">      new HtmlWebpackPlugin(&#123;</div><div class="line">        template: './src/page/index.html',</div><div class="line">      &#125;),</div><div class="line">      new MiniCssExtractPlugin(&#123;</div><div class="line">         filename: "css/[name].css",</div><div class="line">      &#125;),  </div><div class="line">      new PurifyCSSPlugin(&#123;</div><div class="line">       paths: glob.sync(path.join(__dirname, 'src/page/*.html')),// 对应需要消除css的目录文件</div><div class="line">     &#125;),</div><div class="line"><span class="addition">+     // 全局暴露</span></div><div class="line"><span class="addition">+      new webpack.ProvidePlugin(&#123;</span></div><div class="line"><span class="addition">+        $: "jquery"</span></div><div class="line"><span class="addition">+      &#125;),</span></div><div class="line">  ],</div><div class="line">  // 配置</div><div class="line">  module: &#123;</div><div class="line">  	rules: [</div><div class="line">       &#123;</div><div class="line">         test: /\.css$/,</div><div class="line">         use: [</div><div class="line">          &#123;</div><div class="line">            loader: MiniCssExtractPlugin.loader, // 使用规则 </div><div class="line"> 			options: &#123;</div><div class="line">              publicPath: '../' // 处理分离路径问题</div><div class="line">            &#125;</div><div class="line"> 		  &#125;</div><div class="line">            'css-loader',</div><div class="line">            "postcss-loader"</div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">           test: /\.(png|svg|jpg|gif)$/,</div><div class="line">           use: [&#123;</div><div class="line">             loader: 'file-loader',</div><div class="line">             options: &#123;</div><div class="line">               name: '[name].[ext]',</div><div class="line">               limit: 5, // 表示小于xxb图片转为base64,大于xxb的是路径</div><div class="line">               outputPath: 'images' //定义输出的图片文件夹</div><div class="line">             &#125;</div><div class="line">           &#125;]</div><div class="line">         &#125;, </div><div class="line">        &#123;</div><div class="line">          test: /\.html$/,</div><div class="line">          use: [&#123;</div><div class="line">            loader: 'html-loader',</div><div class="line">            options: &#123;</div><div class="line">              minimize: true,</div><div class="line">              removeComments: false,</div><div class="line">              collapseWhitespace: false</div><div class="line">            &#125;</div><div class="line">          &#125;],</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            test: /\.(sass|scss)$/,</div><div class="line">            use: [</div><div class="line">              // 分离sass</div><div class="line">              &#123;</div><div class="line">                loader: MiniCssExtractPlugin.loader,</div><div class="line">                options: &#123;</div><div class="line">                  publicPath: "../"</div><div class="line">                &#125;</div><div class="line">              &#125;,</div><div class="line">              "css-loader",</div><div class="line">              "sass-loader",</div><div class="line">              "postcss-loader"</div><div class="line">            ]</div><div class="line">       &#125;,</div><div class="line">       &#123;</div><div class="line">            test: /\.js$/,</div><div class="line">            exclude: /(node_modules|bower_components)/,</div><div class="line">            use: &#123;</div><div class="line">              loader: 'babel-loader',</div><div class="line">              options: &#123;</div><div class="line">                presets: ['@babel/preset-env']</div><div class="line">              &#125;</div><div class="line">            &#125;</div><div class="line">       &#125;</div><div class="line">    ]</div><div class="line"> &#125;,</div><div class="line"> devServer: &#123;</div><div class="line">   contentBase: './dist'</div><div class="line"> &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>现在可以在 <code>/src/js/index.js</code> 中随意使用 <code>jquery</code> 语法了。</p>
+</blockquote>
+<h3 id="12-分割第三方js"><a href="#12-分割第三方js" class="headerlink" title="12.分割第三方js"></a>12.分割第三方js</h3><p>现在打包后你会发现，打包出来的 <code>js</code> 文件会很大，因为它把引入的 <code>jquery</code> 也打包到里面去了，我们现在希望可以单独把 <code>jquery</code> 分割出来，所以进行下面的配置</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div></pre></td><td class="code"><pre><div class="line">const path = require('path');</div><div class="line">const HtmlWebpackPlugin = require('html-webpack-plugin');</div><div class="line">const CleanWebpackPlugin = require('clean-webpack-plugin');</div><div class="line">const MiniCssExtractPlugin = require("mini-css-extract-plugin");</div><div class="line">const glob = require('glob');</div><div class="line">const PurifyCSSPlugin = require('purifycss-webpack');</div><div class="line">const webpack = require('webpack');</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  //入口</div><div class="line">  entry: &#123;</div><div class="line">    app: './src/js/index.js',</div><div class="line">  &#125;,</div><div class="line">  //出口</div><div class="line">  output: &#123;</div><div class="line">    filename: 'main.js', // 输出的文件名</div><div class="line">    path: path.resolve(__dirname, 'dist') // 输出的路径</div><div class="line">  &#125;,</div><div class="line"><span class="addition">+ // 提取js vendor 可改名字</span></div><div class="line"><span class="addition">+  optimization: &#123;</span></div><div class="line"><span class="addition">+    splitChunks: &#123;</span></div><div class="line"><span class="addition">+      cacheGroups: &#123;</span></div><div class="line"><span class="addition">+        // 打包node_modules中的文件</span></div><div class="line"><span class="addition">+        vendor: &#123;</span></div><div class="line"><span class="addition">+          name: "vendor",</span></div><div class="line"><span class="addition">+          test: /[\\/]node_modules[\\/]/,</span></div><div class="line"><span class="addition">+          chunks: "all",</span></div><div class="line"><span class="addition">+          priority: 10</span></div><div class="line"><span class="addition">+        &#125;</span></div><div class="line"><span class="addition">+      &#125;</span></div><div class="line"><span class="addition">+    &#125;</span></div><div class="line"><span class="addition">+  &#125;,</span></div><div class="line">  // 插件</div><div class="line">  plugins: [</div><div class="line">      new CleanWebpackPlugin(['dist']),</div><div class="line">      new HtmlWebpackPlugin(&#123;</div><div class="line">        template: './src/page/index.html',</div><div class="line">      &#125;),</div><div class="line">      new MiniCssExtractPlugin(&#123;</div><div class="line">         filename: "css/[name].css",</div><div class="line">      &#125;),  </div><div class="line">      new PurifyCSSPlugin(&#123;</div><div class="line">       paths: glob.sync(path.join(__dirname, 'src/page/*.html')),// 对应需要消除css的目录文件</div><div class="line">     &#125;),</div><div class="line">     // 全局暴露</div><div class="line">      new webpack.ProvidePlugin(&#123;</div><div class="line">        $: "jquery"</div><div class="line">      &#125;),</div><div class="line">  ],</div><div class="line">  // 配置</div><div class="line">  module: &#123;</div><div class="line">  	rules: [</div><div class="line">       &#123;</div><div class="line">         test: /\.css$/,</div><div class="line">         use: [</div><div class="line">          &#123;</div><div class="line">            loader: MiniCssExtractPlugin.loader, // 使用规则 </div><div class="line"> 			options: &#123;</div><div class="line">              publicPath: '../' // 处理分离路径问题</div><div class="line">            &#125;</div><div class="line"> 		  &#125;</div><div class="line">            'css-loader',</div><div class="line">            "postcss-loader"</div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">           test: /\.(png|svg|jpg|gif)$/,</div><div class="line">           use: [&#123;</div><div class="line">             loader: 'file-loader',</div><div class="line">             options: &#123;</div><div class="line">               name: '[name].[ext]',</div><div class="line">               limit: 5, // 表示小于xxb图片转为base64,大于xxb的是路径</div><div class="line">               outputPath: 'images' //定义输出的图片文件夹</div><div class="line">             &#125;</div><div class="line">           &#125;]</div><div class="line">         &#125;, </div><div class="line">        &#123;</div><div class="line">          test: /\.html$/,</div><div class="line">          use: [&#123;</div><div class="line">            loader: 'html-loader',</div><div class="line">            options: &#123;</div><div class="line">              minimize: true,</div><div class="line">              removeComments: false,</div><div class="line">              collapseWhitespace: false</div><div class="line">            &#125;</div><div class="line">          &#125;],</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            test: /\.(sass|scss)$/,</div><div class="line">            use: [</div><div class="line">              // 分离sass</div><div class="line">              &#123;</div><div class="line">                loader: MiniCssExtractPlugin.loader,</div><div class="line">                options: &#123;</div><div class="line">                  publicPath: "../"</div><div class="line">                &#125;</div><div class="line">              &#125;,</div><div class="line">              "css-loader",</div><div class="line">              "sass-loader",</div><div class="line">              "postcss-loader"</div><div class="line">            ]</div><div class="line">       &#125;,</div><div class="line">       &#123;</div><div class="line">            test: /\.js$/,</div><div class="line">            exclude: /(node_modules|bower_components)/,</div><div class="line">            use: &#123;</div><div class="line">              loader: 'babel-loader',</div><div class="line">              options: &#123;</div><div class="line">                presets: ['@babel/preset-env']</div><div class="line">              &#125;</div><div class="line">            &#125;</div><div class="line">       &#125;</div><div class="line">    ]</div><div class="line"> &#125;,</div><div class="line"> devServer: &#123;</div><div class="line">   contentBase: './dist'</div><div class="line"> &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>现在运行 <code>npm run build</code> 可以在 <code>/dist/js</code> 里面看到多出了 <code>vendor.js</code> 文件，点击打开可以看到里面是 <code>jquery</code> 的代码，而另外的 <code>app.js</code> 文件小了很多。</p>
+</blockquote>
+<h3 id="13-配置全局资源文件夹"><a href="#13-配置全局资源文件夹" class="headerlink" title="13.配置全局资源文件夹"></a>13.配置全局资源文件夹</h3><p>有时项目上有一些文件或其他的东西不希望进行打包，那么可以设置一个全局资源目录，里面的文件是全部原样搬运，不做打包处理。</p>
+<p><strong>安装</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install --save-dev copy-webpack-plugin</div></pre></td></tr></table></figure>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div></pre></td><td class="code"><pre><div class="line">const path = require('path');</div><div class="line">const HtmlWebpackPlugin = require('html-webpack-plugin');</div><div class="line">const CleanWebpackPlugin = require('clean-webpack-plugin');</div><div class="line">const MiniCssExtractPlugin = require("mini-css-extract-plugin");</div><div class="line">const glob = require('glob');</div><div class="line">const PurifyCSSPlugin = require('purifycss-webpack');</div><div class="line">const webpack = require('webpack');</div><div class="line"><span class="addition">+ const copyWebpackPlugin = require("copy-webpack-plugin");</span></div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  //入口</div><div class="line">  entry: &#123;</div><div class="line">    app: './src/js/index.js',</div><div class="line">  &#125;,</div><div class="line">  //出口</div><div class="line">  output: &#123;</div><div class="line">    filename: 'main.js', // 输出的文件名</div><div class="line">    path: path.resolve(__dirname, 'dist') // 输出的路径</div><div class="line">  &#125;,</div><div class="line">  optimization: &#123;</div><div class="line">    splitChunks: &#123;</div><div class="line">      cacheGroups: &#123;</div><div class="line">        // 打包node_modules中的文件</div><div class="line">        vendor: &#123;</div><div class="line">          name: "vendor",</div><div class="line">          test: /[\\/]node_modules[\\/]/,</div><div class="line">          chunks: "all",</div><div class="line">          priority: 10</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  // 插件</div><div class="line">  plugins: [</div><div class="line">      new CleanWebpackPlugin(['dist']),</div><div class="line">      new HtmlWebpackPlugin(&#123;</div><div class="line">        template: './src/page/index.html',</div><div class="line">      &#125;),</div><div class="line">      new MiniCssExtractPlugin(&#123;</div><div class="line">         filename: "css/[name].css",</div><div class="line">      &#125;),  </div><div class="line">      new PurifyCSSPlugin(&#123;</div><div class="line">       paths: glob.sync(path.join(__dirname, 'src/page/*.html')),// 对应需要消除css的目录文件</div><div class="line">     &#125;),</div><div class="line">     // 全局暴露</div><div class="line">      new webpack.ProvidePlugin(&#123;</div><div class="line">        $: "jquery"</div><div class="line">      &#125;),</div><div class="line"><span class="addition">+     // 全局资源搬运</span></div><div class="line"><span class="addition">+     new copyWebpackPlugin([&#123;</span></div><div class="line"><span class="addition">+       from: './src/assets', // 搬运原始目录</span></div><div class="line"><span class="addition">+       to: './assets' // 搬运目标目录</span></div><div class="line"><span class="addition">+     &#125;]),</span></div><div class="line">  ],</div><div class="line">  // 配置</div><div class="line">  module: &#123;</div><div class="line">  	rules: [</div><div class="line">       &#123;</div><div class="line">         test: /\.css$/,</div><div class="line">         use: [</div><div class="line">          &#123;</div><div class="line">            loader: MiniCssExtractPlugin.loader, // 使用规则 </div><div class="line"> 			options: &#123;</div><div class="line">              publicPath: '../' // 处理分离路径问题</div><div class="line">            &#125;</div><div class="line"> 		  &#125;</div><div class="line">            'css-loader',</div><div class="line">            "postcss-loader"</div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">           test: /\.(png|svg|jpg|gif)$/,</div><div class="line">           use: [&#123;</div><div class="line">             loader: 'file-loader',</div><div class="line">             options: &#123;</div><div class="line">               name: '[name].[ext]',</div><div class="line">               limit: 5, // 表示小于xxb图片转为base64,大于xxb的是路径</div><div class="line">               outputPath: 'images' //定义输出的图片文件夹</div><div class="line">             &#125;</div><div class="line">           &#125;]</div><div class="line">         &#125;, </div><div class="line">        &#123;</div><div class="line">          test: /\.html$/,</div><div class="line">          use: [&#123;</div><div class="line">            loader: 'html-loader',</div><div class="line">            options: &#123;</div><div class="line">              minimize: true,</div><div class="line">              removeComments: false,</div><div class="line">              collapseWhitespace: false</div><div class="line">            &#125;</div><div class="line">          &#125;],</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            test: /\.(sass|scss)$/,</div><div class="line">            use: [</div><div class="line">              // 分离sass</div><div class="line">              &#123;</div><div class="line">                loader: MiniCssExtractPlugin.loader,</div><div class="line">                options: &#123;</div><div class="line">                  publicPath: "../"</div><div class="line">                &#125;</div><div class="line">              &#125;,</div><div class="line">              "css-loader",</div><div class="line">              "sass-loader",</div><div class="line">              "postcss-loader"</div><div class="line">            ]</div><div class="line">       &#125;,</div><div class="line">       &#123;</div><div class="line">            test: /\.js$/,</div><div class="line">            exclude: /(node_modules|bower_components)/,</div><div class="line">            use: &#123;</div><div class="line">              loader: 'babel-loader',</div><div class="line">              options: &#123;</div><div class="line">                presets: ['@babel/preset-env']</div><div class="line">              &#125;</div><div class="line">            &#125;</div><div class="line">       &#125;</div><div class="line">    ]</div><div class="line"> &#125;,</div><div class="line"> devServer: &#123;</div><div class="line">   contentBase: './dist'</div><div class="line"> &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>先在 <code>/src/assets/</code> 文件夹里放些东西，然后运行 <code>npm run build</code> 进行打包，之后可以看到 <code>dist</code> 文件夹里多出了 <code>assets</code> 文件，里面存放着直接搬运过来的文件。</p>
+</blockquote>
+<h3 id="14-配置测试和生产环境"><a href="#14-配置测试和生产环境" class="headerlink" title="14.配置测试和生产环境"></a>14.配置测试和生产环境</h3><p>项目上本地测试环境和打包的生产环境需求会有很多不同，比如一些代码压缩，映射之类的，先在我们来配置双环境。</p>
+<p><strong>首先进行文件目录的修改（自行添加或删除）</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">    demo</div><div class="line">    |- /src				// 源码目录</div><div class="line">        |- /assets		// 全局资源目录</div><div class="line">        |- /css			// 样式目录</div><div class="line">            |- css.css</div><div class="line">            |- sass.sass</div><div class="line">        |- /images		// 图片目录</div><div class="line">            |- 1.png</div><div class="line">        |- /js			// js目录</div><div class="line">            |- index.js</div><div class="line">        |- /page		// 页面目录</div><div class="line">            |- index.html</div><div class="line">    |- package.json</div><div class="line">    |- postcss.config.js</div><div class="line">    |- webpack.config.js</div><div class="line"><span class="addition">+	|- webpack.common.js  // 公共配置</span></div><div class="line"><span class="addition">+	|- webpack.dev.js	  // 测试环境</span></div><div class="line"><span class="addition">+	|- webpack.por.js	  // 生产环境</span></div></pre></td></tr></table></figure>
+<p><strong>安装</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install --save-dev webpack-merge</div></pre></td></tr></table></figure>
+<p><strong>注：以下文件配置不做详细讲解，具体都做了些注释讲解了</strong></p>
+<p><strong>webpack.common.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div></pre></td><td class="code"><pre><div class="line">const path = require('path');</div><div class="line">const HtmlWebpackPlugin = require('html-webpack-plugin');</div><div class="line">const CleanWebpackPlugin = require('clean-webpack-plugin');</div><div class="line">const MiniCssExtractPlugin = require("mini-css-extract-plugin");</div><div class="line">const glob = require('glob');</div><div class="line">const PurifyCSSPlugin = require('purifycss-webpack');</div><div class="line">const webpack = require('webpack');</div><div class="line">const copyWebpackPlugin = require("copy-webpack-plugin");</div><div class="line"></div><div class="line">let config = &#123;</div><div class="line">  //入口</div><div class="line">  entry: &#123;</div><div class="line">    app: './src/js/index.js'</div><div class="line">  &#125;, // 对应初始化目录的js文件</div><div class="line">  //出口</div><div class="line">  output: &#123;</div><div class="line">    filename: 'js/[name].js', // 输出的文件名</div><div class="line">    path: path.resolve(__dirname, 'dist') // 输出的路径</div><div class="line">  &#125;,</div><div class="line">  // 提取js common 可改名字</div><div class="line">  optimization: &#123;</div><div class="line">    splitChunks: &#123;</div><div class="line">      cacheGroups: &#123;</div><div class="line">        // 注意: priority属性</div><div class="line">        // 其次: 打包业务中公共代码</div><div class="line">        // common: &#123;</div><div class="line">        //   name: "common",</div><div class="line">        //   chunks: "all",</div><div class="line">        //   minSize: 1,</div><div class="line">        //   priority: 0</div><div class="line">        // &#125;,</div><div class="line">        // 首先: 打包node_modules中的文件</div><div class="line">        vendor: &#123;</div><div class="line">          name: "vendor",</div><div class="line">          test: /[\\/]node_modules[\\/]/,</div><div class="line">          chunks: "all",</div><div class="line">          priority: 10</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  // 插件</div><div class="line">  plugins: [</div><div class="line">    new CleanWebpackPlugin(['dist']),</div><div class="line">    new HtmlWebpackPlugin(&#123;</div><div class="line">      template: './src/page/index.html', // 模版路径</div><div class="line">    &#125;),</div><div class="line">    new MiniCssExtractPlugin(&#123;</div><div class="line">      filename: "css/[name].css",</div><div class="line">      // chunkFilename: "css/[id].css"</div><div class="line">    &#125;),</div><div class="line">    new PurifyCSSPlugin(&#123;</div><div class="line">      // paths: glob.sync(path.join(__dirname, 'src/page/*.html')),</div><div class="line">      paths: glob.sync(path.join(__dirname, 'src/page/*.html')),</div><div class="line">    &#125;),</div><div class="line">    // 全局暴露</div><div class="line">    new webpack.ProvidePlugin(&#123;</div><div class="line">      $: "jquery"</div><div class="line">    &#125;),</div><div class="line">    // 全局资源搬运</div><div class="line">    new copyWebpackPlugin([&#123;</div><div class="line">      from: './src/assets',</div><div class="line">      to: './assets'</div><div class="line">    &#125;]),</div><div class="line">  ],</div><div class="line">  // 配置</div><div class="line">  module: &#123;</div><div class="line">    rules: [</div><div class="line">      // css</div><div class="line">      &#123;</div><div class="line">        test: /\.css$/,</div><div class="line">        use: [&#123;</div><div class="line">            loader: MiniCssExtractPlugin.loader,</div><div class="line">            options: &#123;</div><div class="line">              publicPath: '../'</div><div class="line">            &#125;</div><div class="line">          &#125;,</div><div class="line">          "css-loader",</div><div class="line">          "postcss-loader"</div><div class="line">        ]</div><div class="line">      &#125;,</div><div class="line">      // 图片</div><div class="line">      &#123;</div><div class="line">        test: /\.(png|svg|jpg|gif)$/,</div><div class="line">        use: [&#123;</div><div class="line">          loader: 'file-loader',</div><div class="line">          options: &#123;</div><div class="line">            name: '[name].[ext]',</div><div class="line">            limit: 5, // 表示小于xxb图片转为base64,大于xxb的是路径</div><div class="line">            outputPath: 'images' //定义输出的图片文件夹</div><div class="line">          &#125;</div><div class="line">        &#125;]</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        test: /\.html$/,</div><div class="line">        use: [&#123;</div><div class="line">          loader: 'html-loader',</div><div class="line">          options: &#123;</div><div class="line">            minimize: true,</div><div class="line">            removeComments: false,</div><div class="line">            collapseWhitespace: false</div><div class="line">          &#125;</div><div class="line">        &#125;],</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        test: /\.(sass|scss)$/,</div><div class="line">        use: [</div><div class="line">          // 分离sass</div><div class="line">          &#123;</div><div class="line">            loader: MiniCssExtractPlugin.loader,</div><div class="line">            options: &#123;</div><div class="line">              publicPath: "../"</div><div class="line">            &#125;</div><div class="line">          &#125;,</div><div class="line">          "css-loader",</div><div class="line">          "postcss-loader",</div><div class="line">          "sass-loader"</div><div class="line">        ]</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        test: /\.js$/,</div><div class="line">        exclude: /(node_modules|bower_components)/,</div><div class="line">        use: &#123;</div><div class="line">          loader: 'babel-loader',</div><div class="line">          options: &#123;</div><div class="line">            presets: ['@babel/preset-env']</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">&#125;;</div><div class="line"></div><div class="line">module.exports = config</div></pre></td></tr></table></figure>
+<p><strong>webpack.dev.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">const path = require('path');</div><div class="line">const merge = require('webpack-merge');</div><div class="line">const common = require('./webpack.common.js');</div><div class="line">const webpack = require('webpack');</div><div class="line"></div><div class="line">module.exports = merge(common, &#123;</div><div class="line">  mode: 'development', // 这里解决的是前面浏览器的警告</div><div class="line">  devtool: 'inline-source-map',</div><div class="line">  // 本地服务器</div><div class="line">  devServer: &#123;</div><div class="line">    //设置基本目录结构</div><div class="line">    contentBase: path.resolve(__dirname, 'dist'),</div><div class="line">    //服务器的IP地址，可以使用IP也可以使用localhost</div><div class="line">    host: '127.0.0.1',</div><div class="line">    //服务端压缩是否开启</div><div class="line">    compress: true,</div><div class="line">    //配置服务端口号</div><div class="line">    port: 1717,</div><div class="line">    // 热更新</div><div class="line">    hot: true</div><div class="line">  &#125;,</div><div class="line">  // 插件</div><div class="line">  plugins: [</div><div class="line">    // 热更新</div><div class="line">    new webpack.HotModuleReplacementPlugin(),</div><div class="line">    // 配置变量</div><div class="line">    new webpack.DefinePlugin(&#123;</div><div class="line">      'process.env.NODE_ENV': JSON.stringify('development') // 在编译的代码里设置了`process.env.NODE_ENV`变量</div><div class="line">    &#125;),</div><div class="line">  ]</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注：以上做了简单的热更新配置，并不完善</p>
+</blockquote>
+<p><strong>webpack.por.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">const merge = require('webpack-merge');</div><div class="line">const common = require('./webpack.common.js');</div><div class="line">const webpack = require('webpack');</div><div class="line"></div><div class="line">module.exports = merge(common, &#123;</div><div class="line">  mode: 'production', // 这里解决的是前面浏览器的警告</div><div class="line">  // 插件</div><div class="line">  plugins: [</div><div class="line">    // 配置变量</div><div class="line">    new webpack.DefinePlugin(&#123;</div><div class="line">      'process.env.NODE_ENV': JSON.stringify('production') // 在编译的代码里设置了`process.env.NODE_ENV`变量</div><div class="line">    &#125;),</div><div class="line">  ]</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>mode</code> 的配置分为 <code>none</code> , <code>development</code> , <code>production</code></p>
+</blockquote>
+<p>完成上面的修改后，最后还需要修改以下文件</p>
+<p><strong>package.json</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "name": "demo",</div><div class="line">  "version": "1.0.0",</div><div class="line">  "description": "",</div><div class="line">  "main": "index.js",</div><div class="line">  "scripts": &#123;</div><div class="line"><span class="deletion">-   "dev": "webpack-dev-server --open",  </span></div><div class="line"><span class="deletion">-	"build": "webpack",</span></div><div class="line">    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1",</div><div class="line"><span class="addition">+    "build": "webpack --config webpack.prod.js",</span></div><div class="line"><span class="addition">+    "dev": "webpack-dev-server --open --config webpack.dev.js"</span></div><div class="line">  &#125;,</div><div class="line">  "keywords": [],</div><div class="line">  "author": "",</div><div class="line">  "license": "ISC",</div><div class="line">  "devDependencies": &#123;</div><div class="line">    "@babel/core": "^7.0.0",</div><div class="line">    "@babel/preset-env": "^7.0.0",</div><div class="line">    "autoprefixer": "^9.1.5",</div><div class="line">    "babel-loader": "^8.0.0-beta.0",</div><div class="line">    "clean-webpack-plugin": "^0.1.19",</div><div class="line">    "copy-webpack-plugin": "^4.5.2",</div><div class="line">    "css-loader": "^1.0.0",</div><div class="line">    "file-loader": "^2.0.0",</div><div class="line">    "html-loader": "^0.5.5",</div><div class="line">    "html-webpack-plugin": "^3.2.0",</div><div class="line">    "jquery": "^3.3.1",</div><div class="line">    "mini-css-extract-plugin": "^0.4.2",</div><div class="line">    "node-sass": "^4.9.3",</div><div class="line">    "postcss-loader": "^3.0.0",</div><div class="line">    "purify-css": "^1.2.5",</div><div class="line">    "purifycss-webpack": "^0.7.0",</div><div class="line">    "sass-loader": "^7.1.0",</div><div class="line">    "style-loader": "^0.23.0",</div><div class="line">    "webpack": "^4.17.2",</div><div class="line">    "webpack-cli": "^3.1.0",</div><div class="line">    "webpack-dev-server": "^3.1.7",</div><div class="line">    "webpack-merge": "^4.1.4"</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在我们就简单的分开完成了公共配置，测试环境配置，和生产环境配置了。</p>
+<blockquote>
+<p> 运行 <code>npm run build</code> 和 <code>npm run dev</code> 可以看到相关的效果。</p>
+</blockquote>
+<h3 id="15-配置多入口多页面"><a href="#15-配置多入口多页面" class="headerlink" title="15.配置多入口多页面"></a>15.配置多入口多页面</h3><p>多入口和多页面，这个是我个人的一个想法配置，我希望是我的 <code>/src/js/*.js</code> 目录里面有几个 <code>js</code> 文件，那么 <code>webpack</code> 就自动给我添加几个入口，同理，我的 <code>/src/page/*.html</code> 目录里有几个 <code>html</code> 文件，那么 <code>webpack</code> 页给我打包出几个页面文件。并且我希望打包后的目录是下面这样的。</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> dist</div><div class="line">|- /assets			// 全局资源</div><div class="line">|- /css				// css文件</div><div class="line">|- /images			// 图片文件</div><div class="line">|- /js				// js文件</div><div class="line">|- /page			// 其他页面文件夹</div><div class="line">	|- xxx.html		</div><div class="line">|- index.html		// 首页</div></pre></td></tr></table></figure>
+<p>以下写法有使用到 <code>node</code> 的一些语法函数，我仅做了简单的注释（理解并不一定正确，毕竟只是看过一点 <code>node</code> 的教程和文档而已）</p>
+<p><strong>webpack.common.js</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div></pre></td><td class="code"><pre><div class="line">const path = require('path');</div><div class="line">const HtmlWebpackPlugin = require('html-webpack-plugin');</div><div class="line">const CleanWebpackPlugin = require('clean-webpack-plugin');</div><div class="line">const MiniCssExtractPlugin = require("mini-css-extract-plugin");</div><div class="line">const glob = require('glob');</div><div class="line">const PurifyCSSPlugin = require('purifycss-webpack');</div><div class="line">const webpack = require('webpack');</div><div class="line">const copyWebpackPlugin = require("copy-webpack-plugin");</div><div class="line"><span class="addition">+ const fs = require('fs');</span></div><div class="line"></div><div class="line"><span class="addition">+ // 文件夹信息</span></div><div class="line"><span class="addition">+ function readFileList(thePath, filesList) &#123;</span></div><div class="line"><span class="addition">+   let files = fs.readdirSync(thePath); // 返回一个包含“指定目录下所有文件名称”的数组对象</span></div><div class="line"><span class="addition">+   files.forEach(function (itm, index) &#123;</span></div><div class="line"><span class="addition">+     let stat = fs.statSync(thePath + itm); // 获取文件或者文件夹信息</span></div><div class="line"><span class="addition">+     if (stat.isDirectory()) &#123; // 是否是文件夹</span></div><div class="line"><span class="addition">+       //递归读取文件</span></div><div class="line"><span class="addition">+       readFileList(thePath + itm + "/", filesList)</span></div><div class="line"><span class="addition">+     &#125; else &#123;</span></div><div class="line"><span class="addition">+       let data = path.parse(thePath + itm)</span></div><div class="line"><span class="addition">+       filesList[data.name] = thePath + itm</span></div><div class="line"><span class="addition">+     &#125;</span></div><div class="line"><span class="addition">+   &#125;)</span></div><div class="line"><span class="addition">+ &#125;</span></div><div class="line"></div><div class="line"><span class="addition">+ // 获取文件列表</span></div><div class="line"><span class="addition">+ function getFileList(thePath) &#123;</span></div><div class="line"><span class="addition">+   let filesList = &#123;&#125;;</span></div><div class="line"><span class="addition">+   readFileList(thePath, filesList);</span></div><div class="line"><span class="addition">+   return filesList;</span></div><div class="line"><span class="addition">+ &#125;</span></div><div class="line"></div><div class="line"><span class="addition">+ // 动态入口</span></div><div class="line"><span class="addition">+ let theEntry = getFileList('./src/js/');</span></div><div class="line"></div><div class="line">let config = &#123;</div><div class="line">  //入口</div><div class="line"><span class="deletion">-  entry: &#123;</span></div><div class="line"><span class="deletion">-    app: './src/js/index.js'</span></div><div class="line"><span class="deletion">-  &#125;, // 对应初始化目录的js文件</span></div><div class="line"><span class="addition">+  entry: theEntry</span></div><div class="line">  //出口</div><div class="line">  output: &#123;</div><div class="line">    filename: 'js/[name].js', // 输出的文件名</div><div class="line">    path: path.resolve(__dirname, 'dist') // 输出的路径</div><div class="line">  &#125;,</div><div class="line">  // 提取js common 可改名字</div><div class="line">  optimization: &#123;</div><div class="line">    splitChunks: &#123;</div><div class="line">      cacheGroups: &#123;</div><div class="line">        // 注意: priority属性</div><div class="line">        // 其次: 打包业务中公共代码</div><div class="line">        // common: &#123;</div><div class="line">        //   name: "common",</div><div class="line">        //   chunks: "all",</div><div class="line">        //   minSize: 1,</div><div class="line">        //   priority: 0</div><div class="line">        // &#125;,</div><div class="line">        // 首先: 打包node_modules中的文件</div><div class="line">        vendor: &#123;</div><div class="line">          name: "vendor",</div><div class="line">          test: /[\\/]node_modules[\\/]/,</div><div class="line">          chunks: "all",</div><div class="line">          priority: 10</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  // 插件</div><div class="line">  plugins: [</div><div class="line">    new CleanWebpackPlugin(['dist']),</div><div class="line"><span class="deletion">-    new HtmlWebpackPlugin(&#123;</span></div><div class="line"><span class="deletion">-      template: './src/page/index.html', // 模版路径</span></div><div class="line"><span class="deletion">-    &#125;),</span></div><div class="line">    new MiniCssExtractPlugin(&#123;</div><div class="line">      filename: "css/[name].css",</div><div class="line">      // chunkFilename: "css/[id].css"</div><div class="line">    &#125;),</div><div class="line">    new PurifyCSSPlugin(&#123;</div><div class="line">      // paths: glob.sync(path.join(__dirname, 'src/page/*.html')),</div><div class="line">      paths: glob.sync(path.join(__dirname, 'src/page/*.html')),</div><div class="line">    &#125;),</div><div class="line">    // 全局暴露</div><div class="line">    new webpack.ProvidePlugin(&#123;</div><div class="line">      $: "jquery"</div><div class="line">    &#125;),</div><div class="line">    // 全局资源搬运</div><div class="line">    new copyWebpackPlugin([&#123;</div><div class="line">      from: './src/assets',</div><div class="line">      to: './assets'</div><div class="line">    &#125;]),</div><div class="line">  ],</div><div class="line">  // 配置</div><div class="line">  module: &#123;</div><div class="line">    rules: [</div><div class="line">      // css</div><div class="line">      &#123;</div><div class="line">        test: /\.css$/,</div><div class="line">        use: [&#123;</div><div class="line">            loader: MiniCssExtractPlugin.loader,</div><div class="line">            options: &#123;</div><div class="line">              publicPath: '../'</div><div class="line">            &#125;</div><div class="line">          &#125;,</div><div class="line">          "css-loader",</div><div class="line">          "postcss-loader"</div><div class="line">        ]</div><div class="line">      &#125;,</div><div class="line">      // 图片</div><div class="line">      &#123;</div><div class="line">        test: /\.(png|svg|jpg|gif)$/,</div><div class="line">        use: [&#123;</div><div class="line">          loader: 'file-loader',</div><div class="line">          options: &#123;</div><div class="line">            name: '[name].[ext]',</div><div class="line">            limit: 5, // 表示小于xxb图片转为base64,大于xxb的是路径</div><div class="line">            outputPath: 'images' //定义输出的图片文件夹</div><div class="line">          &#125;</div><div class="line">        &#125;]</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        test: /\.html$/,</div><div class="line">        use: [&#123;</div><div class="line">          loader: 'html-loader',</div><div class="line">          options: &#123;</div><div class="line">            minimize: true,</div><div class="line">            removeComments: false,</div><div class="line">            collapseWhitespace: false</div><div class="line">          &#125;</div><div class="line">        &#125;],</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        test: /\.(sass|scss)$/,</div><div class="line">        use: [</div><div class="line">          // 分离sass</div><div class="line">          &#123;</div><div class="line">            loader: MiniCssExtractPlugin.loader,</div><div class="line">            options: &#123;</div><div class="line">              publicPath: "../"</div><div class="line">            &#125;</div><div class="line">          &#125;,</div><div class="line">          "css-loader",</div><div class="line">          "postcss-loader",</div><div class="line">          "sass-loader"</div><div class="line">        ]</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        test: /\.js$/,</div><div class="line">        exclude: /(node_modules|bower_components)/,</div><div class="line">        use: &#123;</div><div class="line">          loader: 'babel-loader',</div><div class="line">          options: &#123;</div><div class="line">            presets: ['@babel/preset-env']</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="addition">+ let theHtml = getFileList('./src/page/')</span></div><div class="line"></div><div class="line"><span class="addition">+ for (let key in theHtml) &#123;</span></div><div class="line"><span class="addition">+   let theFileName = ''</span></div><div class="line"><span class="addition">+   if(key == 'index')&#123;</span></div><div class="line"><span class="addition">+     theFileName = './' + key + '.html'</span></div><div class="line"><span class="addition">+   &#125;else &#123;</span></div><div class="line"><span class="addition">+     theFileName = './page/' + key + '.html'</span></div><div class="line"><span class="addition">+   &#125;</span></div><div class="line"><span class="addition">+   var conf = &#123;</span></div><div class="line"><span class="addition">+     filename: theFileName, //生成的html存放路径，相对于path</span></div><div class="line"><span class="addition">+     template: 'src/page/' + key + '.html', //html模板路径</span></div><div class="line"><span class="addition">+     inject: false, //js插入的位置，true/'head'/'body'/false</span></div><div class="line"><span class="addition">+     minify: &#123;</span></div><div class="line"><span class="addition">+       // 清除html注释</span></div><div class="line"><span class="addition">+       removeComments: true,</span></div><div class="line"><span class="addition">+       // 压缩html</span></div><div class="line"><span class="addition">+       collapseWhitespace: true,</span></div><div class="line"><span class="addition">+       // 是否去掉属性的双引号</span></div><div class="line"><span class="addition">+       removeAttributeQuotes: true,</span></div><div class="line"><span class="addition">+       // 省略布尔属性的值 &lt;input checked="true"/&gt; ==&gt; &lt;input /&gt;</span></div><div class="line"><span class="addition">+       collapseBooleanAttributes: true,</span></div><div class="line"><span class="addition">+       // 删除所有空格作属性值 &lt;input id="" /&gt; ==&gt; &lt;input /&gt;</span></div><div class="line"><span class="addition">+       removeEmptyAttributes: true,</span></div><div class="line"><span class="addition">+       // 删除&lt;script&gt;的type="text/javascript"</span></div><div class="line"><span class="addition">+       removeScriptTypeAttributes: true,</span></div><div class="line"><span class="addition">+       // 删除&lt;style&gt;和&lt;link&gt;的type="text/css"</span></div><div class="line"><span class="addition">+       removeStyleLinkTypeAttributes: true,</span></div><div class="line"><span class="addition">+     &#125;,</span></div><div class="line"><span class="addition">+     /*</span></div><div class="line"><span class="addition">+      * 压缩这块，调用了html-minify，会导致压缩时候的很多html语法检查问题，</span></div><div class="line"><span class="addition">+      * 如在html标签属性上使用&#123;&#123;...&#125;&#125;表达式，所以很多情况下并不需要在此配置压缩项，</span></div><div class="line"><span class="addition">+      * 另外，UglifyJsPlugin会在压缩代码的时候连同html一起压缩。</span></div><div class="line"><span class="addition">+      * 为避免压缩html，需要在html-loader上配置'html?-minimize'，见loaders中html-loader的配置。</span></div><div class="line"><span class="addition">+      */</span></div><div class="line"><span class="addition">+     // minify: &#123; //压缩HTML文件</span></div><div class="line"><span class="addition">+     //  removeComments: true, //移除HTML中的注释</span></div><div class="line"><span class="addition">+     //  collapseWhitespace: false //删除空白符与换行符</span></div><div class="line"><span class="addition">+     // &#125;</span></div><div class="line"><span class="addition">+   &#125;;</span></div><div class="line"><span class="addition">+   if (key in config.entry) &#123;</span></div><div class="line"><span class="addition">+     conf.inject = 'body';</span></div><div class="line"><span class="addition">+     conf.chunks = [key, 'vendor'];</span></div><div class="line"><span class="addition">+     conf.hash = true;</span></div><div class="line"><span class="addition">+   &#125;</span></div><div class="line"><span class="addition">+   config.plugins.push(new HtmlWebpackPlugin(conf));</span></div><div class="line"><span class="addition">+ &#125;</span></div><div class="line"></div><div class="line">module.exports = config</div></pre></td></tr></table></figure>
+<p>以上就可以配置之后就可以实现上面所讲的动态多入口和多页面效果了。</p>
+<p><strong>最后说明：多入口和多页面的配置只是我个人的一些逻辑想法而已，使用的时候要遵循的是，<code>/src/js</code> 里面的 <code>js</code> 文件名字要和 <code>/src/page</code> 里面的 <code>html</code> 文件名字一一对应，打包后每个页面引入的 <code>js</code> 是本页面对应名字的 <code>js</code> 和 <code>vendor.js</code> 即分割的第三方 <code>js</code> 这里是 <code>jquery</code>（例：<code>index.html</code> 引入的是 <code>index.js</code> 和 <code>vendor.js</code> ,而 <code>test.html</code> 引入的是 <code>test.js</code> 和 <code>vendor.js</code>,）</strong></p>
+<p><strong>最最最后注意：<code>js</code> 和 <code>page</code> 名字一定要一一对应，一定要，一定要，一定要！</strong></p>
+<blockquote>
+<p>以上参考资料有 <a href="https://webpack.docschina.org/concepts/" target="_blank" rel="external">webpack官方文档</a>，<a href="http://nodejs.cn/api/fs.html" target="_blank" rel="external">node官方文档</a></p>
+<p>以上源码已经放 <a href="https://github.com/rason00/Practice/tree/master/Webpack" target="_blank" rel="external">Github</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webpack/" rel="tag">#webpack</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/26/JavaScript设计模式-单例模式/" rel="next" title="JavaScript设计模式-单例模式">
+                <i class="fa fa-chevron-left"></i> JavaScript设计模式-单例模式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://raw.githubusercontent.com/rason00/rason/gh-pages/img/rasonlogo.gif"
+               alt="Rason" />
+          <p class="site-author-name" itemprop="name">Rason</p>
+          <p class="site-description motion-element" itemprop="description">It's not insane！ It's ideal！A normal psychotic！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">108</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/rason00" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack4-个人配置"><span class="nav-number">1.</span> <span class="nav-text">webpack4 个人配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设备"><span class="nav-number">1.1.</span> <span class="nav-text">设备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标"><span class="nav-number">1.2.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过程"><span class="nav-number">1.3.</span> <span class="nav-text">过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">1.3.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-自动生成html"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.自动生成html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-清理-dist-文件夹"><span class="nav-number">1.3.3.</span> <span class="nav-text">2.清理 /dist 文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-本地服务器"><span class="nav-number">1.3.4.</span> <span class="nav-text">3. 本地服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-分离css"><span class="nav-number">1.3.5.</span> <span class="nav-text">4.分离css</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-分离css图片"><span class="nav-number">1.3.6.</span> <span class="nav-text">5.分离css图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-处理html图片"><span class="nav-number">1.3.7.</span> <span class="nav-text">6.处理html图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-配置sass"><span class="nav-number">1.3.8.</span> <span class="nav-text">7.配置sass</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-自动添加css3前缀"><span class="nav-number">1.3.9.</span> <span class="nav-text">8.自动添加css3前缀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-消除未使用的css"><span class="nav-number">1.3.10.</span> <span class="nav-text">9.消除未使用的css</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-配置babel"><span class="nav-number">1.3.11.</span> <span class="nav-text">10.配置babel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-引入jquery"><span class="nav-number">1.3.12.</span> <span class="nav-text">11.引入jquery</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-分割第三方js"><span class="nav-number">1.3.13.</span> <span class="nav-text">12.分割第三方js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-配置全局资源文件夹"><span class="nav-number">1.3.14.</span> <span class="nav-text">13.配置全局资源文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-配置测试和生产环境"><span class="nav-number">1.3.15.</span> <span class="nav-text">14.配置测试和生产环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-配置多入口多页面"><span class="nav-number">1.3.16.</span> <span class="nav-text">15.配置多入口多页面</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+
+
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!-- 添加访问量 开始 -->
+<!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<!-- 添加访问量 结束 -->
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rason</span>
+</div>
+
+<!-- 添加访问量开始 -->
+<!-- <div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div> -->
+<!-- 添加访问量结束 -->
+
+<!-- <div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+ -->
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
