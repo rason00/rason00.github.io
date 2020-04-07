@@ -4,7 +4,7 @@ node_js: stable
 # assign build branches
 branches:
   only:
-    - blog-source
+    - dev
 
 # cache this directory
 cache:
