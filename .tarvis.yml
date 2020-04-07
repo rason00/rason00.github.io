@@ -21,5 +21,3 @@ after_success: # 在构建成功后要运行的命令，构建失败不会执行
 
 notifications: # 设置通知项
   email: true
-
-  
