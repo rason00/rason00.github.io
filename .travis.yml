@@ -10,7 +10,11 @@ branches: # 指定要构建的分支
     - dev
 
 install: # 在安装项目环境阶段需要运行的命令，一条一行，类似的还有 before_install
-  - source travis_env_init.sh # 执行指定的 shell 脚本来做初始化
+  # - source travis_env_init.sh # 执行指定的 shell 脚本来做初始化
+  - npm install -g hexo
+  - npm install -g hexo-cli
+  - npm install
+  - sed -i'' "s~git@github.com:~https://s~git@github.com:~https://${GIT_REPO_TOKEN}@github.com/~" _config.yml
 
 script: # 在构建阶段需要运行的命令，一条一行，类似的还有 before_script、after_script
   - hexo clean
