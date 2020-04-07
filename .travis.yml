@@ -21,7 +21,7 @@ script: # 在构建阶段需要运行的命令，一条一行，类似的还有 
   - hexo generate # Hexo 常规命令，执行清理和生成
 
 after_success: # 在构建成功后要运行的命令，构建失败不会执行，其他同上
-  - hexo deploy > /dev/null # 通过 hexo 的 deploy 命令部署博客
+  - hexo deploy # 通过 hexo 的 deploy 命令部署博客
 
 notifications: # 设置通知项
   email: true
