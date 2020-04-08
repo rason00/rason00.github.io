@@ -12,7 +12,7 @@ branches: # 指定要构建的分支
 install: # 在安装项目环境阶段需要运行的命令，一条一行，类似的还有 before_install
   - npm install -g hexo
   - npm install -g hexo-cli
-  - git clone https://github.com/renyuzh/hexo-theme-next.git themes/next # 主题没有更改时不用每次都下载安装一遍
+  - git clone https://github.com/theme-next/hexo-theme-next.git themes/next # 主题没有更改时不用每次都下载安装一遍
   - npm install
   - sed -i "s/github_token/${GH_TOKEN}/g" _config.yml || exit 1
 
