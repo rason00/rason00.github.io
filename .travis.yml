@@ -1,36 +1,29 @@
+# .tarvis.yml
+language: node_js # 指定语言环境
+node_js:
+  - "6" # 指定 NodeJS 版本
+dist: trusty # 指定系统版本。trusty 是指 Ubuntu 14.04 发行版的名称
+sudo: required # 是否需要 sudo 权限
 
+branches: # 指定要构建的分支
+  only: # only 表示只构建以下分支
+  - writing
 
+install: # 在安装项目环境阶段需要运行的命令，一条一行，类似的还有 before_install
+  # 全局安装 Hexo
+  - npm install -g hexo
+  # 全局安装 Hexo 命令行工具，因为我们是命令行操作
+  - npm install -g hexo-cli
+  # 安装 package.json 中的依赖
+  - npm install
 
-language: node_js
-node_js: stable
+script: # 在构建阶段需要运行的命令，一条一行，类似的还有 before_script、after_script
+  - hexo clean
+  - hexo generate # Hexo 常规命令，执行清理和生成
+  - sed -i'' "s~git@github.com:~https://s~git@github.com:~https://${GH_TOKEN}@github.com/~" _config.yml
 
-# assign build branches
-branches:
-  only:
-    - dev
-
-# cache this directory
-cache:
-  directories:
-    - node_modules
-    #- themes 主题没有更改时可以缓存
-# S: Build Lifecycle
-before_install:
-  - npm install -g hexo-cli # 安装 hexo
-
-install:
-  - npm install # 安装 package.json 中的插件
-
-script:
-  - hexo generate
-
-after_success:
-   - git config --global user.name "rason00"
-   - git config --global user.email "rason00@163.com"
-   - sed -i "s/ghtoken/${GH_TOKEN}/g" _config.yml #使用travisCI中配置的token替换掉_config.yml中对应的占位符
-  # - sed -i'' "s~git@github.com:~https://s~git@github.com:~https://${GH_TOKEN}@github.com/~" _config.yml
-  - hexo deploy
-# E: Build LifeCycle
+after_success: # 在构建成功后要运行的命令，构建失败不会执行，其他同上
+  - hexo deploy > /dev/null # 通过 hexo 的 deploy 命令部署博客
 
 notifications:
   email: true
