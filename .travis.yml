@@ -17,15 +17,13 @@ cache:
     - node_modules
 
 #在构建之前安装hexo环境
-before_install:
+#安装git插件和搜索功能插件
+  install:
   - npm install -g hexo
   - npm install -g hexo-cli
-
-#安装git插件和搜索功能插件
-install:
   - npm install
 
-  # 设置git提交名，邮箱；替换真实token到_config.yml文件
+# 设置git提交名，邮箱；替换真实token到_config.yml文件
 before_script:
   - git config --global user.name "rason00"
   - git config --global user.email "rason00@163.com"
