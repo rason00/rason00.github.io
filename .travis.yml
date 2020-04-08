@@ -1,32 +1,34 @@
 language: node_js
-node_js: stable
+
+node_js: stable  # 要安装的node版本为当前的稳定版
+
+cache:
+  directories:
+  - node_modules # 要缓存的文件夹
 
 install:
   - npm install
-  - npm install hexo-generator-searchdb --save
-
-#before_script:
 
 script:
-  - hexo clean && hexo g
+  - hexo clean
+  - hexo g
 
-after_script:
+after_script:   # 最后执行的命令
   - cd ./public
   - git init
   - git config user.name "rason00"
   - git config user.email "rason00@163..com"
-  - git add .
-  - git commit -m "Update docs"
+  - git add . 
+  - git commit -m "代码自动部署"
   - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
-# E: Build LifeCycle
 
-branchs:
+branches:
   only:
-    - dev
+    - dev # 触发持续集成的分支
 
 env:
   global:
-    - GH_REF: github.com/rason00/rason00.github.io.git
+    - GH_REF: github.com/rason00/rason00.github.io.gitt # 就是你github上存放静态博客最终文件的仓库地址末尾加上.git
 
 notifications: # 设置通知项
   email: true
