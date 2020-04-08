@@ -35,7 +35,7 @@ before_script:
 script:
   - hexo clean
   - hexo generate
-  - echo ${ENV_TEST}
+  - echo "test"
   - hexo deploy
 
 # configure notifications (email, IRC, campfire etc)
