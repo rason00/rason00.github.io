@@ -1,7 +1,6 @@
 language: node_js
 node_js: stable
 
-
 install:
   - npm install
   - npm install hexo-generator-searchdb --save
