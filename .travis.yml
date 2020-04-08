@@ -27,7 +27,7 @@ branches:
     - dev
 env:
  global:
-   - GH_REF: git@github.com/rason00/rason00.github.io.git
+   - GH_REF: github.com/rason00/rason00.github.io.git
 
 notifications:
   email: true
