@@ -1,33 +1,47 @@
-language: node_js
+# 指定构建环境是Node.js，当前版本是稳定版
+anguage: node_js
 node_js: stable
 
-# S: Build Lifecycle
-install:
-  - npm install
+env:
+  global:
+    - URL_REPO: github.com/rason00/rason00.github.io.git
 
-
-#before_script:
- # - npm install -g gulp
-
-script:
-  - hexo g
-
-after_script:
-  - cd ./public
-  - git init
-  - git config user.name "rason00"
-  - git config user.email "rason00@163.com"
-  - git add .
-  - git commit -m "Update docs"
-  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
-# E: Build LifeCycle
-
+# 设置钩子只检测blog-source分支的push变动
 branches:
   only:
     - dev
-env:
- global:
-   - GH_REF: github.com/rason00/rason00.github.io.git
 
+# 设置缓存文件
+cache:
+  directories:
+    - node_modules
+
+#在构建之前安装hexo环境
+before_install:
+  - npm install -g hexo-cli
+
+#安装git插件和搜索功能插件
+install:
+  - npm install
+
+  # 设置git提交名，邮箱；替换真实token到_config.yml文件
+before_script:
+  - git config user.name "rason00"
+  - git config user.email "rason00@163.com"
+  # 替换同目录下的_config.yml文件中github_token字符串为travis后台刚才配置的变量，注>意此处sed命令用了双引号。单引号无效！
+  - sed -i "s/github_token/${GH_TOKEN}/g" _config.yml || exit 1
+
+# 执行清缓存，生成网页操作
+script:
+  - hexo clean
+  - hexo generate
+  - echo ${ENV_TEST}
+  - hexo deploy
+
+# configure notifications (email, IRC, campfire etc)
+# please update this section to your needs!
+# https://docs.travis-ci.com/user/notifications/
 notifications:
   email: true
+  on_success: change
+  on_failure: always
