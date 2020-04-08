@@ -1,29 +1,33 @@
-# .tarvis.yml
-language: node_js # 指定语言环境
-node_js:
-  - "6" # 指定 NodeJS 版本
-dist: trusty # 指定系统版本。trusty 是指 Ubuntu 14.04 发行版的名称
-sudo: required # 是否需要 sudo 权限
+language: node_js
+node_js: stable
 
-branches: # 指定要构建的分支
-  only: # only 表示只构建以下分支
-  - dev
-
-install: # 在安装项目环境阶段需要运行的命令，一条一行，类似的还有 before_install
-  # 全局安装 Hexo
-  - npm install -g hexo
-  # 全局安装 Hexo 命令行工具，因为我们是命令行操作
-  - npm install -g hexo-cli
-  # 安装 package.json 中的依赖
+# S: Build Lifecycle
+install:
   - npm install
 
-script: # 在构建阶段需要运行的命令，一条一行，类似的还有 before_script、after_script
-  - hexo clean
-  - hexo generate # Hexo 常规命令，执行清理和生成
-  - sed -i'' "s~git@github.com:~https://s~git@github.com:~https://${GH_TOKEN}@github.com/~" _config.yml
 
-after_success: # 在构建成功后要运行的命令，构建失败不会执行，其他同上
-  - hexo deploy > /dev/null # 通过 hexo 的 deploy 命令部署博客
+#before_script:
+ # - npm install -g gulp
+
+script:
+  - hexo g
+
+after_script:
+  - cd ./public
+  - git init
+  - git config user.name "rason00"
+  - git config user.email "rason00@163.com"
+  - git add .
+  - git commit -m "Update docs"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
+# E: Build LifeCycle
+
+branches:
+  only:
+    - dev
+env:
+ global:
+   - GH_REF: git@github.com/rason00/rason00.github.io.git
 
 notifications:
   email: true
