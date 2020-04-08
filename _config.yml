@@ -9,7 +9,7 @@ description: It's not insane！ It's ideal！A normal psychotic！
 author: Rason
 language: zh-Hans
 email: rason00@163.com
-timezone: 
+timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -69,15 +69,13 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  # repository: git@github.com/rason00/rason00.github.io.git
-  repository: https://github_token@github.com/rason00/rason00.github.io.git
+  type:  git
+  # repository:  git@github.com/rason00/rason00.github.io.git
+  repo:  https://github_token@github.com/rason00/rason00.github.io.git
   branch: master
-
 
 #logo
 avatar: https://raw.githubusercontent.com/rason00/rason/gh-pages/img/rasonlogo.gif
-
 
 #百度统计
 baidu_analytics: c0b175368f6e60b955380864b509c3fc
