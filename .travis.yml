@@ -18,6 +18,7 @@ cache:
 
 #在构建之前安装hexo环境
 before_install:
+  - npm install -g hexo
   - npm install -g hexo-cli
 
 #安装git插件和搜索功能插件
@@ -35,7 +36,6 @@ before_script:
 script:
   - hexo clean
   - hexo generate
-  - echo "test"
   - hexo deploy
 
 # configure notifications (email, IRC, campfire etc)
@@ -43,5 +43,3 @@ script:
 # https://docs.travis-ci.com/user/notifications/
 notifications:
   email: true
-  on_success: change
-  on_failure: always
