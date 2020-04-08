@@ -69,10 +69,10 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
+  # :  后面两个空格
   type:  git
-  # repository:  git@github.com/rason00/rason00.github.io.git
   repo:  https://github_token@github.com/rason00/rason00.github.io.git
-  branch: master
+  branch:  master
 
 #logo
 avatar: https://raw.githubusercontent.com/rason00/rason/gh-pages/img/rasonlogo.gif
