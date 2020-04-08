@@ -73,7 +73,6 @@ deploy:
   # repository: git@github.com/rason00/rason00.github.io.git
   repository: https://github_token@github.com/rason00/rason00.github.io.git
   branch: master
-  - type: baidu_url_submitter
 
 
 #logo
