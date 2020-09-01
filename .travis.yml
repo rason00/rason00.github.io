@@ -5,7 +5,6 @@ node_js:
   - 12 # 指定 NodeJS 版本
 cache:
   apt: true
-  yarn: true
   directories:
     - node_modules
 dist: trusty # 指定系统版本。trusty 是指 Ubuntu 14.04 发行版的名称
@@ -16,15 +15,15 @@ only: # only 表示只构建以下分支
   - dev
 
 before_install:
-  - yarn add hexo --save
-  - yarn add hexo-cli --save
+  - npm i -g hexo
+  - npm i -g hexo-cli
   # - git clone https://github.com/next-theme/hexo-theme-next themes/next # 主题没有更改时不用每次都下载安装一遍
 
 install: # 在安装项目环境阶段需要运行的命令，一条一行，类似的还有 before_install
   # - npm install -g hexo
   # - npm install -g hexo-cli
-  - yarn
-  - yarn add hexo-deployer-git --save
+  - npm i
+  - npm i hexo-deployer-git --save
   - sed -i "s/github_token/${GH_TOKEN}/g" _config.yml || exit 1
 
 script: # 在构建阶段需要运行的命令，一条一行，类似的还有 before_script、after_script
