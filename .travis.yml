@@ -12,15 +12,15 @@ dist: trusty # 指定系统版本。trusty 是指 Ubuntu 14.04 发行版的名�
 sudo: required # 是否需要 sudo 权限
 
 branches: # 指定要构建的分支
-  only: # only 表示只构建以下分支
+only: # only 表示只构建以下分支
   - dev
 
 before_install:
   - yarn add hexo --save
   - yarn add hexo-cli --save
   # - git clone https://github.com/next-theme/hexo-theme-next themes/next # 主题没有更改时不用每次都下载安装一遍
-  
-  install: # 在安装项目环境阶段需要运行的命令，一条一行，类似的还有 before_install
+
+install: # 在安装项目环境阶段需要运行的命令，一条一行，类似的还有 before_install
   # - npm install -g hexo
   # - npm install -g hexo-cli
   - yarn
