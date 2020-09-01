@@ -1,0 +1,721 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JavaScript高级程序设计,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="4.1 基本类型和引用类型的值ECMAScript 变量可能包含两种不同数据类型的值：基本类型值和引用类型值。基本类型值指的是简单的数据段，而引用类型值指那些可能由多个值构成的对象。 内容涵盖 动态的属性 复制变量值 传递参数 检测类型">
+<meta name="keywords" content="JavaScript高级程序设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript高级程序设计（4.1）">
+<meta property="og:url" content="http://yoursite.com/2017/09/13/JavaScript高级程序设计（4.1）/index.html">
+<meta property="og:site_name" content="Rason">
+<meta property="og:description" content="4.1 基本类型和引用类型的值ECMAScript 变量可能包含两种不同数据类型的值：基本类型值和引用类型值。基本类型值指的是简单的数据段，而引用类型值指那些可能由多个值构成的对象。 内容涵盖 动态的属性 复制变量值 传递参数 检测类型">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-09-01T01:42:43.548Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript高级程序设计（4.1）">
+<meta name="twitter:description" content="4.1 基本类型和引用类型的值ECMAScript 变量可能包含两种不同数据类型的值：基本类型值和引用类型值。基本类型值指的是简单的数据段，而引用类型值指那些可能由多个值构成的对象。 内容涵盖 动态的属性 复制变量值 传递参数 检测类型">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/13/JavaScript高级程序设计（4.1）/">
+
+  <title> JavaScript高级程序设计（4.1） | Rason </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c0b175368f6e60b955380864b509c3fc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s6.cnzz.com/stat.php?id=1259942288&web_id=1259942288" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Rason</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Rason 博客</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript高级程序设计（4.1）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-13T18:13:07+00:00" content="2017-09-13">
+              2017-09-13
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="4-1-基本类型和引用类型的值"><a href="#4-1-基本类型和引用类型的值" class="headerlink" title="4.1 基本类型和引用类型的值"></a>4.1 基本类型和引用类型的值</h1><p><strong>ECMAScript 变量可能包含两种不同数据类型的值：基本类型值和引用类型值。基本类型值指的是简单的数据段，而引用类型值指那些可能由多个值构成的对象</strong>。</p>
+<h1 id="内容涵盖"><a href="#内容涵盖" class="headerlink" title="内容涵盖"></a>内容涵盖</h1><ol>
+<li><a href="#4.1.1">动态的属性</a></li>
+<li><a href="#4.1.2">复制变量值</a></li>
+<li><a href="#4.1.3">传递参数</a></li>
+<li><a href="#4.1.4">检测类型</a></li>
+</ol>
+<a id="more"></a>
+<p>5 种基本数据类型：Undefined、Null、Boolean、Number 和 String。这 5 种基本数据类型是按值访问的，因为可以操作保存在变量中的实际的值。</p>
+<p>引用类型的值是保存在内存中的对象。JavaScript 不允许直接访问内存中的位置，也就是说不能直接操作对象的内存空间。在操作对象时，实际上是在操作对象的引用而不是实际的对象。</p>
+<blockquote>
+<p>这种说法不严密，当复制保存着对象的某个变量时，操作的是对象的引用。但在为对象添加属性时，操作的是实际的对象。</p>
+</blockquote>
+<p><span id="4.1.1"></span></p>
+<h1 id="4-1-1-动态的属性"><a href="#4-1-1-动态的属性" class="headerlink" title="4.1.1 动态的属性"></a>4.1.1 动态的属性</h1><p><strong>定义基本类型值和引用类型值的方式是类似的：创建一个变量并为该变量赋值</strong>。</p>
+<p>但是，当这个值保存到变量中以后，对不同类型值可以执行的操作则大相径庭。</p>
+<p>对于引用类型的值，我们可以为其添加属性和方法，也可以改变和删除其属性和方法。请看下面的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var person = new Object();</span><br><span class="line">person.name = &quot;Nicholas&quot;;</span><br><span class="line">alert(person.name); //&quot;Nicholas&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>以上代码创建了一个对象并将其保存在了变量 person 中。然后，我们为该对象添加了一个名为 name 的属性，并将字符串值”Nicholas”赋给了这个属性。紧接着，又通过 alert()函数访问了这个新属性。如果对象不被销毁或者这个属性不被删除，则这个属性将一直存在。</p>
+</blockquote>
+<p>但是，我们不能给基本类型的值添加属性，尽管这样做不会导致任何错误。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var name = &quot;Nicholas&quot;;</span><br><span class="line">name.age = 27;</span><br><span class="line">alert(name.age); //undefined</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在这个例子中，我们为字符串 name 定义了一个名为 age 的属性，并为该属性赋值 27。但在下一行访问这个属性时，发现该属性不见了。这说明只能给引用类型值动态地添加属性，以便将来使用。</p>
+</blockquote>
+<p><span id="4.1.2"></span></p>
+<h1 id="4-1-2-复制变量值"><a href="#4-1-2-复制变量值" class="headerlink" title="4.1.2 复制变量值"></a>4.1.2 复制变量值</h1><p>如果从一个变量向另一个变量复制 <strong>基本类型</strong> 的值，会在变量对象上创建一个新值，然后把该值复制<br>到为新变量分配的位置上。来看一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var num1 = 5;</span><br><span class="line">var num2 = num1;</span><br><span class="line"></span><br><span class="line">console.log(num1);  // 5</span><br><span class="line">console.log(num2);  // 5</span><br><span class="line"></span><br><span class="line">num2 = 10;          // 改变 num2 的值，num1 不受影响。</span><br><span class="line">console.log(num1);  // 5</span><br><span class="line">console.log(num2);  // 10</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>num1 中保存的值是 5。当使用 num1 的值来初始化 num2 时，num2 中也保存了值 5。但 num2 中的 5 与 num1 中的 5 是完全独立的，这两个变量可以参与任何操作而不会相互影响。</p>
+</blockquote>
+<p>当从一个变量向另一个变量复制<strong>引用类型</strong>的值时，同样也会将存储在变量对象中的值复制一份放到为新变量分配的空间中。</p>
+<p>不同的是，这个值的副本实际上是一个<strong>指针</strong>，而这个指针指向存储在堆中的一个对象。复制操作结束后，<strong>两个变量实际上将引用同一个对象</strong>。因此，<strong>改变其中一个变量，就会影响另一个变量</strong>，如下面的例子所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var obj1 = new Object();</span><br><span class="line">var obj2 = obj1;</span><br><span class="line">obj1.name = &quot;Nicholas&quot;;</span><br><span class="line">alert(obj2.name); //&quot;Nicholas&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>obj1 和 obj2 都指向同一个对象。这样，当为 obj1 添加 name 属性后，可以通过 obj2 来访问这个属性。</p>
+</blockquote>
+<p><span id="4.1.3"></span></p>
+<h1 id="4-1-3-传递参数"><a href="#4-1-3-传递参数" class="headerlink" title="4.1.3 传递参数"></a>4.1.3 传递参数</h1><p><strong>ECMAScript 中所有函数的参数都是按值传递的。也就是说，把函数外部的值复制给函数内部的参数，就和把值从一个变量复制到另一个变量一样</strong>。</p>
+<p><strong>基本类型值的传递如同基本类型变量的复制一样，而引用类型值的传递，则如同引用类型变量的复制一样</strong>。</p>
+<p>在向参数传递基本类型的值时，被传递的值会被复制给一个局部变量（即命名参数，或者用 ECMAScript 的概念来说，就是 arguments 对象中的一个元素）。</p>
+<p>在向参数传递<strong>引用类型</strong>的值时，会把这个值在内存中的地址复制给一个局部变量，因此<strong>这个局部变量的变化会反映在函数的外部</strong>。</p>
+<p>基本类型例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function addTen(num) &#123;</span><br><span class="line"> num += 10;</span><br><span class="line"> return num;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var count = 20;</span><br><span class="line">var result = addTen(count);</span><br><span class="line">alert(count); //20，没有变化</span><br><span class="line">alert(result); //30</span><br></pre></td></tr></table></figure>
+<p>num 是函数的局部变量。在调用这个函数时，变量 count 作为参数被传递给函数，数值 20 被复制给参数 num 以便在 addTen() 中使用。在函数内部，参数 num 的值被加上了 10，但这一变化不会影响函数外部的 count 变量。</p>
+<p>引用类型例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function setName(obj) &#123;</span><br><span class="line"> obj.name = &quot;Nicholas&quot;;</span><br><span class="line">&#125;</span><br><span class="line">var person = new Object();</span><br><span class="line">setName(person);</span><br><span class="line">alert(person.name); //&quot;Nicholas&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>obj 和 person 引用的是同一个对象。于是，当在函数内部为 obj 添加 name 属性后，函数外部的 person 也将有所反映。</p>
+</blockquote>
+<p>有很多开发人员错误地认为：在局部作用域中修改的对象会在全局作用域中反映出来，就说明参数是按引用传递的。为了证明对象是按值传递的，再看一看下面这个经过修改的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function setName(obj) &#123;</span><br><span class="line"> obj.name = &quot;Nicholas&quot;;</span><br><span class="line"> obj = new Object();</span><br><span class="line"> obj.name = &quot;Greg&quot;;</span><br><span class="line">&#125;</span><br><span class="line">var person = new Object();</span><br><span class="line">setName(person);</span><br><span class="line">alert(person.name); //&quot;Nicholas&quot;</span><br></pre></td></tr></table></figure>
+<p>这个例子与前一个例子的唯一区别，就是在 setName()函数中添加了两行代码：</p>
+<ol>
+<li>一行代码为 obj重新定义了一个对象，</li>
+<li>另一行代码为该对象定义了一个带有不同值的 name 属性。</li>
+</ol>
+<p>在把 person 传递给 setName() 后，其 name 属性被设置为”Nicholas”。然后，又将一个新对象赋给变量 obj，同时将其 name<br>属性设置为”Greg”。</p>
+<p>如果 person 是按引用传递的，那么 person 就会自动被修改为指向其 name 属性值为 “Greg” 的新对象。但是，当接下来再访问 person.name 时，显示的值仍然是”Nicholas”。这说明即使在函数内部修改了参数的值，但原始的引用仍然保持未变。实际上，当在函数内部重写 obj 时，这个变量引用的就是一个局部对象了。而这个<strong>局部对象会在函数执行完毕后立即被销毁</strong>。</p>
+<blockquote>
+<p>可以把 ECMAScript 函数的参数想象成局部变量。</p>
+</blockquote>
+<p><span id="4.1.4"></span></p>
+<h1 id="4-1-4-检测类型"><a href="#4-1-4-检测类型" class="headerlink" title="4.1.4 检测类型"></a>4.1.4 检测类型</h1><p>要检测一个变量是不是基本数据类型？第 3 章介绍的 typeof 操作符是最佳的工具。说得更具体一点，<strong>typeof 操作符是确定一个变量是字符串、数值、布尔值，还是 undefined 的最佳工具。如果变量的值是一个对象或 null，则 typeof 操作符会返回”object”，如下例子</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var s = &quot;Nicholas&quot;;</span><br><span class="line">var b = true;</span><br><span class="line">var i = 22;</span><br><span class="line">var u;</span><br><span class="line">var n = null;</span><br><span class="line">var o = new Object();</span><br><span class="line">alert(typeof s); //string</span><br><span class="line">alert(typeof i); //number</span><br><span class="line">alert(typeof b); //boolean</span><br><span class="line">alert(typeof u); //undefined</span><br><span class="line">alert(typeof n); //object</span><br><span class="line">alert(typeof o); //object</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在检测基本数据类型时 typeof 是非常得力的助手，但在检测引用类型的值时，这个操作符的用处不大。</p>
+</blockquote>
+<p>通常，我们并不是想知道某个值是对象，而是想知道它是什么类型的对象。为此，ECMAScript 提供了 instanceof 操作符，如果变量是给定引用类型（根据它的原型链来识别；第 6 章将介绍原型链）的实例，那么 instanceof 操作符就会返回 true。请看下面的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">alert(person instanceof Object);  // 变量 person 是 Object 吗？</span><br><span class="line">alert(colors instanceof Array);   // 变量 colors 是 Array 吗？</span><br><span class="line">alert(pattern instanceof RegExp); // 变量 pattern 是 RegExp 吗？</span><br><span class="line"></span><br><span class="line">var b = &apos;123&apos;;</span><br><span class="line">alert(b instanceof String);     //false</span><br><span class="line">alert(typeof b);                //string</span><br><span class="line"></span><br><span class="line">var c = new String(&quot;123&quot;);</span><br><span class="line">alert(c instanceof String);    //true</span><br><span class="line">alert(typeof c);               //object</span><br><span class="line"></span><br><span class="line">var arr = [1,2,3]; </span><br><span class="line">alert(arr instanceof Array);   // true</span><br></pre></td></tr></table></figure>
+<p>根据规定，<strong>所有引用类型的值都是 Object 的实例。因此，在检测一个引用类型值和 Object 构造函数时，instanceof 操作符始终会返回 true</strong>。</p>
+<p><strong>如果使用 instanceof 操作符检测基本类型的值，则该操作符始终会返回 false，因为基本类型不是对象</strong>。</p>
+<blockquote>
+<p>使用 typeof 操作符检测函数时，该操作符会返回”function”。在 Safari 5 及之前版本和 Chrome 7 及之前版本中使用 typeof 检测正则表达式时，由于规范的原因，这个操作符也返回”function”。ECMA-262 规定任何在内部实现 [[Call]] 方法的对象都应该在应用 typeof 操作符时返回”function”。由于上述浏览器中的正则表达式也实现了这个方法，因此对正则表达式应用 typeof 会返回”function”。在 IE 和 Firefox 中，对正则表达式应用 typeof 会返回”object”。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript高级程序设计/" rel="tag">#JavaScript高级程序设计</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/13/JavaScript高级程序设计（3.7-3.8）/" rel="next" title="JavaScript高级程序设计（3.7-3.8）">
+                <i class="fa fa-chevron-left"></i> JavaScript高级程序设计（3.7-3.8）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/14/JavaScript高级程序设计（4.2）/" rel="prev" title="JavaScript高级程序设计（4.2）">
+                JavaScript高级程序设计（4.2） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://raw.githubusercontent.com/rason00/rason/gh-pages/img/rasonlogo.gif" alt="Rason">
+          <p class="site-author-name" itemprop="name">Rason</p>
+          <p class="site-description motion-element" itemprop="description">It's not insane！ It's ideal！A normal psychotic！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">108</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/rason00" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#4-1-基本类型和引用类型的值"><span class="nav-number">1.</span> <span class="nav-text">4.1 基本类型和引用类型的值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内容涵盖"><span class="nav-number">2.</span> <span class="nav-text">内容涵盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-1-1-动态的属性"><span class="nav-number">3.</span> <span class="nav-text">4.1.1 动态的属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-1-2-复制变量值"><span class="nav-number">4.</span> <span class="nav-text">4.1.2 复制变量值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-1-3-传递参数"><span class="nav-number">5.</span> <span class="nav-text">4.1.3 传递参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-1-4-检测类型"><span class="nav-number">6.</span> <span class="nav-text">4.1.4 检测类型</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+
+
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!-- 添加访问量 开始 -->
+<!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<!-- 添加访问量 结束 -->
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rason</span>
+</div>
+
+<!-- 添加访问量开始 -->
+<!-- <div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div> -->
+<!-- 添加访问量结束 -->
+
+<!-- <div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+ -->
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

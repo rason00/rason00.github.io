@@ -1,0 +1,764 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JavaScript高级程序设计,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="内容涵盖 DOM 操作技术 动态脚本 动态样式 操作表格 使用 NodeList   第十章 小结">
+<meta name="keywords" content="JavaScript高级程序设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript高级程序设计(10.2-10.3)">
+<meta property="og:url" content="http://yoursite.com/2017/10/10/JavaScript高级程序设计（10.2-10.3）/index.html">
+<meta property="og:site_name" content="Rason">
+<meta property="og:description" content="内容涵盖 DOM 操作技术 动态脚本 动态样式 操作表格 使用 NodeList   第十章 小结">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-09-01T01:42:43.548Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript高级程序设计(10.2-10.3)">
+<meta name="twitter:description" content="内容涵盖 DOM 操作技术 动态脚本 动态样式 操作表格 使用 NodeList   第十章 小结">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/10/JavaScript高级程序设计（10.2-10.3）/">
+
+  <title> JavaScript高级程序设计(10.2-10.3) | Rason </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c0b175368f6e60b955380864b509c3fc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s6.cnzz.com/stat.php?id=1259942288&web_id=1259942288" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Rason</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Rason 博客</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript高级程序设计(10.2-10.3)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-10T11:18:27+00:00" content="2017-10-10">
+              2017-10-10
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="内容涵盖"><a href="#内容涵盖" class="headerlink" title="内容涵盖"></a>内容涵盖</h1><ol>
+<li><a href="#10.2">DOM 操作技术</a><ol>
+<li><a href="#10.2.1">动态脚本</a></li>
+<li><a href="#10.2.2">动态样式</a></li>
+<li><a href="#10.2.3">操作表格</a></li>
+<li><a href="#10.2.4">使用 NodeList</a></li>
+</ol>
+</li>
+<li><a href="#10.3">第十章 小结</a></li>
+</ol>
+<a id="more"></a>
+<p><span id="10.2"></span></p>
+<h1 id="10-2-DOM-操作技术"><a href="#10-2-DOM-操作技术" class="headerlink" title="10.2 DOM 操作技术"></a>10.2 DOM 操作技术</h1><p>很多时候，DOM 操作都比较简明，因此用 JavaScript 生成那些通常原本是用 HTML 代码生成的内容并不麻烦。不过，也有一些时候，操作 DOM 并不像表面上看起来那么简单。由于浏览器中充斥着隐藏的陷阱和不兼容问题，用 JavaScript 代码处理 DOM 的某些部分要比处理其他部分更复杂一些。</p>
+<p><span id="10.2.1"></span></p>
+<h2 id="10-2-1-动态脚本"><a href="#10-2-1-动态脚本" class="headerlink" title="10.2.1 动态脚本"></a>10.2.1 动态脚本</h2><p>使用 <code>&lt;script&gt;</code> 元素可以向页面中插入 JavaScript 代码，一种方式是通过其 src 特性包含外部文件，另一种方式就是用这个元素本身来包含代码。而这一节要讨论的动态脚本，指的是在页面加载时不存在，但将来的某一时刻通过修改 DOM 动态添加的脚本。跟操作 HTML 元素一样，<strong>创建动态脚本也有两种方式：插入外部文件和直接插入 JavaScript 代码</strong>。</p>
+<p>动态加载的外部 JavaScript 文件能够立即运行，比如下面的 <code>&lt;script&gt;</code> 元素：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;client.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>这个 <code>&lt;script&gt;</code> 元素包含了第 9 章的客户端检测脚本。而创建这个节点的 DOM 代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var script = document.createElement(&quot;script&quot;);</span><br><span class="line">script.type = &quot;text/javascript&quot;;</span><br><span class="line">script.src = &quot;client.js&quot;;</span><br><span class="line">document.body.appendChild(script);</span><br></pre></td></tr></table></figure>
+<p>显然，这里的 DOM 代码如实反映了相应的 HTML 代码。不过，在执行最后一行代码把 <code>&lt;script&gt;</code> 元素添加到页面中之前，是不会下载外部文件的。也可以把这个元素添加到 <code>&lt;head&gt;</code> 元素中，效果相同。</p>
+<p>整个过程可以使用下面的函数来封装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function loadScript(url)&#123;</span><br><span class="line"> var script = document.createElement(&quot;script&quot;);</span><br><span class="line"> script.type = &quot;text/javascript&quot;;</span><br><span class="line"> script.src = url;</span><br><span class="line"> document.body.appendChild(script);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后，就可以通过调用这个函数来加载外部的 JavaScript 文件了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loadScript(&quot;client.js&quot;);</span><br></pre></td></tr></table></figure>
+<p>加载完成后，就可以在页面中的其他地方使用这个脚本了。问题只有一个：怎么知道脚本加载完成呢？遗憾的是，并没有什么标准方式来探知这一点。不过，与此相关的一些事件倒是可以派上用场，但要取决于所用的浏览器，详细讨论请见第 13 章。</p>
+<p>另一种指定 JavaScript 代码的方式是行内方式，如下面的例子所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line"> function sayHi()&#123;</span><br><span class="line"> alert(&quot;hi&quot;);</span><br><span class="line"> &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>从逻辑上讲，下面的 DOM 代码是有效的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var script = document.createElement(&quot;script&quot;);</span><br><span class="line">script.type = &quot;text/javascript&quot;;</span><br><span class="line">script.appendChild(document.createTextNode(&quot;function sayHi()&#123;alert(&apos;hi&apos;);&#125;&quot;));</span><br><span class="line">document.body.appendChild(script);</span><br></pre></td></tr></table></figure>
+<p>在 Firefox、Safari、Chrome 和 Opera 中，这些 DOM 代码可以正常运行。但在 IE 中，则会导致错误。</p>
+<p>IE 将 <code>&lt;script&gt;</code> 视为一个特殊的元素，不允许 DOM 访问其子节点。不过，可以使用 <code>&lt;script&gt;</code> 元素的text 属性来指定 JavaScript 代码，像下面的例子这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var script = document.createElement(&quot;script&quot;);</span><br><span class="line">script.type = &quot;text/javascript&quot;;</span><br><span class="line">script.text = &quot;function sayHi()&#123;alert(&apos;hi&apos;);&#125;&quot;;</span><br><span class="line">document.body.appendChild(script);</span><br></pre></td></tr></table></figure>
+<p>经过这样修改之后的代码可以在 IE、Firefox、Opera 和 Safari 3 及之后版本中运行。Safari 3.0 之前的版本虽然不能正确地支持 text 属性，但却允许使用文本节点技术来指定代码。如果需要兼容早期版本的 Safari，可以使用下列代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var script = document.createElement(&quot;script&quot;);</span><br><span class="line">script.type = &quot;text/javascript&quot;;</span><br><span class="line">var code = &quot;function sayHi()&#123;alert(&apos;hi&apos;);&#125;&quot;;</span><br><span class="line">try &#123;</span><br><span class="line"> script.appendChild(document.createTextNode(&quot;code&quot;));</span><br><span class="line">&#125; catch (ex)&#123;</span><br><span class="line"> script.text = &quot;code&quot;;</span><br><span class="line">&#125;</span><br><span class="line">document.body.appendChild(script);</span><br></pre></td></tr></table></figure>
+<p>这里，首先尝试标准的 DOM 文本节点方法，因为除了 IE（在 IE 中会导致抛出错误），所有浏览器都支持这种方式。如果这行代码抛出了错误，那么说明是 IE，于是就必须使用 text 属性了。整个过程可以用以下函数来表示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function loadScriptString(code)&#123;</span><br><span class="line"> var script = document.createElement(&quot;script&quot;);</span><br><span class="line"> script.type = &quot;text/javascript&quot;;</span><br><span class="line"> try &#123;</span><br><span class="line"> script.appendChild(document.createTextNode(code));</span><br><span class="line"> &#125; catch (ex)&#123;</span><br><span class="line"> script.text = code;</span><br><span class="line"> &#125;</span><br><span class="line"> document.body.appendChild(script);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面是调用这个函数的示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loadScriptString(&quot;function sayHi()&#123;alert(&apos;hi&apos;);&#125;&quot;);</span><br></pre></td></tr></table></figure>
+<p>以这种方式加载的代码会在全局作用域中执行，而且当脚本执行后将立即可用。实际上，这样执行代码与在全局作用域中把相同的字符串传递给 eval()是一样的。</p>
+<p><span id="10.2.2"></span></p>
+<h2 id="10-2-2-动态样式"><a href="#10-2-2-动态样式" class="headerlink" title="10.2.2 动态样式"></a>10.2.2 动态样式</h2><p>能够把 CSS 样式包含到 HTML 页面中的元素有两个。其中， <code>&lt;link&gt;</code> 元素用于包含来自外部的文件，而 <code>&lt;style&gt;</code> 元素用于指定嵌入的样式。与动态脚本类似，<strong>所谓动态样式是指在页面刚加载时不存在的样式；动态样式是在页面加载完成后动态添加到页面中的</strong>。</p>
+<p>我们以下面这个典型的 <code>&lt;link&gt;</code> 元素为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;styles.css&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>使用 DOM 代码可以很容易地动态创建出这个元素：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var link = document.createElement(&quot;link&quot;);</span><br><span class="line">link.rel = &quot;stylesheet&quot;;</span><br><span class="line">link.type = &quot;text/css&quot;;</span><br><span class="line">link.href = &quot;style.css&quot;;</span><br><span class="line">var head = document.getElementsByTagName(&quot;head&quot;)[0];</span><br><span class="line">head.appendChild(link);</span><br></pre></td></tr></table></figure>
+<p>以上代码在所有主流浏览器中都可以正常运行。需要注意的是，必须将 <code>&lt;link&gt;</code> 元素添加到 <code>&lt;head&gt;</code> 而不是 <code>&lt;body&gt;</code> 元素，才能保证在所有浏览器中的行为一致。整个过程可以用以下函数来表示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function loadStyles(url)&#123;</span><br><span class="line"> var link = document.createElement(&quot;link&quot;);</span><br><span class="line"> link.rel = &quot;stylesheet&quot;;</span><br><span class="line"> link.type = &quot;text/css&quot;;</span><br><span class="line"> link.href = url;</span><br><span class="line"> var head = document.getElementsByTagName(&quot;head&quot;)[0];</span><br><span class="line"> head.appendChild(link);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用 loadStyles()函数的代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loadStyles(&quot;styles.css&quot;);</span><br></pre></td></tr></table></figure>
+<p>加载外部样式文件的过程是异步的，也就是加载样式与执行 JavaScript 代码的过程没有固定的次序。一般来说，知不知道样式已经加载完成并不重要；不过，也存在几种利用事件来检测这个过程是否完成的技术，这些技术将在第 13 章讨论。</p>
+<p>另一种定义样式的方式是使用 <code>&lt;style&gt;</code> 元素来包含嵌入式 CSS，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">body &#123;</span><br><span class="line"> background-color: red;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>按照相同的逻辑，下列 DOM 代码应该是有效的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var style = document.createElement(&quot;style&quot;);</span><br><span class="line">style.type = &quot;text/css&quot;;</span><br><span class="line">style.appendChild(document.createTextNode(&quot;body&#123;background-color:red&#125;&quot;));</span><br><span class="line">var head = document.getElementsByTagName(&quot;head&quot;)[0];</span><br><span class="line">head.appendChild(style);</span><br></pre></td></tr></table></figure>
+<p>以上代码可以在 Firefox、Safari、Chrome 和 Opera 中运行，在 IE 中则会报错。IE 将 <code>&lt;style&gt;</code> 视为一个特殊的、与 <code>&lt;script&gt;</code> 类似的节点，不允许访问其子节点。事实上，IE 此时抛出的错误与向 <code>&lt;script&gt;</code> 元素添加子节点时抛出的错误相同。解决 IE 中这个问题的办法，就是访问元素的 styleSheet 属性，该属性又有一个 cssText 属性，可以接受 CSS 代码（第 13 章将进一步讨论这两个属性），如下面的例子所示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var style = document.createElement(&quot;style&quot;);</span><br><span class="line">style.type = &quot;text/css&quot;;</span><br><span class="line">try&#123;</span><br><span class="line"> style.appendChild(document.createTextNode(&quot;body&#123;background-color:red&#125;&quot;));</span><br><span class="line">&#125; catch (ex)&#123;</span><br><span class="line"> style.styleSheet.cssText = &quot;body&#123;background-color:red&#125;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">var head = document.getElementsByTagName(&quot;head&quot;)[0];</span><br><span class="line">head.appendChild(style);</span><br></pre></td></tr></table></figure>
+<p>与动态添加嵌入式脚本类似，重写后的代码使用了 try-catch 语句来捕获 IE 抛出的错误，然后再使用针对 IE 的特殊方式来设置样式。因此，通用的解决方案如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function loadStyleString(css)&#123;</span><br><span class="line"> var style = document.createElement(&quot;style&quot;);</span><br><span class="line"> style.type = &quot;text/css&quot;;</span><br><span class="line"> try&#123;</span><br><span class="line"> style.appendChild(document.createTextNode(css));</span><br><span class="line"> &#125; catch (ex)&#123;</span><br><span class="line"> style.styleSheet.cssText = css;</span><br><span class="line"> &#125;</span><br><span class="line"> var head = document.getElementsByTagName(&quot;head&quot;)[0];</span><br><span class="line"> head.appendChild(style);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用这个函数的示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loadStyleString(&quot;body&#123;background-color:red&#125;&quot;);</span><br></pre></td></tr></table></figure>
+<p>这种方式会实时地向页面中添加样式，因此能够马上看到变化。如果专门针对 IE 编写代码，务必小心使用 styleSheet.cssText 属性。在重用<br>同一个 <code>&lt;style&gt;</code> 元素并再次设置这个属性时，有可能会导致浏览器崩溃。同样，将 cssText 属性设置为空字符串也可能导致浏览器崩溃。我们希望 IE 中的这个 bug 能够在将来被修复。</p>
+<p><span id="10.2.3"></span></p>
+<h2 id="10-2-3-操作表格"><a href="#10-2-3-操作表格" class="headerlink" title="10.2.3 操作表格"></a>10.2.3 操作表格</h2><p><code>&lt;table&gt;</code> 元素是 HTML 中最复杂的结构之一。要想创建表格，一般都必须涉及表示表格行、单元格、表头等方面的标签。由于涉及的标签多，因而使用核心 DOM 方法创建和修改表格往往都免不了要编写大量的代码。假设我们要使用 DOM 来创建下面的 HTML 表格。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;table border=&quot;1&quot; width=&quot;100%&quot;&gt;</span><br><span class="line"> &lt;tbody&gt;</span><br><span class="line"> &lt;tr&gt;</span><br><span class="line"> &lt;td&gt;Cell 1,1&lt;/td&gt;</span><br><span class="line"> &lt;td&gt;Cell 2,1&lt;/td&gt;</span><br><span class="line"> &lt;/tr&gt;</span><br><span class="line"> &lt;tr&gt;</span><br><span class="line"> &lt;td&gt;Cell 1,2&lt;/td&gt;</span><br><span class="line"> &lt;td&gt;Cell 2,2&lt;/td&gt;</span><br><span class="line"> &lt;/tr&gt;</span><br><span class="line"> &lt;/tbody&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+<p>要使用核心 DOM 方法创建这些元素，得需要像下面这么多的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">//创建 table</span><br><span class="line">var table = document.createElement(&quot;table&quot;);</span><br><span class="line">table.border = 1;</span><br><span class="line">table.width = &quot;100%&quot;;</span><br><span class="line"></span><br><span class="line">//创建 tbody</span><br><span class="line">var tbody = document.createElement(&quot;tbody&quot;);</span><br><span class="line">table.appendChild(tbody);</span><br><span class="line"></span><br><span class="line">//创建第一行</span><br><span class="line">var row1 = document.createElement(&quot;tr&quot;);</span><br><span class="line">tbody.appendChild(row1);</span><br><span class="line">var cell1_1 = document.createElement(&quot;td&quot;);</span><br><span class="line">cell1_1.appendChild(document.createTextNode(&quot;Cell 1,1&quot;));</span><br><span class="line">row1.appendChild(cell1_1);</span><br><span class="line">var cell2_1 = document.createElement(&quot;td&quot;);</span><br><span class="line">cell2_1.appendChild(document.createTextNode(&quot;Cell 2,1&quot;));</span><br><span class="line">row1.appendChild(cell2_1);</span><br><span class="line"></span><br><span class="line">//创建第二行</span><br><span class="line">var row2 = document.createElement(&quot;tr&quot;);</span><br><span class="line">tbody.appendChild(row2);</span><br><span class="line">var cell1_2 = document.createElement(&quot;td&quot;);</span><br><span class="line">cell1_2.appendChild(document.createTextNode(&quot;Cell 1,2&quot;));</span><br><span class="line">row2.appendChild(cell1_2);</span><br><span class="line">var cell2_2= document.createElement(&quot;td&quot;);</span><br><span class="line">cell2_2.appendChild(document.createTextNode(&quot;Cell 2,2&quot;));</span><br><span class="line">row2.appendChild(cell2_2);</span><br><span class="line"></span><br><span class="line">//将表格添加到文档主体中</span><br><span class="line">document.body.appendChild(table);</span><br></pre></td></tr></table></figure>
+<p>显然，DOM 代码很长，还有点不太好懂。为了方便构建表格，HTML DOM 还为 <code>&lt;table&gt;</code> 、 <code>&lt;tbody&gt;</code> 和 <code>&lt;tr&gt;</code> 元素添加了一些属性和方法。</p>
+<p>为 <code>&lt;table&gt;</code> 元素添加的属性和方法如下。</p>
+<ol>
+<li>caption：保存着对 <code>&lt;caption&gt;</code> 元素（如果有）的指针。</li>
+<li>tBodies：是一个 <code>&lt;tbody&gt;</code> 元素的 HTMLCollection。</li>
+<li>tFoot：保存着对 <code>&lt;tfoot&gt;</code> 元素（如果有）的指针。</li>
+<li>tHead：保存着对 <code>&lt;thead&gt;</code> 元素（如果有）的指针。</li>
+<li>rows：是一个表格中所有行的 HTMLCollection。</li>
+<li>createTHead()：创建 <code>&lt;thead&gt;</code> 元素，将其放到表格中，返回引用。</li>
+<li>createTFoot()：创建 <code>&lt;tfoot&gt;</code> 元素，将其放到表格中，返回引用。</li>
+<li>createCaption()：创建 <code>&lt;caption&gt;</code> 元素，将其放到表格中，返回引用。</li>
+<li>deleteTHead()：删除 <code>&lt;thead&gt;</code> 元素。</li>
+<li>deleteTFoot()：删除 <code>&lt;tfoot&gt;</code> 元素。</li>
+<li>deleteCaption()：删除 <code>&lt;caption&gt;</code> 元素。</li>
+<li>deleteRow(pos)：删除指定位置的行。</li>
+<li>insertRow(pos)：向 rows 集合中的指定位置插入一行。</li>
+</ol>
+<p>为 <code>&lt;tbody&gt;</code> 元素添加的属性和方法如下。</p>
+<ol>
+<li>rows：保存着 <code>&lt;tbody&gt;</code> 元素中行的 HTMLCollection。</li>
+<li>deleteRow(pos)：删除指定位置的行。</li>
+<li>insertRow(pos)：向 rows 集合中的指定位置插入一行，返回对新插入行的引用。</li>
+</ol>
+<p>为 <code>&lt;tr&gt;</code> 元素添加的属性和方法如下。</p>
+<ol>
+<li>cells：保存着 <code>&lt;tr&gt;</code> 元素中单元格的 HTMLCollection。</li>
+<li>deleteCell(pos)：删除指定位置的单元格。</li>
+<li>insertCell(pos)：向 cells 集合中的指定位置插入一个单元格，返回对新插入单元格的引用。</li>
+</ol>
+<p>使用这些属性和方法，可以极大地减少创建表格所需的代码数量。例如，使用这些属性和方法可以将前面的代码重写如下（加阴影的部分是重写后的代码）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//创建 table</span><br><span class="line">var table = document.createElement(&quot;table&quot;);</span><br><span class="line">table.border = 1;</span><br><span class="line">table.width = &quot;100%&quot;;</span><br><span class="line"></span><br><span class="line">//创建 tbody</span><br><span class="line">var tbody = document.createElement(&quot;tbody&quot;);</span><br><span class="line">table.appendChild(tbody);</span><br><span class="line"></span><br><span class="line">//创建第一行</span><br><span class="line">tbody.insertRow(0);</span><br><span class="line">tbody.rows[0].insertCell(0);</span><br><span class="line">tbody.rows[0].cells[0].appendChild(document.createTextNode(&quot;Cell 1,1&quot;));</span><br><span class="line">tbody.rows[0].insertCell(1);</span><br><span class="line">tbody.rows[0].cells[1].appendChild(document.createTextNode(&quot;Cell 2,1&quot;));</span><br><span class="line"></span><br><span class="line">//创建第二行</span><br><span class="line">tbody.insertRow(1);</span><br><span class="line">tbody.rows[1].insertCell(0);</span><br><span class="line">tbody.rows[1].cells[0].appendChild(document.createTextNode(&quot;Cell 1,2&quot;));</span><br><span class="line">tbody.rows[1].insertCell(1);</span><br><span class="line">tbody.rows[1].cells[1].appendChild(document.createTextNode(&quot;Cell 2,2&quot;));</span><br><span class="line"></span><br><span class="line">//将表格添加到文档主体中</span><br><span class="line">document.body.appendChild(table);</span><br></pre></td></tr></table></figure>
+<p>在这次的代码中，创建 <code>&lt;table&gt;</code> 和 <code>&lt;tbody&gt;</code> 的代码没有变化。不同的是创建两行的部分，其中使用了 HTML DOM 定义的表格属性和方法。在创建第一行时，通过 <code>&lt;tbody&gt;</code> 元素调用了 insertRow() 方法，传入了参数 0——表示应该将插入的行放在什么位置上。执行这一行代码后，就会自动创建一行并将其插入到 <code>&lt;tbody&gt;</code> 元素的位置 0 上，因此就可以马上通过 tbody.rows[0]来引用新插入的行。</p>
+<p>创建单元格的方式也十分相似，即通过 <code>&lt;tr&gt;</code> 元素调用 insertCell() 方法并传入放置单元格的位置。然后，就可以通过 tbody.rows[0].cells[0] 来引用新插入的单元格，因为新创建的单元格被插入到了这一行的位置 0 上。</p>
+<p>总之，使用这些属性和方法创建表格的逻辑性更强，也更容易看懂，尽管技术上这两套代码都是正确的。</p>
+<p><span id="10.2.4"></span></p>
+<h2 id="10-2-4-使用-NodeList"><a href="#10-2-4-使用-NodeList" class="headerlink" title="10.2.4 使用 NodeList"></a>10.2.4 使用 NodeList</h2><p><strong>理解 NodeList 及其“近亲” NamedNodeMap 和 HTMLCollection，是从整体上透彻理解 DOM 的关键所在。这三个集合都是“动态的”；换句话说，每当文档结构发生变化时，它们都会得到更新。因此，它们始终都会保存着最新、最准确的信息。从本质上说，所有 NodeList 对象都是在访问 DOM 文档时实时运行的查询</strong>。例如，下列代码会导致无限循环：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var divs = document.getElementsByTagName(&quot;div&quot;),</span><br><span class="line"> i,</span><br><span class="line"> div;</span><br><span class="line">for (i=0; i &lt; divs.length; i++)&#123;</span><br><span class="line"> div = document.createElement(&quot;div&quot;);</span><br><span class="line"> document.body.appendChild(div);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第一行代码会取得文档中所有 <code>&lt;div&gt;</code> 元素的 HTMLCollection。由于这个集合是“动态的”，因此只要有新 <code>&lt;div&gt;</code> 元素被添加到页面中，这个元素也会被添加到该集合中。浏览器不会将创建的所有集合都保存在一个列表中，而是在下一次访问集合时再更新集合。结果，在遇到上例中所示的循环代码时，就会导致一个有趣的问题。每次循环都要对条件 i &lt; divs.length 求值，意味着会运行取得所有 <code>&lt;div&gt;</code> 元素的查询。考虑到循环体每次都会创建一个新 <code>&lt;div&gt;</code> 元素并将其添加到文档中，因此 divs.length 的值在每次循环后都会递增。既然 i 和 divs.length 每次都会同时递增，结果它们的值永远也不会相等。</p>
+<p>如果想要迭代一个 NodeList，最好是使用 length 属性初始化第二个变量，然后将迭代器与该变量进行比较，如下面的例子所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var divs = document.getElementsByTagName(&quot;div&quot;),</span><br><span class="line"> i,</span><br><span class="line"> len,</span><br><span class="line"> div;</span><br><span class="line">for (i=0, len=divs.length; i &lt; len; i++)&#123;</span><br><span class="line"> div = document.createElement(&quot;div&quot;);</span><br><span class="line"> document.body.appendChild(div);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个例子中初始化了第二个变量 len。由于 len 中保存着对 divs.length 在循环开始时的一个快照，因此就会避免上一个例子中出现的无限循环问题。在本章演示迭代 NodeList 对象的例子中，使用的都是这种更为保险的方式。</p>
+<p>一般来说，应该尽量减少访问 NodeList 的次数。因为每次访问 NodeList，都会运行一次基于文档的查询。所以，可以考虑将从 NodeList 中取得的值缓存起来。</p>
+<p><span id="10.3"></span></p>
+<h1 id="10-3-小结"><a href="#10-3-小结" class="headerlink" title="10.3 小结"></a>10.3 小结</h1><p>DOM 是语言中立的 API，用于访问和操作 HTML 和 XML 文档。DOM1 级将 HTML 和 XML 文档形象地看作一个层次化的节点树，可以使用 JavaScript 来操作这个节点树，进而改变底层文档的外观和结构。</p>
+<p>DOM 由各种节点构成，简要总结如下。</p>
+<ol>
+<li>最基本的节点类型是 Node，用于抽象地表示文档中一个独立的部分；所有其他类型都继承自 Node。</li>
+<li>Document 类型表示整个文档，是一组分层节点的根节点。在 JavaScript 中，document 对象是 Document 的一个实例。使用 document 对象，有很多种方式可以查询和取得节点。</li>
+<li>Element 节点表示文档中的所有 HTML 或 XML 元素，可以用来操作这些元素的内容和特性。</li>
+<li>另外还有一些节点类型，分别表示文本内容、注释、文档类型、CDATA 区域和文档片段。</li>
+</ol>
+<p>访问 DOM 的操作在多数情况下都很直观，不过在处理 <code>&lt;script&gt;</code> 和 <code>&lt;style&gt;</code> 元素时还是存在一些复杂性。由于这两个元素分别包含脚本和样式信息，因此浏览器通常会将它们与其他元素区别对待。这些区别导致了在针对这些元素使用 innerHTML 时，以及在创建新元素时的一些问题。</p>
+<p>理解 DOM 的关键，就是理解 DOM 对性能的影响。DOM 操作往往是 JavaScript 程序中开销最大的部分，而因访问 NodeList 导致的问题为最多。NodeList 对象都是“动态的”，这就意味着每次访问 NodeList 对象，都会运行一次查询。有鉴于此，最好的办法就是尽量减少 DOM 操作。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript高级程序设计/" rel="tag">#JavaScript高级程序设计</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/09/JavaScript高级程序设计（10.1.4-10.1.9）/" rel="next" title="JavaScript高级程序设计(10.1.4-10.1.9)">
+                <i class="fa fa-chevron-left"></i> JavaScript高级程序设计(10.1.4-10.1.9)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/10/CSS学习：居中/" rel="prev" title="CSS学习：居中">
+                CSS学习：居中 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://raw.githubusercontent.com/rason00/rason/gh-pages/img/rasonlogo.gif" alt="Rason">
+          <p class="site-author-name" itemprop="name">Rason</p>
+          <p class="site-description motion-element" itemprop="description">It's not insane！ It's ideal！A normal psychotic！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">108</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/rason00" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#内容涵盖"><span class="nav-number">1.</span> <span class="nav-text">内容涵盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-2-DOM-操作技术"><span class="nav-number">2.</span> <span class="nav-text">10.2 DOM 操作技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2-1-动态脚本"><span class="nav-number">2.1.</span> <span class="nav-text">10.2.1 动态脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2-2-动态样式"><span class="nav-number">2.2.</span> <span class="nav-text">10.2.2 动态样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2-3-操作表格"><span class="nav-number">2.3.</span> <span class="nav-text">10.2.3 操作表格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2-4-使用-NodeList"><span class="nav-number">2.4.</span> <span class="nav-text">10.2.4 使用 NodeList</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-3-小结"><span class="nav-number">3.</span> <span class="nav-text">10.3 小结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+
+
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!-- 添加访问量 开始 -->
+<!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<!-- 添加访问量 结束 -->
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rason</span>
+</div>
+
+<!-- 添加访问量开始 -->
+<!-- <div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div> -->
+<!-- 添加访问量结束 -->
+
+<!-- <div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+ -->
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

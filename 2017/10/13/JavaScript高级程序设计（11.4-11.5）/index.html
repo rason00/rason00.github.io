@@ -1,0 +1,794 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JavaScript高级程序设计,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="内容涵盖 专有扩展 文档模式 children 属性 contains() 方法 插入文本 滚动   第十一章 小结">
+<meta name="keywords" content="JavaScript高级程序设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript高级程序设计(11.4-11.5)">
+<meta property="og:url" content="http://yoursite.com/2017/10/13/JavaScript高级程序设计（11.4-11.5）/index.html">
+<meta property="og:site_name" content="Rason">
+<meta property="og:description" content="内容涵盖 专有扩展 文档模式 children 属性 contains() 方法 插入文本 滚动   第十一章 小结">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-09-01T01:42:43.548Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript高级程序设计(11.4-11.5)">
+<meta name="twitter:description" content="内容涵盖 专有扩展 文档模式 children 属性 contains() 方法 插入文本 滚动   第十一章 小结">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/13/JavaScript高级程序设计（11.4-11.5）/">
+
+  <title> JavaScript高级程序设计(11.4-11.5) | Rason </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c0b175368f6e60b955380864b509c3fc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s6.cnzz.com/stat.php?id=1259942288&web_id=1259942288" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Rason</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Rason 博客</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript高级程序设计(11.4-11.5)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-13T10:37:47+00:00" content="2017-10-13">
+              2017-10-13
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="内容涵盖"><a href="#内容涵盖" class="headerlink" title="内容涵盖"></a>内容涵盖</h1><ol>
+<li><a href="#11.4">专有扩展</a><ol>
+<li><a href="#11.4.1">文档模式</a></li>
+<li><a href="#11.4.2">children 属性</a></li>
+<li><a href="#11.4.3">contains() 方法</a></li>
+<li><a href="#11.4.4">插入文本</a></li>
+<li><a href="#11.4.5">滚动</a></li>
+</ol>
+</li>
+<li><a href="#11.5">第十一章 小结</a></li>
+</ol>
+<a id="more"></a>
+<p><span id="11.4"></span></p>
+<h1 id="11-4-专有扩展"><a href="#11-4-专有扩展" class="headerlink" title="11.4 专有扩展"></a>11.4 专有扩展</h1><p>虽然所有浏览器开发商都知晓坚持标准的重要性，但在发现某项功能缺失时，这些开发商都会一如既往地向 DOM 中添加专有扩展，以弥补功能上的不足。表面上看，这种各行其事的做法似乎不太好，但实际上专有扩展为 Web 开发领域提供了很多重要的功能，这些功能最终都在 HTML5 规范中得到了标准化。</p>
+<p>即便如此，仍然还有大量专有的 DOM 扩展没有成为标准。但这并不是说它们将来不会被写进标准，而只是说在编写本书的时候，它们还是专有功能，而且只得到了少数浏览器的支持。</p>
+<p><span id="11.4.1"></span></p>
+<h2 id="11-4-1-文档模式"><a href="#11-4-1-文档模式" class="headerlink" title="11.4.1 文档模式"></a>11.4.1 文档模式</h2><p>IE8 引入了一个新的概念叫“文档模式”（document mode）。<strong>页面的文档模式决定了可以使用什么功能。换句话说，文档模式决定了你可以使用哪个级别的 CSS，可以在 JavaScript 中使用哪些 API，以及如何对待文档类型（doctype）</strong>。到了 IE9，总共有以下 4 种文档模式。</p>
+<ol>
+<li>IE5：以混杂模式渲染页面（IE5 的默认模式就是混杂模式）。IE8 及更高版本中的新功能都无法使用。</li>
+<li>IE7：以 IE7 标准模式渲染页面。IE8 及更高版本中的新功能都无法使用。</li>
+<li>IE8：以 IE8 标准模式渲染页面。IE8 中的新功能都可以使用，因此可以使用 Selectors API、更多 CSS2 级选择符和某些 CSS3 功能，还有一些 HTML5 的功能。不过 IE9 中的新功能无法使用。</li>
+<li>IE9：以 IE9 标准模式渲染页面。IE9 中的新功能都可以使用，比如 ECMAScript 5、完整的 CSS3 以及更多 HTML5 功能。这个文档模式是最高级的模式。</li>
+</ol>
+<p>要理解 IE8 及更高版本的工作原理，必须理解文档模式。</p>
+<p>要强制浏览器以某种模式渲染页面，可以使用 HTTP 头部信息 X-UA-Compatible，或通过等价的 <code>&lt;meta&gt;</code> 标签来设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=IEVersion&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>注意，这里 IE 的版本（IEVersion）有以下一些不同的值，而且这些值并不一定与上述 4 种文档模式对应。</p>
+<ol>
+<li>Edge：始终以最新的文档模式来渲染页面。忽略文档类型声明。对于 IE8，始终保持以 IE8 标准模式渲染页面。对于 IE9，则以 IE9 标准模式渲染页面。</li>
+<li>EmulateIE9：如果有文档类型声明，则以 IE9 标准模式渲染页面，否则将文档模式设置为 IE5。</li>
+<li>EmulateIE8：如果有文档类型声明，则以 IE8 标准模式渲染页面，否则将文档模式设置为 IE5。</li>
+<li>EmulateIE7：如果有文档类型声明，则以 IE7 标准模式渲染页面，否则将文档模式设置为 IE5。</li>
+<li>9：强制以 IE9 标准模式渲染页面，忽略文档类型声明。</li>
+<li>8：强制以 IE8 标准模式渲染页面，忽略文档类型声明。</li>
+<li>7：强制以 IE7 标准模式渲染页面，忽略文档类型声明。</li>
+<li>5：强制将文档模式设置为 IE5，忽略文档类型声明。</li>
+</ol>
+<p>比如，要想让文档模式像在 IE7 中一样，可以使用下面这行代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=EmulateIE7&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>如果不打算考虑文档类型声明，而直接使用 IE7 标准模式，那么可以使用下面这行代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=7&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>没有规定说必须在页面中设置 X-UA-Compatible。默认情况下，浏览器会通过文档类型声明来确定是使用最佳的可用文档模式，还是使用混杂模式。</p>
+<p>通过 document.documentMode 属性可以知道给定页面使用的是什么文档模式。这个属性是 IE8 中新增的，它会返回使用的文档模式的版本号（在 IE9 中，可能返回的版本号为 5、7、8、9）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var mode = document.documentMode;</span><br></pre></td></tr></table></figure>
+<p>知道页面采用的是什么文档模式，有助于理解页面的行为方式。无论在什么文档模式下，都可以访问这个属性。</p>
+<p><span id="11.4.2"></span></p>
+<h2 id="11-4-2-children-属性"><a href="#11-4-2-children-属性" class="headerlink" title="11.4.2 children 属性"></a>11.4.2 children 属性</h2><p>由于 IE9 之前的版本与其他浏览器在处理文本节点中的空白符时有差异，因此就出现了 children 属性。这个属性是 HTMLCollection 的实例，只包含元素中同样还是元素的子节点。除此之外，children 属性与 childNodes 没有什么区别，即在元素只包含元素子节点时，这两个属性的值相同。</p>
+<p>下面是访问 children 属性的示例代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var childCount = element.children.length;</span><br><span class="line">var firstChild = element.children[0];</span><br></pre></td></tr></table></figure>
+<p>支持 children 属性的浏览器有 IE5、Firefox 3.5、Safari 2（但有 bug）、Safari 3（完全支持）、Opera8 和 Chrome（所有版本）。IE8 及更早版本的 children 属性中也会包含注释节点，但 IE9 之后的版本则只返回元素节点。</p>
+<p><span id="11.4.3"></span></p>
+<h2 id="11-4-3-contains-方法"><a href="#11-4-3-contains-方法" class="headerlink" title="11.4.3 contains() 方法"></a>11.4.3 contains() 方法</h2><p>在实际开发中，经常<strong>需要知道某个节点是不是另一个节点的后代。IE 为此率先引入了 contains() 方法</strong>，以便不通过在 DOM 文档树中查找即可获得这个信息。<strong>调用 contains() 方法的应该是祖先节点，也就是搜索开始的节点，这个方法接收一个参数，即要检测的后代节点。如果被检测的节点是后代节点，该方法返回 true；否则，返回 false</strong>。以下是一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(document.documentElement.contains(document.body)); //true</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这个例子测试了 <code>&lt;body&gt;</code> 元素是不是 <code>&lt;html&gt;</code> 元素的后代，在格式正确的 HTML 页面中，以上代码返回 true。</p>
+</blockquote>
+<p>支持 contains()方法的浏览器有 IE、Firefox 9+、Safari、Opera 和 Chrome。</p>
+<p>使用 DOM Level 3 compareDocumentPosition() 也能够确定节点间的关系。支持这个方法的浏览器有 IE9+、Firefox、Safari、Opera 9.5+和 Chrome。如前所述，这个方法用于确定两个节点间的关系，返回一个表示该关系的位掩码（ bitmask）。下表列出了这个位掩码的值。</p>
+<table>
+<thead>
+<tr>
+<th>掩码</th>
+<th>节点关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>无关（给定的节点不在当前文档中）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>居前（给定的节点在DOM树中位于参考节点之前）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>居后（给定的节点在DOM树中位于参考节点之后）</td>
+</tr>
+<tr>
+<td>8</td>
+<td>包含（给定的节点是参考节点的祖先）</td>
+</tr>
+<tr>
+<td>16</td>
+<td>被包含（给定的节点是参考节点的后代）</td>
+</tr>
+</tbody>
+</table>
+<p>为模仿 contains() 方法，应该关注的是掩码 16。可以对 compareDocumentPosition() 的结果执行按位与，以确定参考节点（调用 compareDocumentPosition() 方法的当前节点）是否包含给定的节点（传入的节点）。来看下面的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var result = document.documentElement.compareDocumentPosition(document.body);</span><br><span class="line">alert(!!(result &amp; 16));</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>执行上面的代码后，结果会变成 20（表示“居后”的 4 加上表示“被包含”的 16）。对掩码 16 执行按位操作会返回一个非零数值，而两个逻辑非操作符会将该数值转换成布尔值。</p>
+</blockquote>
+<p>使用一些浏览器及能力检测，就可以写出如下所示的一个通用的 contains 函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function contains(refNode, otherNode)&#123;</span><br><span class="line"> if (typeof refNode.contains == &quot;function&quot; &amp;&amp;</span><br><span class="line"> (!client.engine.webkit || client.engine.webkit &gt;= 522))&#123;</span><br><span class="line"> return refNode.contains(otherNode);</span><br><span class="line"> &#125; else if (typeof refNode.compareDocumentPosition == &quot;function&quot;)&#123;</span><br><span class="line"> return !!(refNode.compareDocumentPosition(otherNode) &amp; 16);</span><br><span class="line"> &#125; else &#123;</span><br><span class="line"> var node = otherNode.parentNode;</span><br><span class="line"> do &#123;</span><br><span class="line"> if (node === refNode)&#123;</span><br><span class="line"> return true;</span><br><span class="line"> &#125; else &#123;</span><br><span class="line"> node = node.parentNode;</span><br><span class="line"> &#125;</span><br><span class="line"> &#125; while (node !== null);</span><br><span class="line"> return false;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个函数组合使用了三种方式来确定一个节点是不是另一个节点的后代。函数的第一个参数是参考节点，第二个参数是要检查的节点。在函数体内，首先检测 refNode 中是否存在 contains() 方法（能力检测）。这一部分代码还检查了当前浏览器所用的 WebKit 版本号。如果方法存在而且不是 WebKit（!client.engine.webkit），则继续执行代码。否则，如果浏览器是 WebKit 且至少是 Safari 3（WebKit 版本号为 522 或更高），那么也可以继续执行代码。在 WebKit 版本号小于 522 的 Safari 浏览器中，contains() 方法不能正常使用。</p>
+<p>接下来检查是否存在 compareDocumentPosition() 方法，而函数的最后一步则是自 otherNode 开始向上遍历 DOM 结构，以递归方式取得 parentNode，并检查其是否与 refNode 相等。在文档树的顶端，parentNode 的值等于 null，于是循环结束。这是针对旧版本 Safari 设计的一个后备策略。</p>
+<p><span id="11.4.4"></span></p>
+<h2 id="11-4-4-插入文本"><a href="#11-4-4-插入文本" class="headerlink" title="11.4.4 插入文本"></a>11.4.4 插入文本</h2><p>前面介绍过，IE 原来专有的插入标记的属性 innerHTML 和 outerHTML 已经被 HTML5 纳入规范。</p>
+<p>但另外两个插入文本的专有属性则没有这么好的运气。这两个没有被 HTML5 看中的属性是 innerText 和 outerText。</p>
+<h3 id="1-innerText-属性"><a href="#1-innerText-属性" class="headerlink" title="1. innerText 属性"></a>1. innerText 属性</h3><p><strong>通过 innertText 属性可以操作元素中包含的所有文本内容，包括子文档树中的文本</strong>。在通过 innerText 读取值时，它会按照由浅入深的顺序，将子文档树中的所有文本拼接起来。在通过 innerText 写入值时，结果会删除元素的所有子节点，插入包含相应文本值的文本节点。来看下面这个 HTML 代码示例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;content&quot;&gt;</span><br><span class="line"> &lt;p&gt;This is a &lt;strong&gt;paragraph&lt;/strong&gt; with a list following it.&lt;/p&gt;</span><br><span class="line"> &lt;ul&gt;</span><br><span class="line"> &lt;li&gt;Item 1&lt;/li&gt;</span><br><span class="line"> &lt;li&gt;Item 2&lt;/li&gt;</span><br><span class="line"> &lt;li&gt;Item 3&lt;/li&gt;</span><br><span class="line"> &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>对于这个例子中的 <code>&lt;div&gt;</code> 元素而言，其 innerText 属性会返回下列字符串：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">This is a paragraph with a list following it.</span><br><span class="line">Item 1</span><br><span class="line">Item 2</span><br><span class="line">Item 3</span><br></pre></td></tr></table></figure>
+<p>由于不同浏览器处理空白符的方式不同，因此输出的文本可能会也可能不会包含原始 HTML 代码中的缩进。</p>
+<p>使用 innerText 属性设置这个 <code>&lt;div&gt;</code> 元素的内容，则只需一行代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">div.innerText = &quot;Hello world!&quot;;</span><br></pre></td></tr></table></figure>
+<p>执行这行代码后，页面的 HTML 代码就会变成如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;content&quot;&gt;Hello world!&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>设置 innerText 属性移除了先前存在的所有子节点，完全改变了 DOM 子树。此外，设置 innerText 属性的同时，也对文本中存在的 HTML 语法字符（小于号、大于号、引号及和号）进行了编码。再看一个例子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">div.innerText = &quot;Hello &amp; welcome, &lt;b&gt;\&quot;reader\&quot;!&lt;/b&gt;&quot;;</span><br></pre></td></tr></table></figure>
+<p>运行以上代码之后，会得到如下所示的结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;content&quot;&gt;Hello &amp;amp; welcome, &amp;lt;b&amp;gt;&amp;quot;reader&amp;quot;!&amp;lt;/b&amp;gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>设置 innerText 永远只会生成当前节点的一个子文本节点，而为了确保只生成一个子文本节点，就必须要对文本进行 HTML 编码。利用这一点，可以通过 innerText 属性过滤掉 HTML 标签。方法是将 innerText 设置为等于 innerText，这样就可以去掉所有 HTML 标签，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">div.innerText = div.innerText;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>执行这行代码后，就用原来的文本内容替换了容器元素中的所有内容（包括子节点，因而也就去掉了 HTML 标签）。</p>
+</blockquote>
+<p>支持 innerText 属性的浏览器包括 IE4+、Safari 3+、Opera 8+和 Chrome。Firefox 虽然不支持 innerText，但支持作用类似的 textContent 属性。textContent 是 DOM Level 3 规定的一个属性，其他支持 textContent 属性的浏览器还有 IE9+、Safari 3+、Opera 10+和 Chrome。为了确保跨浏览器兼容，有必要编写一个类似于下面的函数来检测可以使用哪个属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function getInnerText(element)&#123;</span><br><span class="line"> return (typeof element.textContent == &quot;string&quot;) ?</span><br><span class="line"> element.textContent : element.innerText;</span><br><span class="line">&#125;</span><br><span class="line">function setInnerText(element, text)&#123;</span><br><span class="line"> if (typeof element.textContent == &quot;string&quot;)&#123;</span><br><span class="line"> element.textContent = text;</span><br><span class="line"> &#125; else &#123;</span><br><span class="line"> element.innerText = text;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这两个函数都接收一个元素作为参数，然后检查这个元素是不是有 textContent 属性。如果有，那么 typeof element.textContent 应该是”string”；如果没有，那么这两个函数就会改为使用 innerText。可以像下面这样调用这两个函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setInnerText(div, &quot;Hello world!&quot;);</span><br><span class="line">alert(getInnerText(div)); //&quot;Hello world!&quot;</span><br></pre></td></tr></table></figure>
+<p>使用这两个函数可以确保在不同的浏览器中使用正确的属性。</p>
+<p>实际上，innerText 与 textContent 返回的内容并不完全一样。比如，innerText 会忽略行内的样式和脚本，而 textContent 则会像返回其他文本一样返回行内的样式和脚本代码。避免跨浏览器兼容问题的最佳途径，就是从不包含行内样式或行内脚本的 DOM 子树副本或 DOM 片段中读取文本。</p>
+<h3 id="2-outerText-属性"><a href="#2-outerText-属性" class="headerlink" title="2. outerText 属性"></a>2. outerText 属性</h3><p>除了作用范围扩大到了包含调用它的节点之外，outerText 与 innerText 基本上没有多大区别。</p>
+<p>在读取文本值时，outerText 与 innerText 的结果完全一样。但在写模式下，outerText 就完全不同了：outerText 不只是替换调用它的元素的子节点，而是会替换整个元素（包括子节点）。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">div.outerText = &quot;Hello world!&quot;;</span><br></pre></td></tr></table></figure>
+<p>这行代码实际上相当于如下两行代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var text = document.createTextNode(&quot;Hello world!&quot;);</span><br><span class="line">div.parentNode.replaceChild(text, div);</span><br></pre></td></tr></table></figure>
+<p>本质上，新的文本节点会完全取代调用 outerText 的元素。此后，该元素就从文档中被删除，无法访问。</p>
+<p>支持 outerText 属性的浏览器有 IE4+、Safari 3+、Opera 8+和 Chrome。由于这个属性会导致调用它的元素不存在，因此并不常用。我们也建议读者尽可能不要使用这个属性。</p>
+<p><span id="11.4.5"></span></p>
+<h2 id="11-4-5-滚动"><a href="#11-4-5-滚动" class="headerlink" title="11.4.5 滚动"></a>11.4.5 滚动</h2><p>如前所述，HTML5 之前的规范并没有就与页面滚动相关的 API 做出任何规定。但 HTML5 在将 scrollIntoView() 纳入规范之后，仍然还有其他几个专有方法可以在不同的浏览器中使用。下面列出的几个方法都是对 HTMLElement 类型的扩展，因此在所有元素中都可以调用。</p>
+<ol>
+<li>scrollIntoViewIfNeeded(alignCenter)：只在当前元素在视口中不可见的情况下，才滚动浏览器窗口或容器元素，最终让它可见。如果当前元素在视口中可见，这个方法什么也不做。如果将可选的 alignCenter 参数设置为 true，则表示尽量将元素显示在视口中部（垂直方向）。Safari 和 Chrome 实现了这个方法。</li>
+<li>scrollByLines(lineCount)：将元素的内容滚动指定的行高，lineCount 值可以是正值，也可以是负值。Safari 和 Chrome 实现了这个方法。</li>
+<li>scrollByPages(pageCount)：将元素的内容滚动指定的页面高度，具体高度由元素的高度决定。Safari 和 Chrome 实现了这个方法。</li>
+</ol>
+<p>希望大家要注意的是，scrollIntoView()和 scrollIntoViewIfNeeded()的作用对象是元素的容器，而 scrollByLines()和 scrollByPages()影响的则是元素自身。下面还是来看几个示例吧。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//将页面主体滚动 5 行</span><br><span class="line">document.body.scrollByLines(5);</span><br><span class="line"></span><br><span class="line">//在当前元素不可见的时候，让它进入浏览器的视口</span><br><span class="line">document.images[0].scrollIntoViewIfNeeded();</span><br><span class="line"></span><br><span class="line">//将页面主体往回滚动 1 页</span><br><span class="line">document.body.scrollByPages(-1);</span><br></pre></td></tr></table></figure>
+<p>由于 scrollIntoView() 是唯一一个所有浏览器都支持的方法，因此还是这个方法最常用。</p>
+<p><span id="11.5"></span></p>
+<h2 id="11-5-小结"><a href="#11-5-小结" class="headerlink" title="11.5 小结"></a>11.5 小结</h2><p>虽然 DOM 为与 XML 及 HTML 文档交互制定了一系列核心 API，但仍然有几个规范对标准的 DOM 进行了扩展。这些扩展中有很多原来是浏览器专有的，但后来成为了事实标准，于是其他浏览器也都提供了相同的实现。本章介绍的三个这方面的规范如下。</p>
+<ol>
+<li>Selectors API，定义了两个方法，让开发人员能够基于 CSS 选择符从 DOM 中取得元素，这两个方法是 querySelector()和 querySelectorAll()。</li>
+<li>Element Traversal，为 DOM 元素定义了额外的属性，让开发人员能够更方便地从一个元素跳到另一个元素。之所以会出现这个扩展，是因为浏览器处理 DOM 元素间空白符的方式不一样。</li>
+<li>HTML5，为标准的 DOM 定义了很多扩展功能。其中包括在 innerHTML 属性这样的事实标准基础上提供的标准定义，以及为管理焦点、设置字符集、滚动页面而规定的扩展 API。</li>
+</ol>
+<p>虽然目前 DOM 扩展的数量还不多，但随着 Web 技术的发展，相信一定还会涌现出更多扩展来。很多浏览器都在试验专有的扩展，而这些扩展一旦获得认可，就能成为“伪”标准，甚至会被收录到规范的更新版本中。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript高级程序设计/" rel="tag">#JavaScript高级程序设计</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/12/JavaScript高级程序设计（11.3）/" rel="next" title="JavaScript高级程序设计(11.3)">
+                <i class="fa fa-chevron-left"></i> JavaScript高级程序设计(11.3)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/14/JavaScript高级程序设计（12.1）/" rel="prev" title="JavaScript高级程序设计(12.1)">
+                JavaScript高级程序设计(12.1) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://raw.githubusercontent.com/rason00/rason/gh-pages/img/rasonlogo.gif" alt="Rason">
+          <p class="site-author-name" itemprop="name">Rason</p>
+          <p class="site-description motion-element" itemprop="description">It's not insane！ It's ideal！A normal psychotic！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">108</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/rason00" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#内容涵盖"><span class="nav-number">1.</span> <span class="nav-text">内容涵盖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-4-专有扩展"><span class="nav-number">2.</span> <span class="nav-text">11.4 专有扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-4-1-文档模式"><span class="nav-number">2.1.</span> <span class="nav-text">11.4.1 文档模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-4-2-children-属性"><span class="nav-number">2.2.</span> <span class="nav-text">11.4.2 children 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-4-3-contains-方法"><span class="nav-number">2.3.</span> <span class="nav-text">11.4.3 contains() 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-4-4-插入文本"><span class="nav-number">2.4.</span> <span class="nav-text">11.4.4 插入文本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-innerText-属性"><span class="nav-number">2.4.1.</span> <span class="nav-text">1. innerText 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-outerText-属性"><span class="nav-number">2.4.2.</span> <span class="nav-text">2. outerText 属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-4-5-滚动"><span class="nav-number">2.5.</span> <span class="nav-text">11.4.5 滚动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-5-小结"><span class="nav-number">2.6.</span> <span class="nav-text">11.5 小结</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+
+
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!-- 添加访问量 开始 -->
+<!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<!-- 添加访问量 结束 -->
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rason</span>
+</div>
+
+<!-- 添加访问量开始 -->
+<!-- <div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div> -->
+<!-- 添加访问量结束 -->
+
+<!-- <div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+ -->
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

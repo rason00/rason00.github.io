@@ -1,0 +1,670 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JavaScript,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="JavaScript-设计模式原型模式原型模式就是将原型对象指向创建对象的类，使这些类共享原型对象的方法和属性。JavaScript 是基于原型链实现对象之间的继承，这种继承是基于一种对象属性或者方法的共享，而不是对属性和方法的复制。">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript设计模式-原型模式">
+<meta property="og:url" content="http://yoursite.com/2018/03/22/JavaScript设计模式-原型模式/index.html">
+<meta property="og:site_name" content="Rason">
+<meta property="og:description" content="JavaScript-设计模式原型模式原型模式就是将原型对象指向创建对象的类，使这些类共享原型对象的方法和属性。JavaScript 是基于原型链实现对象之间的继承，这种继承是基于一种对象属性或者方法的共享，而不是对属性和方法的复制。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-09-01T01:42:43.548Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript设计模式-原型模式">
+<meta name="twitter:description" content="JavaScript-设计模式原型模式原型模式就是将原型对象指向创建对象的类，使这些类共享原型对象的方法和属性。JavaScript 是基于原型链实现对象之间的继承，这种继承是基于一种对象属性或者方法的共享，而不是对属性和方法的复制。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/22/JavaScript设计模式-原型模式/">
+
+  <title> JavaScript设计模式-原型模式 | Rason </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c0b175368f6e60b955380864b509c3fc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s6.cnzz.com/stat.php?id=1259942288&web_id=1259942288" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Rason</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Rason 博客</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript设计模式-原型模式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-03-22T17:03:07+00:00" content="2018-03-22">
+              2018-03-22
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="JavaScript-设计模式"><a href="#JavaScript-设计模式" class="headerlink" title="JavaScript-设计模式"></a>JavaScript-设计模式</h1><h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><p><strong><u>原型模式就是将原型对象指向创建对象的类，使这些类共享原型对象的方法和属性。JavaScript 是基于原型链实现对象之间的继承，这种继承是基于一种对象属性或者方法的共享，而不是对属性和方法的复制。</u></strong></p>
+<a id="more"></a>
+<h3 id="创建一个焦点图"><a href="#创建一个焦点图" class="headerlink" title="创建一个焦点图"></a>创建一个焦点图</h3><p>页面中的焦点图其切换的动画是多样化的，可能上下，左右，渐隐等。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 图片轮播图类</span></span><br><span class="line"><span class="keyword">var</span> LoopImages = <span class="function"><span class="keyword">function</span>(<span class="params">imgArr, container</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.imagesArray = imgArr;        <span class="comment">// 轮播图片数组</span></span><br><span class="line">    <span class="keyword">this</span>.container = container;       <span class="comment">// 轮播图片容器</span></span><br><span class="line">    <span class="keyword">this</span>.createImage = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;  <span class="comment">// 创建轮播图片</span></span><br><span class="line">    <span class="keyword">this</span>.changeImage = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;  <span class="comment">// 切换下一张图片</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 上下切换</span></span><br><span class="line"><span class="keyword">var</span> SlideLoopImg = <span class="function"><span class="keyword">function</span>(<span class="params">imgArr, container</span>) </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 构造函数继承 图片轮播类</span></span><br><span class="line">    LoopImages.call(<span class="keyword">this</span>, imgArr, container);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 重写继承的切换下一张图片方法</span></span><br><span class="line">    <span class="keyword">this</span>.changeImage = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'修改切换图片为上下切换'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 渐隐切换</span></span><br><span class="line"><span class="keyword">var</span> FadeLoopImg = <span class="function"><span class="keyword">function</span>(<span class="params">imgArr, container, arrow</span>) </span>&#123;</span><br><span class="line">    LoopImages.call(<span class="keyword">this</span>, imgArr, container);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 切换箭头 私有变量</span></span><br><span class="line">    <span class="keyword">this</span>.arrow = arrow;</span><br><span class="line">    <span class="keyword">this</span>.changeImage = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'修改切换图片为渐隐切换'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实例化一个渐隐切换图片类</span></span><br><span class="line"><span class="keyword">var</span> fadeImg = <span class="keyword">new</span> FadeLoopImg([</span><br><span class="line">    <span class="string">'01.png'</span>,</span><br><span class="line">    <span class="string">'02.png'</span>,</span><br><span class="line">    <span class="string">'03.png'</span></span><br><span class="line">], <span class="string">'slide'</span>, [</span><br><span class="line">    <span class="string">'left.png'</span>,</span><br><span class="line">    <span class="string">'right.png'</span></span><br><span class="line">]);</span><br><span class="line">fadeImg.changeImage();  <span class="comment">// 修改切换图片为渐隐切换</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>基类 LoopImages 是要被子类继承的，此时每次子类继承都要创建一次父类，假如父类的构造函数中创建时存在很多消耗很大的逻辑，或者每次初始化都做一些重复的东西，这样就对性能消耗很大。</p>
+</blockquote>
+<h3 id="最优的解决方案"><a href="#最优的解决方案" class="headerlink" title="最优的解决方案"></a>最优的解决方案</h3><p>创建基类时，对于每次创建的一些简单而又差异化的属性放在构造函数中，将一些消耗资源较大的方法放到基类的原型中，这样可以避免很多不必要的消耗。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 图片轮播类</span></span><br><span class="line"><span class="keyword">var</span> LoopImages = <span class="function"><span class="keyword">function</span>(<span class="params">imgArr, container</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.imagesArray = imgArr;    	<span class="comment">// 轮播图片数组</span></span><br><span class="line">    <span class="keyword">this</span>.container = container;     <span class="comment">// 轮播图片容器</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">LoopImages.prototype = &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 创建轮播图片</span></span><br><span class="line">    createImage: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'创建轮播图片'</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 切换下一张图片</span></span><br><span class="line">    changeImage: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'切换下一张图片'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 上下切换</span></span><br><span class="line"><span class="keyword">var</span> SlideLoopImg = <span class="function"><span class="keyword">function</span>(<span class="params">imgArr, container</span>) </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 构造函数继承 图片轮播类</span></span><br><span class="line">    LoopImages.call(<span class="keyword">this</span>, imgArr, container);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SlideLoopImg.prototype = <span class="keyword">new</span> LoopImages()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重写继承的切换下一张图片方法</span></span><br><span class="line">SlideLoopImg.prototype.changeImage = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'修改切换图片为上下切换'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 渐隐切换</span></span><br><span class="line"><span class="keyword">var</span> FadeLoopImg = <span class="function"><span class="keyword">function</span>(<span class="params">imgArr, container, arrow</span>) </span>&#123;</span><br><span class="line">    LoopImages.call(<span class="keyword">this</span>, imgArr, container);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 切换箭头 私有变量</span></span><br><span class="line">    <span class="keyword">this</span>.arrow = arrow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">FadeLoopImg.prototype = <span class="keyword">new</span> LoopImages();</span><br><span class="line">FadeLoopImg.prototype.changeImage = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'修改切换图片为渐隐切换'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实例化一个渐隐切换图片类</span></span><br><span class="line"><span class="keyword">var</span> fadeImg = <span class="keyword">new</span> FadeLoopImg([</span><br><span class="line">    <span class="string">'01.png'</span>,</span><br><span class="line">    <span class="string">'02.png'</span>,</span><br><span class="line">    <span class="string">'03.png'</span></span><br><span class="line">], <span class="string">'slide'</span>, [</span><br><span class="line">    <span class="string">'left.png'</span>,</span><br><span class="line">    <span class="string">'right.png'</span></span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试用例</span></span><br><span class="line"><span class="built_in">console</span>.log(fadeImg.container);   <span class="comment">// slide</span></span><br><span class="line">fadeImg.changeImage();            <span class="comment">// 修改切换图片为渐隐切换</span></span><br></pre></td></tr></table></figure>
+<h3 id="原型的拓展"><a href="#原型的拓展" class="headerlink" title="原型的拓展"></a>原型的拓展</h3><p>原型对象是一个共享对象，继承时对它的一个指向引用，所以，对原型拓展，不论是子类还是父类的实例对象都会继承下来。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父类拓展</span></span><br><span class="line">LoopImages.prototypr.getImageLength = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.imageArray.length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//子类拓展</span></span><br><span class="line">FadeLoopImg.prototype.getContainer = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.container;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(fadeImg.getImageLength());    <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(fadeImg.getContainer());      <span class="comment">// slide</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>不要随意修改基类原型，因为这会影响到其他继承基类的方法。</p>
+</blockquote>
+<h3 id="原型继承"><a href="#原型继承" class="headerlink" title="原型继承"></a>原型继承</h3><p>原型模式更多的是用在对对象的创建上。比如创建一个实例对象的构造函数比较复杂，或者耗时比较长，或者通过创建多个对象来实现。此时最好不要用 new 关键字去复制这些类，但可以通过对这些对象或者方法进行复制来实现创建。首先要有一个原型模式的对象复制方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/****</span></span><br><span class="line"><span class="comment"> * 基于已经存在的模版对象克隆出新对象的模式</span></span><br><span class="line"><span class="comment"> * arhuments[0], arguments[1], argument[2]: 参数1，2，3 表示模版对象</span></span><br><span class="line"><span class="comment"> * 注意。这里对模版引用类型的属性实质上进行浅复制（引用类型属性共享），当然根据需求可以自行深复制（引用类型属性复制）</span></span><br><span class="line"><span class="comment"> ****/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">prototypeExtend</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,  <span class="comment">// 缓存类，为实例化返回对象临时创建</span></span><br><span class="line">     args = <span class="built_in">arguments</span>,      <span class="comment">// 模版对象参数序列</span></span><br><span class="line">        i = <span class="number">0</span>,</span><br><span class="line">      len = args.length;</span><br><span class="line">    <span class="keyword">for</span>(; i &lt; len; i++) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 遍历每个模版对象中的属性</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> j <span class="keyword">in</span> args[i]) &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 将这些属性复制到缓存类原型中</span></span><br><span class="line">            F.prototype[j] = args[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 返回缓存类的一个实例</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> F();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>比如企鹅游戏中我们创建一个企鹅对象，如果游戏中没有企鹅基类，只提供一些动作模版对象，我们就可以通过实现对这些模版对象的继承来创建一个企鹅实例对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> penguin = prototypeExtend(&#123;</span><br><span class="line">    speed: <span class="number">20</span>,</span><br><span class="line">    swim: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'游泳速度 '</span> + <span class="keyword">this</span>.speed);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    run: <span class="function"><span class="keyword">function</span>(<span class="params">speed</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'奔跑速度 '</span> + speed);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    jump: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'跳跃动作'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>既然通过 prototypeExtend 创建的是一个对象，我们就无需再用 new 去创建新的实例对象，我们可以直接使用这个对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">penguin.swim();    <span class="comment">// 游泳速度 20</span></span><br><span class="line">penguin.run(<span class="number">10</span>);   <span class="comment">// 奔跑速度 10</span></span><br><span class="line">penguin.jump();    <span class="comment">// 跳跃动作</span></span><br></pre></td></tr></table></figure>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><u><strong>原型模式可以让多个对象分享同一个原型对象的属性和方法，这也是一种继承法法，不过这种继承的实现是不需要创建的，而是将原型对象分享给那些继承的对象。当然有时需要让每个继承对象独立拥有一份原型对象，此时我们就需要对原型对象进行复制。</strong></u></p>
+<p><u><strong>由此可以看出，原型对象更合适在创建复杂对象时，对于那些需求一直在变化而导致对象结构不停地改变时，将那些比较稳定的属性与方法共用而提取的继承实现。</strong></u></p>
+<blockquote>
+<p>以上笔记出自《JavaScript设计模式（张容铭）》</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/21/JavaScript设计模式-建造者模式/" rel="next" title="JavaScript设计模式-建造者模式">
+                <i class="fa fa-chevron-left"></i> JavaScript设计模式-建造者模式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/26/JavaScript设计模式-单例模式/" rel="prev" title="JavaScript设计模式-单例模式">
+                JavaScript设计模式-单例模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://raw.githubusercontent.com/rason00/rason/gh-pages/img/rasonlogo.gif" alt="Rason">
+          <p class="site-author-name" itemprop="name">Rason</p>
+          <p class="site-description motion-element" itemprop="description">It's not insane！ It's ideal！A normal psychotic！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">108</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/rason00" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript-设计模式"><span class="nav-number">1.</span> <span class="nav-text">JavaScript-设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原型模式"><span class="nav-number">1.1.</span> <span class="nav-text">原型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个焦点图"><span class="nav-number">1.1.1.</span> <span class="nav-text">创建一个焦点图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最优的解决方案"><span class="nav-number">1.1.2.</span> <span class="nav-text">最优的解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型的拓展"><span class="nav-number">1.1.3.</span> <span class="nav-text">原型的拓展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型继承"><span class="nav-number">1.1.4.</span> <span class="nav-text">原型继承</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.2.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+
+
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!-- 添加访问量 开始 -->
+<!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<!-- 添加访问量 结束 -->
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rason</span>
+</div>
+
+<!-- 添加访问量开始 -->
+<!-- <div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div> -->
+<!-- 添加访问量结束 -->
+
+<!-- <div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+ -->
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
