@@ -342,3 +342,26 @@ data.msg = 2;
 // 触发effect副作用:2            ==》完整触发副作用函数createReactiveEffect中的return fn()执行了
 // 出栈并且初始化activeEffect     ==》finally继续初始化
 ```
+
+下面是自己做的简单流程图
+
+```mermaid
+  graph TB;
+  　　1(reactive)--初始化-->2(proxy代理)
+  　　2-->3(get)
+  　　3--收集依赖-->4(track函数)
+  　　4--根据target和key存储-->5(targetMap)
+  　　2==>6(set)
+  　　6==触发函数==>7(trigger函数)
+  　　7==触发更新==>8
+  　　5==根据target和key获取==>8(循环更新)
+  　　
+  　　9(effect副作用)-.->10(createReactiveEffect创建)
+  　　10-.effectStack.->11(入栈)
+  　　11-.初始化执行fn触发.->3
+  　　3-.effect触发依赖收集.->4
+  　　4-.effect收集完依赖.->5
+  　　5-.effect执行函数.->12(执行副作用)
+  　　8==触发==>9
+  　　12-.effectStack.->13(出栈)
+```
