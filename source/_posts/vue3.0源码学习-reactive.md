@@ -342,7 +342,3 @@ data.msg = 2;
 // 触发effect副作用:2            ==》完整触发副作用函数createReactiveEffect中的return fn()执行了
 // 出栈并且初始化activeEffect     ==》finally继续初始化
 ```
-
-下面是自己做的简单流程图
-
-![截屏2021-05-05 下午2.59.29](../流程图.png)
