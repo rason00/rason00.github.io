@@ -8,8 +8,6 @@ comments: false
 
 ## 联系方式
 
-**手机：13632452567**
-
 **Email：rason00@163.com**
 
 ## 掌握技能
