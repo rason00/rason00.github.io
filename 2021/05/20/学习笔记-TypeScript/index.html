@@ -1,0 +1,674 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="TypeScript,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="TypeScript-基础类型入门级了解TypeScript基础类型，根据网上查询的资料进行学习及记录以下学习笔记。">
+<meta name="keywords" content="TypeScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习笔记-TypeScript">
+<meta property="og:url" content="http://yoursite.com/2021/05/20/学习笔记-TypeScript/index.html">
+<meta property="og:site_name" content="Rason">
+<meta property="og:description" content="TypeScript-基础类型入门级了解TypeScript基础类型，根据网上查询的资料进行学习及记录以下学习笔记。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-05-20T13:58:59.364Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习笔记-TypeScript">
+<meta name="twitter:description" content="TypeScript-基础类型入门级了解TypeScript基础类型，根据网上查询的资料进行学习及记录以下学习笔记。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/05/20/学习笔记-TypeScript/">
+
+  <title> 学习笔记-TypeScript | Rason </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c0b175368f6e60b955380864b509c3fc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s6.cnzz.com/stat.php?id=1259942288&web_id=1259942288" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Rason</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Rason 博客</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                学习笔记-TypeScript
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2021-05-20T21:58:43+08:00" content="2021-05-20">
+              2021-05-20
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="TypeScript-基础类型"><a href="#TypeScript-基础类型" class="headerlink" title="TypeScript-基础类型"></a>TypeScript-基础类型</h1><p>入门级了解<code>TypeScript</code>基础类型，根据网上查询的资料进行学习及记录以下学习笔记。</p>
+<a id="more"></a>
+<h2 id="一、基础类型"><a href="#一、基础类型" class="headerlink" title="一、基础类型"></a>一、基础类型</h2><h3 id="1-布尔（boolean）"><a href="#1-布尔（boolean）" class="headerlink" title="1. 布尔（boolean）"></a>1. 布尔（boolean）</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 布尔（boolean） */</span></span><br><span class="line"><span class="keyword">let</span> isDone: <span class="built_in">boolean</span> = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="2-数字（number）"><a href="#2-数字（number）" class="headerlink" title="2. 数字（number）"></a>2. 数字（number）</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 数字（number） */</span></span><br><span class="line"><span class="keyword">let</span> listIndex: <span class="built_in">number</span> = <span class="number">10</span>;	<span class="comment">// 支持十进制、十六进制、二进制和八进制字面量</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-字符串（string）"><a href="#3-字符串（string）" class="headerlink" title="3. 字符串（string）"></a>3. 字符串（string）</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 字符串（string） */</span></span><br><span class="line"><span class="keyword">let</span> name: <span class="built_in">string</span> = <span class="string">'Rason'</span>;	<span class="comment">// 支持 ‘`’ 反引号加变量，例：`hello $&#123; name &#125;`</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-数组（元素类型-Array-lt-元素类型-gt"><a href="#4-数组（元素类型-Array-lt-元素类型-gt" class="headerlink" title="4. 数组（元素类型[] || Array&lt;元素类型&gt;"></a>4. 数组（元素类型[] || Array&lt;元素类型&gt;</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 数组（元素类型[] || Array&lt;元素类型&gt;） */</span></span><br><span class="line"><span class="keyword">let</span> list: <span class="built_in">number</span>[] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> list: <span class="built_in">Array</span>&lt;<span class="built_in">number</span>&gt; = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="5-元组（-元素类型-元素类型-）"><a href="#5-元组（-元素类型-元素类型-）" class="headerlink" title="5. 元组（[元素类型, 元素类型]）"></a>5. 元组（[元素类型, 元素类型]）</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 元组（[元素类型, 元素类型]） */</span></span><br><span class="line"><span class="keyword">let</span> x: [<span class="built_in">number</span>, <span class="built_in">string</span>] = [<span class="number">1</span>, <span class="string">'test'</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="6-枚举（enum）"><a href="#6-枚举（enum）" class="headerlink" title="6. 枚举（enum）"></a>6. 枚举（enum）</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 枚举（enum） */</span></span><br><span class="line"><span class="keyword">enum</span> Color &#123;red, green, blue&#125;;	<span class="comment">// 可手动赋值编号。例：enum Color &#123;red = 2, green&#125;;</span></span><br><span class="line"><span class="keyword">let</span> c: Color = Color.green;		<span class="comment">// 可由编号得它的名字，例：let cName: string = Color[2];</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-任意值（Any）"><a href="#7-任意值（Any）" class="headerlink" title="7. 任意值（Any）"></a>7. 任意值（Any）</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 不确定类型（Any） */</span></span><br><span class="line"><span class="keyword">let</span> notSure: <span class="built_in">any</span> = <span class="number">4</span>;</span><br><span class="line">notSure = <span class="string">"maybe a string instead"</span>;</span><br><span class="line">notSure = <span class="literal">false</span>; <span class="comment">// okay, definitely a boolean</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-空值（Void）"><a href="#8-空值（Void）" class="headerlink" title="8. 空值（Void）"></a>8. 空值（Void）</h3><p>当一个函数没有返回值时，你通常会见到其返回值类型是 void</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 无类型（Void） */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testFunction</span>(<span class="params"></span>): <span class="title">void</span> </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'This is a test function'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 声明一个void类型的变量没有什么大用，因为你只能为它赋予undefined和null</span></span><br><span class="line"><span class="keyword">let</span> unusable: <span class="built_in">void</span> = <span class="literal">undefined</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="9-Null-和-Undefined"><a href="#9-Null-和-Undefined" class="headerlink" title="9. Null 和 Undefined"></a>9. Null 和 Undefined</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Null 和 Undefined */</span></span><br><span class="line"><span class="keyword">let</span> u: <span class="literal">undefined</span> = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">let</span> n: <span class="literal">null</span> = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="10-Never"><a href="#10-Never" class="headerlink" title="10. Never"></a>10. Never</h3><p>never类型是任何类型的子类型，也可以赋值给任何类型；然而，没有类型是never的子类型或可以赋值给never类型（除了never本身之外）。 即使 any也不可以赋值给never。通常表现为抛出异常或无法执行到终止点（例如无线循环）</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Never */</span></span><br><span class="line"><span class="keyword">let</span> x: never;</span><br><span class="line"><span class="keyword">let</span> y: <span class="built_in">number</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 运行错误，数字类型不能转为 never 类型</span></span><br><span class="line">x = <span class="number">123</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 运行正确，never 类型可以赋值给 never类型</span></span><br><span class="line">x = <span class="function">(<span class="params">(<span class="params"></span>)=&gt;&#123; <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="params">'exception'</span>)&#125;</span>)<span class="params">()</span>;</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">// 运行正确，<span class="params">never</span> 类型可以赋值给 数字类型</span></span><br><span class="line"><span class="function"><span class="params">y</span> = (<span class="params">(<span class="params"></span>)=&gt;&#123; <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="params">'exception'</span>)&#125;</span>)<span class="params">()</span>;</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">// 返回值为 <span class="params">never</span> 的函数可以是抛出异常的情况</span></span><br><span class="line"><span class="function"><span class="params">function</span> <span class="params">error</span>(<span class="params">message: <span class="built_in">string</span></span>): <span class="params">never</span> &#123;</span></span><br><span class="line"><span class="function">    <span class="params">throw</span> <span class="params">new</span> <span class="params">Error</span>(<span class="params">message</span>);</span></span><br><span class="line"><span class="function">&#125;</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">// 返回值为 <span class="params">never</span> 的函数可以是无限循环这种无法被执行到的终止点的情况</span></span><br><span class="line"><span class="function"><span class="params">function</span> <span class="params">loop</span><span class="params">()</span>: <span class="params">never</span> &#123;</span></span><br><span class="line"><span class="function">    <span class="params">while</span> (<span class="params"><span class="literal">true</span></span>) &#123;&#125;</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="11-Object"><a href="#11-Object" class="headerlink" title="11. Object"></a>11. Object</h3><p><code>object</code>表示非原始类型，也就是除<code>number</code>，<code>string</code>，<code>boolean</code>，<code>symbol</code>，<code>null</code>或<code>undefined</code>之外的类型。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* object */</span></span><br><span class="line"><span class="keyword">declare</span> <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">o: object | <span class="literal">null</span></span>): <span class="title">void</span></span>;</span><br><span class="line"></span><br><span class="line">create(&#123; prop: <span class="number">0</span> &#125;); <span class="comment">// OK</span></span><br><span class="line">create(<span class="literal">null</span>); <span class="comment">// OK</span></span><br><span class="line"></span><br><span class="line">create(<span class="number">42</span>); <span class="comment">// Error</span></span><br><span class="line">create(<span class="string">"string"</span>); <span class="comment">// Error</span></span><br><span class="line">create(<span class="literal">false</span>); <span class="comment">// Error</span></span><br><span class="line">create(<span class="literal">undefined</span>); <span class="comment">// Error</span></span><br></pre></td></tr></table></figure>
+<h3 id="12-类型断言"><a href="#12-类型断言" class="headerlink" title="12. 类型断言"></a>12. 类型断言</h3><p>有时候你会遇到这样的情况，你会比TypeScript更了解某个值的详细信息。 通常这会发生在你清楚地知道一个实体具有比它现有类型更确切的类型。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类型断言有两种形式。 其一是“尖括号”语法：</span></span><br><span class="line"><span class="keyword">let</span> someValue: <span class="built_in">any</span> = <span class="string">"this is a string"</span>;</span><br><span class="line"><span class="keyword">let</span> strLength: <span class="built_in">number</span> = (&lt;<span class="built_in">string</span>&gt;someValue).length;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 另一个为 as 语法：</span></span><br><span class="line"><span class="keyword">let</span> someValue: <span class="built_in">any</span> = <span class="string">"this is a string"</span>;</span><br><span class="line"><span class="keyword">let</span> strLength: <span class="built_in">number</span> = (someValue <span class="keyword">as</span> <span class="built_in">string</span>).length;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>两种形式是等价的。 至于使用哪个大多数情况下是凭个人喜好。</p>
+<p>然而，当你在<code>TypeScript</code>里使用<code>JSX</code>时，只有 <code>as</code>语法断言是被允许的！！！</p>
+</blockquote>
+<h3 id="13-联合类型"><a href="#13-联合类型" class="headerlink" title="13. 联合类型"></a>13. 联合类型</h3><p>联合类型（<code>Union Types</code>）表示取值可以为多种类型中的一种。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myFavoriteNumber: <span class="built_in">string</span> | <span class="built_in">number</span>;</span><br><span class="line">myFavoriteNumber = <span class="string">'seven'</span>;</span><br><span class="line">myFavoriteNumber = <span class="number">7</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="14-类型推论"><a href="#14-类型推论" class="headerlink" title="14. 类型推论"></a>14. 类型推论</h3><p>如果没有明确的指定类型，那么 TypeScript 会依照类型推论（<code>Type Inference</code>）的规则推断出一个类型。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myFavoriteNumber = <span class="string">'seven'</span>;</span><br><span class="line">myFavoriteNumber = <span class="number">7</span>;</span><br><span class="line"><span class="comment">// 报错：error TS2322: Type 'number' is not assignable to type 'string'.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 它等价于：</span></span><br><span class="line"><span class="keyword">let</span> myFavoriteNumber: <span class="built_in">string</span> = <span class="string">'seven'</span>;</span><br><span class="line">myFavoriteNumber = <span class="number">7</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>如果定义的时候没有赋值，不管之后有没有赋值，都会被推断成 any 类型而完全不被类型检查</strong>：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myFavoriteNumber;</span><br><span class="line">myFavoriteNumber = <span class="string">'seven'</span>;</span><br><span class="line">myFavoriteNumber = <span class="number">7</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="http://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" rel="noopener">Basic Types</a>（<a href="https://www.tslang.cn/docs/handbook/basic-types.html" target="_blank" rel="noopener">基础类型（中文版）</a>）</li>
+<li><a href="http://www.typescriptlang.org/docs/handbook/advanced-types.html" target="_blank" rel="noopener">Union Types</a>（<a href="https://www.tslang.cn/docs/handbook/advanced-types.html" target="_blank" rel="noopener">联合类型（中文版）</a>）</li>
+<li><a href="http://www.typescriptlang.org/docs/handbook/type-inference.html" target="_blank" rel="noopener">Type Inference</a>（<a href="https://www.tslang.cn/docs/handbook/type-inference.html" target="_blank" rel="noopener">类型推论（中文版）</a>）</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TypeScript/" rel="tag">#TypeScript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/05/19/工作总结：代码/" rel="next" title="工作总结：代码">
+                <i class="fa fa-chevron-left"></i> 工作总结：代码
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://raw.githubusercontent.com/rason00/rason/gh-pages/img/rasonlogo.gif" alt="Rason">
+          <p class="site-author-name" itemprop="name">Rason</p>
+          <p class="site-description motion-element" itemprop="description">It's not insane！ It's ideal！A normal psychotic！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">75</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/rason00" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TypeScript-基础类型"><span class="nav-number">1.</span> <span class="nav-text">TypeScript-基础类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、基础类型"><span class="nav-number">1.1.</span> <span class="nav-text">一、基础类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-布尔（boolean）"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 布尔（boolean）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-数字（number）"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 数字（number）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-字符串（string）"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. 字符串（string）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-数组（元素类型-Array-lt-元素类型-gt"><span class="nav-number">1.1.4.</span> <span class="nav-text">4. 数组（元素类型[] || Array&lt;元素类型&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-元组（-元素类型-元素类型-）"><span class="nav-number">1.1.5.</span> <span class="nav-text">5. 元组（[元素类型, 元素类型]）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-枚举（enum）"><span class="nav-number">1.1.6.</span> <span class="nav-text">6. 枚举（enum）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-任意值（Any）"><span class="nav-number">1.1.7.</span> <span class="nav-text">7. 任意值（Any）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-空值（Void）"><span class="nav-number">1.1.8.</span> <span class="nav-text">8. 空值（Void）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-Null-和-Undefined"><span class="nav-number">1.1.9.</span> <span class="nav-text">9. Null 和 Undefined</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-Never"><span class="nav-number">1.1.10.</span> <span class="nav-text">10. Never</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-Object"><span class="nav-number">1.1.11.</span> <span class="nav-text">11. Object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-类型断言"><span class="nav-number">1.1.12.</span> <span class="nav-text">12. 类型断言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-联合类型"><span class="nav-number">1.1.13.</span> <span class="nav-text">13. 联合类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-类型推论"><span class="nav-number">1.1.14.</span> <span class="nav-text">14. 类型推论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.2.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+
+
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!-- 添加访问量 开始 -->
+<!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<!-- 添加访问量 结束 -->
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rason</span>
+</div>
+
+<!-- 添加访问量开始 -->
+<!-- <div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div> -->
+<!-- 添加访问量结束 -->
+
+<!-- <div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+ -->
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,691 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Vue.js2.0,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="Vuex状态管理">
+<meta name="keywords" content="Vue.js2.0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vuex学习">
+<meta property="og:url" content="http://yoursite.com/2017/09/04/Vuex学习/index.html">
+<meta property="og:site_name" content="Rason">
+<meta property="og:description" content="Vuex状态管理">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-05-04T14:54:43.362Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vuex学习">
+<meta name="twitter:description" content="Vuex状态管理">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/04/Vuex学习/">
+
+  <title> Vuex学习 | Rason </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c0b175368f6e60b955380864b509c3fc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s6.cnzz.com/stat.php?id=1259942288&web_id=1259942288" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Rason</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Rason 博客</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Vuex学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-04T20:02:50+08:00" content="2017-09-04">
+              2017-09-04
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Vuex状态管理"><a href="#Vuex状态管理" class="headerlink" title="Vuex状态管理"></a>Vuex状态管理</h1><a id="more"></a>
+<h2 id="安装与引入"><a href="#安装与引入" class="headerlink" title="安装与引入"></a>安装与引入</h2><h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h3><blockquote>
+<p>npm install vuex –save</p>
+</blockquote>
+<h3 id="2-新建文档store-js引入vuex"><a href="#2-新建文档store-js引入vuex" class="headerlink" title="2.新建文档store.js引入vuex"></a>2.新建文档store.js引入vuex</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue&apos;;</span><br><span class="line">import Vuex from &apos;vuex&apos;;</span><br><span class="line">Vue.use(Vuex);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>完成以上就成功创建了一个vuex的仓库文件了。</p>
+</blockquote>
+<h2 id="state访问状态对象"><a href="#state访问状态对象" class="headerlink" title="state访问状态对象"></a>state访问状态对象</h2><p><a href="https://vuex.vuejs.org/zh-cn/state.html" target="_blank" rel="noopener">state</a>我感觉像是vue里面的data，放的是基本属性。</p>
+<h3 id="1-在store-js文件里增加一个常量对象。"><a href="#1-在store-js文件里增加一个常量对象。" class="headerlink" title="1.在store.js文件里增加一个常量对象。"></a>1.在store.js文件里增加一个常量对象。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const state=&#123;</span><br><span class="line">  count:1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-用export-default封装代码，让外部可以引用。"><a href="#2-用export-default封装代码，让外部可以引用。" class="headerlink" title="2.用export default封装代码，让外部可以引用。"></a>2.用<code>export default</code>封装代码，让外部可以引用。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export default new Vuex.Store(&#123;</span><br><span class="line">  state</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="3-vue组件中怎么用到呢，我们可以新建一个组件"><a href="#3-vue组件中怎么用到呢，我们可以新建一个组件" class="headerlink" title="3.vue组件中怎么用到呢，我们可以新建一个组件"></a>3.vue组件中怎么用到呢，我们可以新建一个组件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;!-- 读取仓库里面的值 --&gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123;$store.state.count&#125;&#125;&lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  //引入vuex仓库</span><br><span class="line">  import store from &apos;@/vuex/store&apos;</span><br><span class="line">  export default&#123;</span><br><span class="line">      data()&#123;</span><br><span class="line">        return&#123;&#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      //使用仓库</span><br><span class="line">      store        </span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="4-你会发现-lt-p-gt-lt-￼20-gt-lt-p-gt-这里读取的值很长，并不美观，其实有更简洁的写法，就是通过mapState辅助函数来赋值"><a href="#4-你会发现-lt-p-gt-lt-￼20-gt-lt-p-gt-这里读取的值很长，并不美观，其实有更简洁的写法，就是通过mapState辅助函数来赋值" class="headerlink" title="4.你会发现&lt;p&gt;&lt;/p&gt;这里读取的值很长，并不美观，其实有更简洁的写法，就是通过mapState辅助函数来赋值"></a>4.你会发现<code>&lt;p&gt;&lt;/p&gt;</code>这里读取的值很长，并不美观，其实有更简洁的写法，就是通过<code>mapState</code>辅助函数来赋值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;!-- 在此就可以直接用count来代替$store.state.count了 --&gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123;count&#125;&#125;&lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  //引入vuex仓库</span><br><span class="line">  import store from &apos;@/vuex/store&apos;</span><br><span class="line">  //从vuex中引入mapState</span><br><span class="line">  import &#123; mapState &#125; from &apos;vuex&apos;</span><br><span class="line">  export default&#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">      return&#123;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    //在computed中相当于注册store.js中的count属性</span><br><span class="line">    computed: &#123;</span><br><span class="line">    ...mapState([&apos;count&apos;]),</span><br><span class="line">    &#125;,</span><br><span class="line">    //使用仓库</span><br><span class="line">    store        </span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="Mutations修改状态"><a href="#Mutations修改状态" class="headerlink" title="Mutations修改状态"></a>Mutations修改状态</h1><p>更改 Vuex 的 store 中的状态的唯一方法是提交 <a href="https://vuex.vuejs.org/zh-cn/mutations.html" target="_blank" rel="noopener">mutation</a>,我感觉 mutation 像是 vue 中的 methods 方法或者叫事件。</p>
+<h3 id="1-在store-js中加入两个方法"><a href="#1-在store-js中加入两个方法" class="headerlink" title="1.在store.js中加入两个方法"></a>1.在store.js中加入两个方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const mutations=&#123;</span><br><span class="line">    add(state)&#123;</span><br><span class="line">      state.count++;</span><br><span class="line">    &#125;,</span><br><span class="line">    reduce(state)&#123;</span><br><span class="line">      state.count--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-切记在export-default封装代码中加入引用，让外部可以引用。"><a href="#2-切记在export-default封装代码中加入引用，让外部可以引用。" class="headerlink" title="2.切记在export default封装代码中加入引用，让外部可以引用。"></a>2.切记在<code>export default</code>封装代码中加入引用，让外部可以引用。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export default new Vuex.Store(&#123;</span><br><span class="line">  state,</span><br><span class="line">  //加入mutations</span><br><span class="line">  mutations</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="3-在组件中加入两个按钮，使用仓库中的方法"><a href="#3-在组件中加入两个按钮，使用仓库中的方法" class="headerlink" title="3.在组件中加入两个按钮，使用仓库中的方法"></a>3.在组件中加入两个按钮，使用仓库中的方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">  &lt;button @click=&quot;$store.commit(&apos;add&apos;)&quot;&gt;+&lt;/button&gt;</span><br><span class="line">  &lt;button @click=&quot;$store.commit(&apos;reduce&apos;)&quot;&gt;-&lt;/button&gt;</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>$store.commit()</code>这个是vue中规定的调用写法</p>
+</blockquote>
+<h3 id="4-同样你会发现-store-commit-39-add-39-这里读取的值也很长，也并不美观，当然和上面的state一样有更简洁的写法，就是引入mapMutations"><a href="#4-同样你会发现-store-commit-39-add-39-这里读取的值也很长，也并不美观，当然和上面的state一样有更简洁的写法，就是引入mapMutations" class="headerlink" title="4.同样你会发现$store.commit(&#39;add&#39;)这里读取的值也很长，也并不美观，当然和上面的state一样有更简洁的写法，就是引入mapMutations"></a>4.同样你会发现<code>$store.commit(&#39;add&#39;)</code>这里读取的值也很长，也并不美观，当然和上面的<code>state</code>一样有更简洁的写法，就是引入<code>mapMutations</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123;count&#125;&#125;&lt;/p&gt;  </span><br><span class="line">    &lt;p&gt;</span><br><span class="line">    &lt;!-- 直接使用方法名 --&gt;</span><br><span class="line">      &lt;button @click=&quot;add&quot;&gt;+&lt;/button&gt;</span><br><span class="line">      &lt;button @click=&quot;reduce&quot;&gt;-&lt;/button&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import store from &apos;@/vuex/store&apos;</span><br><span class="line">//引入mapMutations</span><br><span class="line">import &#123; mapState,mapMutations &#125; from &apos;vuex&apos;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    ...mapState([&apos;count&apos;]),</span><br><span class="line">  &#125;,</span><br><span class="line">  //注册store.js中的两个方法</span><br><span class="line">  methods: &#123;</span><br><span class="line">    ...mapMutations([&apos;add&apos;,&apos;reduce&apos;]),</span><br><span class="line">  &#125;,</span><br><span class="line">  store</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="5-传值"><a href="#5-传值" class="headerlink" title="5.传值"></a>5.传值</h3><p>使用mutation是可以写入参数的，但样式上和我们一般看的不一样，因为它的方法默认接收state为第一参数，也就是说我们调用方法时输入的第一个参数，在store.js中的mutations里将是第二个参数。如下，修改store.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const mutations = &#123;</span><br><span class="line">  //add方法中加入传值参数n</span><br><span class="line">  add(state, n) &#123;</span><br><span class="line">    state.count += n;</span><br><span class="line">  &#125;,</span><br><span class="line">  reduce(state) &#123;</span><br><span class="line">    state.count--;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>组件中使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">  &lt;!-- 直接传入参数即可 --&gt;</span><br><span class="line">  &lt;button @click=&quot;add(10)&quot;&gt;+&lt;/button&gt;</span><br><span class="line">  &lt;button @click=&quot;reduce&quot;&gt;-&lt;/button&gt;</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="getters计算过滤操作"><a href="#getters计算过滤操作" class="headerlink" title="getters计算过滤操作"></a>getters计算过滤操作</h2><p><a href="https://vuex.vuejs.org/zh-cn/getters.html" target="_blank" rel="noopener">getters</a>就是一个过滤器的样子，感觉可以理解为vue中的计算方法computed。</p>
+<h3 id="1-我们首先要在store-js里用const声明我们的getters属性。"><a href="#1-我们首先要在store-js里用const声明我们的getters属性。" class="headerlink" title="1.我们首先要在store.js里用const声明我们的getters属性。"></a>1.我们首先要在store.js里用const声明我们的getters属性。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const getters = &#123;</span><br><span class="line">  //就是每次mutations改变state值时都先加上10这一步骤</span><br><span class="line">  count: state =&gt; state.count += 10</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-同理在export-default封装代码中加入引用。"><a href="#2-同理在export-default封装代码中加入引用。" class="headerlink" title="2.同理在export default封装代码中加入引用。"></a>2.同理在<code>export default</code>封装代码中加入引用。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">export default new Vuex.Store(&#123;</span><br><span class="line">  state,</span><br><span class="line">  mutations,</span><br><span class="line">  //加入getters的引用</span><br><span class="line">  getters</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="3-在组件中使用"><a href="#3-在组件中使用" class="headerlink" title="3.在组件中使用"></a>3.在组件中使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">computed:&#123;</span><br><span class="line">    ...mapState([&quot;count&quot;]),</span><br><span class="line">    count()&#123;</span><br><span class="line">        return this.$store.getters.count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>写了这个配置后，在每次count的值发生变化的时候，都会进行加10的操作。</p>
+</blockquote>
+<h3 id="4-用mapGetters简化写法"><a href="#4-用mapGetters简化写法" class="headerlink" title="4.用mapGetters简化写法"></a>4.用mapGetters简化写法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123;count&#125;&#125;&lt;/p&gt;  </span><br><span class="line">    &lt;p&gt;</span><br><span class="line">      &lt;button @click=&quot;add(10)&quot;&gt;+&lt;/button&gt;</span><br><span class="line">      &lt;button @click=&quot;reduce&quot;&gt;-&lt;/button&gt;</span><br><span class="line">    &lt;/p&gt; </span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import store from &apos;@/vuex/store&apos;</span><br><span class="line">//引入mapGetters</span><br><span class="line">import &#123; mapState,mapMutations,mapGetters,&#125; from &apos;vuex&apos;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    ...mapState([&apos;count&apos;]),</span><br><span class="line">    //注册使用mapGetters</span><br><span class="line">    ...mapGetters([&apos;count&apos;])</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    ...mapMutations([&apos;add&apos;,&apos;reduce&apos;]),</span><br><span class="line">  &#125;,</span><br><span class="line">  store</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如此也能达到在每次count的值发生变化的时候，都会进行加10的操作。（就是执行了getters里的过滤方法了）</p>
+</blockquote>
+<h2 id="actions异步修改状态"><a href="#actions异步修改状态" class="headerlink" title="actions异步修改状态"></a>actions异步修改状态</h2><p><a href="https://vuex.vuejs.org/zh-cn/actions.html" target="_blank" rel="noopener">actions</a>和之前讲的Mutations功能基本一样，不同点是，actions是异步的改变state状态，而Mutations是同步改变状态。而如何证明是异步的呢，我们以下实验一下即可</p>
+<h3 id="1-在store-js中加入"><a href="#1-在store-js中加入" class="headerlink" title="1.在store.js中加入"></a>1.在store.js中加入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const actions = &#123;</span><br><span class="line">  addActions(context) &#123;</span><br><span class="line">    context.commit(&apos;add&apos;,10);</span><br><span class="line">    setTimeout(()=&gt;&#123;</span><br><span class="line">      context.commit(&apos;reduce&apos;);</span><br><span class="line">      console.log(&apos;我后执行&apos;)      </span><br><span class="line">    &#125;,3000);</span><br><span class="line">    console.log(&apos;我先执行&apos;)</span><br><span class="line">  &#125;,</span><br><span class="line">  reduceActions(&#123;commit&#125;) &#123;</span><br><span class="line">    commit(&apos;reduce&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>context：上下文对象，可以理解为store本身。<br>{commit}：直接把commit对象传递进去，更容易理解为直接调用mutations里的方法。</p>
+</blockquote>
+<h3 id="2-同理在export-default加入引用"><a href="#2-同理在export-default加入引用" class="headerlink" title="2.同理在export default加入引用"></a>2.同理在<code>export default</code>加入引用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">export default new Vuex.Store(&#123;</span><br><span class="line">  state,</span><br><span class="line">  mutations,</span><br><span class="line">  getters,</span><br><span class="line">  //加入引用</span><br><span class="line">  actions</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="3-在组件中使用（直接用mapActions了）"><a href="#3-在组件中使用（直接用mapActions了）" class="headerlink" title="3.在组件中使用（直接用mapActions了）"></a>3.在组件中使用（直接用mapActions了）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123;count&#125;&#125;&lt;/p&gt;  </span><br><span class="line">    &lt;p&gt;</span><br><span class="line">      &lt;button @click=&quot;add(10)&quot;&gt;+&lt;/button&gt;</span><br><span class="line">      &lt;button @click=&quot;reduce&quot;&gt;-&lt;/button&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;!-- 加入两个异步的按钮，调用actions里的方法 --&gt;</span><br><span class="line">     &lt;p&gt;</span><br><span class="line">       异步&lt;/br&gt;</span><br><span class="line">      &lt;button @click=&quot;addActions&quot;&gt;+&lt;/button&gt;</span><br><span class="line">      &lt;button @click=&quot;reduceActions&quot;&gt;-&lt;/button&gt;</span><br><span class="line">    &lt;/p&gt;  </span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import store from &apos;@/vuex/store&apos;</span><br><span class="line">//加入mapActions引用</span><br><span class="line">import &#123; mapState,mapMutations,mapGetters,mapActions &#125; from &apos;vuex&apos;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;hello&apos;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      msg: &apos;Welcome to Your Vuex&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    ...mapState([&apos;count&apos;]),</span><br><span class="line">    ...mapGetters([&apos;count&apos;])</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    ...mapMutations([&apos;add&apos;,&apos;reduce&apos;]),</span><br><span class="line">    //注册方法</span><br><span class="line">    ...mapActions([&apos;addActions&apos;,&apos;reduceActions&apos;])</span><br><span class="line">  &#125;,</span><br><span class="line">  store</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在此，你点击异步的<code>+按钮</code>，然后查看控制台就会发现，先打印了<code>我先执行</code>然后三秒后再打印出<code>我后执行</code>的异步操作了。</p>
+</blockquote>
+<h2 id="最后放出store-js和组件模板的代码"><a href="#最后放出store-js和组件模板的代码" class="headerlink" title="最后放出store.js和组件模板的代码"></a>最后放出store.js和组件模板的代码</h2><h3 id="store-js"><a href="#store-js" class="headerlink" title="store.js"></a>store.js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import Vuex from &apos;vuex&apos;</span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line">const state = &#123;</span><br><span class="line">  count: 1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const mutations = &#123;</span><br><span class="line">  add(state, n) &#123;</span><br><span class="line">    state.count += n;</span><br><span class="line">  &#125;,</span><br><span class="line">  reduce(state) &#123;</span><br><span class="line">    state.count--;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const getters = &#123;</span><br><span class="line">  count: state =&gt; state.count += 10</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const actions = &#123;</span><br><span class="line">  addActions(context) &#123;</span><br><span class="line">    context.commit(&apos;add&apos;,10);</span><br><span class="line">    setTimeout(()=&gt;&#123;</span><br><span class="line">      context.commit(&apos;reduce&apos;);</span><br><span class="line">      console.log(&apos;我后执行&apos;)      </span><br><span class="line">    &#125;,3000);</span><br><span class="line">    console.log(&apos;我先执行&apos;)</span><br><span class="line">  &#125;,</span><br><span class="line">  reduceActions(&#123;commit&#125;) &#123;</span><br><span class="line">    commit(&apos;reduce&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default new Vuex.Store(&#123;</span><br><span class="line">  state,</span><br><span class="line">  mutations,</span><br><span class="line">  getters,</span><br><span class="line">  actions</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="组件模板"><a href="#组件模板" class="headerlink" title="组件模板"></a>组件模板</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123;count&#125;&#125;&lt;/p&gt;  </span><br><span class="line">    &lt;p&gt;</span><br><span class="line">      &lt;button @click=&quot;add(10)&quot;&gt;+&lt;/button&gt;</span><br><span class="line">      &lt;button @click=&quot;reduce&quot;&gt;-&lt;/button&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">     &lt;p&gt;</span><br><span class="line">       异步&lt;/br&gt;</span><br><span class="line">      &lt;button @click=&quot;addActions&quot;&gt;+&lt;/button&gt;</span><br><span class="line">      &lt;button @click=&quot;reduceActions&quot;&gt;-&lt;/button&gt;</span><br><span class="line">    &lt;/p&gt;  </span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import store from &apos;@/vuex/store&apos;</span><br><span class="line">import &#123; mapState,mapMutations,mapGetters,mapActions &#125; from &apos;vuex&apos;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    ...mapState([&apos;count&apos;]),</span><br><span class="line">    ...mapGetters([&apos;count&apos;])</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    ...mapMutations([&apos;add&apos;,&apos;reduce&apos;]),</span><br><span class="line">    ...mapActions([&apos;addActions&apos;,&apos;reduceActions&apos;])</span><br><span class="line">  &#125;,</span><br><span class="line">  store</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- Add &quot;scoped&quot; attribute to limit CSS to this component only --&gt;</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Vue-js2-0/" rel="tag">#Vue.js2.0</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/26/Vue组件通信/" rel="next" title="Vue组件通信">
+                <i class="fa fa-chevron-left"></i> Vue组件通信
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/08/仿知乎日报app页面/" rel="prev" title="仿知乎日报app页面">
+                仿知乎日报app页面 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://raw.githubusercontent.com/rason00/rason/gh-pages/img/rasonlogo.gif" alt="Rason">
+          <p class="site-author-name" itemprop="name">Rason</p>
+          <p class="site-description motion-element" itemprop="description">It's not insane！ It's ideal！A normal psychotic！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">75</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/rason00" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vuex状态管理"><span class="nav-number">1.</span> <span class="nav-text">Vuex状态管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装与引入"><span class="nav-number">1.1.</span> <span class="nav-text">安装与引入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-新建文档store-js引入vuex"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.新建文档store.js引入vuex</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#state访问状态对象"><span class="nav-number">1.2.</span> <span class="nav-text">state访问状态对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-在store-js文件里增加一个常量对象。"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.在store.js文件里增加一个常量对象。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-用export-default封装代码，让外部可以引用。"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.用export default封装代码，让外部可以引用。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-vue组件中怎么用到呢，我们可以新建一个组件"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.vue组件中怎么用到呢，我们可以新建一个组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-你会发现-lt-p-gt-lt-￼20-gt-lt-p-gt-这里读取的值很长，并不美观，其实有更简洁的写法，就是通过mapState辅助函数来赋值"><span class="nav-number">1.2.4.</span> <span class="nav-text">4.你会发现&lt;p&gt;&lt;/p&gt;这里读取的值很长，并不美观，其实有更简洁的写法，就是通过mapState辅助函数来赋值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mutations修改状态"><span class="nav-number">2.</span> <span class="nav-text">Mutations修改状态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-在store-js中加入两个方法"><span class="nav-number">2.0.1.</span> <span class="nav-text">1.在store.js中加入两个方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-切记在export-default封装代码中加入引用，让外部可以引用。"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.切记在export default封装代码中加入引用，让外部可以引用。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-在组件中加入两个按钮，使用仓库中的方法"><span class="nav-number">2.0.3.</span> <span class="nav-text">3.在组件中加入两个按钮，使用仓库中的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-同样你会发现-store-commit-39-add-39-这里读取的值也很长，也并不美观，当然和上面的state一样有更简洁的写法，就是引入mapMutations"><span class="nav-number">2.0.4.</span> <span class="nav-text">4.同样你会发现$store.commit(&#39;add&#39;)这里读取的值也很长，也并不美观，当然和上面的state一样有更简洁的写法，就是引入mapMutations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-传值"><span class="nav-number">2.0.5.</span> <span class="nav-text">5.传值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getters计算过滤操作"><span class="nav-number">2.1.</span> <span class="nav-text">getters计算过滤操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-我们首先要在store-js里用const声明我们的getters属性。"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.我们首先要在store.js里用const声明我们的getters属性。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-同理在export-default封装代码中加入引用。"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.同理在export default封装代码中加入引用。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-在组件中使用"><span class="nav-number">2.1.3.</span> <span class="nav-text">3.在组件中使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-用mapGetters简化写法"><span class="nav-number">2.1.4.</span> <span class="nav-text">4.用mapGetters简化写法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#actions异步修改状态"><span class="nav-number">2.2.</span> <span class="nav-text">actions异步修改状态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-在store-js中加入"><span class="nav-number">2.2.1.</span> <span class="nav-text">1.在store.js中加入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-同理在export-default加入引用"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.同理在export default加入引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-在组件中使用（直接用mapActions了）"><span class="nav-number">2.2.3.</span> <span class="nav-text">3.在组件中使用（直接用mapActions了）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后放出store-js和组件模板的代码"><span class="nav-number">2.3.</span> <span class="nav-text">最后放出store.js和组件模板的代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#store-js"><span class="nav-number">2.3.1.</span> <span class="nav-text">store.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件模板"><span class="nav-number">2.3.2.</span> <span class="nav-text">组件模板</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+
+
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!-- 添加访问量 开始 -->
+<!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<!-- 添加访问量 结束 -->
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rason</span>
+</div>
+
+<!-- 添加访问量开始 -->
+<!-- <div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div> -->
+<!-- 添加访问量结束 -->
+
+<!-- <div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+ -->
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

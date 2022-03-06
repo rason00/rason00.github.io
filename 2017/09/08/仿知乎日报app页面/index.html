@@ -1,0 +1,700 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="练习,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="仿知乎日报app页面（17/09/08vue版新增模块）">
+<meta name="keywords" content="练习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="仿知乎日报app页面">
+<meta property="og:url" content="http://yoursite.com/2017/09/08/仿知乎日报app页面/index.html">
+<meta property="og:site_name" content="Rason">
+<meta property="og:description" content="仿知乎日报app页面（17/09/08vue版新增模块）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-05-04T14:54:43.363Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="仿知乎日报app页面">
+<meta name="twitter:description" content="仿知乎日报app页面（17/09/08vue版新增模块）">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/08/仿知乎日报app页面/">
+
+  <title> 仿知乎日报app页面 | Rason </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c0b175368f6e60b955380864b509c3fc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s6.cnzz.com/stat.php?id=1259942288&web_id=1259942288" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Rason</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Rason 博客</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                仿知乎日报app页面
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-08T15:01:21+08:00" content="2017-09-08">
+              2017-09-08
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/练习/" itemprop="url" rel="index">
+                    <span itemprop="name">练习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="仿知乎日报app页面（17-09-08vue版新增模块）"><a href="#仿知乎日报app页面（17-09-08vue版新增模块）" class="headerlink" title="仿知乎日报app页面（17/09/08vue版新增模块）"></a>仿知乎日报app页面（17/09/08vue版新增模块）</h1><a id="more"></a>
+<hr>
+<h1 id="缘由："><a href="#缘由：" class="headerlink" title="缘由："></a>缘由：</h1><p>开始是想实践下移动端的页面制作，于是利用手上的知乎日报api资源，仿做了知乎日报app页面，js版本的页面做起来比较粗糙，也不怎么合自己心意，然后就想着改进下，刚好之前有学习过一些vue的知识，就花费了一天时间复习观看vue官方的基础文档，和router的相关知识，然后就直接实践操作，花费了两天时间，重新把之前实现的页面功能用vue的相关技术实现了一遍，本想继续优化和添加功能进去的，想做到和知乎日报app一样的完善功能，但是因为前期考虑不足，所搭建起来的框架似乎不太能支撑，特别是一些组件之间的状态通信，现在仅仅几个组件就已经有点乱了，看来是需要用到vuex的相应处理的，之后有机会的话会学习下vuex的技术，然后再做一个新的版本，然后慢慢优化添加些功能，期望能慢慢实现成知乎日报app一样的功能。</p>
+<h1 id="Demo："><a href="#Demo：" class="headerlink" title="Demo："></a>Demo：</h1><ul>
+<li><p>Html+Css+JS+JQ版本：</p>
+</li>
+<li><p><a href="https://rason00.github.io/rason/zhihuribaoapp/index.html" target="_blank" rel="noopener">https://rason00.github.io/rason/zhihuribaoapp/index.html</a></p>
+</li>
+<li><p>Vue版本：</p>
+</li>
+<li><p><a href="https://rason00.github.io/rason/zhihuribaoapp/vue2.0/index.html" target="_blank" rel="noopener">https://rason00.github.io/rason/zhihuribaoapp/vue2.0/index.html</a></p>
+</li>
+</ul>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><ul>
+<li><a href="https://github.com/rason00/rason/tree/gh-pages/zhihuribaoapp" target="_blank" rel="noopener">https://github.com/rason00/rason/tree/gh-pages/zhihuribaoapp</a></li>
+</ul>
+<h1 id="仅实现："><a href="#仅实现：" class="headerlink" title="仅实现："></a>仅实现：</h1><pre><code>1，主页的banner。
+
+2，主页内容部分排版与数据显示。
+
+3，滑动到底部自动加载前一天数据（未实现下拉刷新页面功能，注：vue版本已实现）。
+
+4，文章详情页面版面展示。
+
+5，评论页展示。（仅vue版实现）
+</code></pre><h1 id="2017-09-08增加"><a href="#2017-09-08增加" class="headerlink" title="2017/09/08增加"></a>2017/09/08增加</h1><pre><code>vue版本：
+
+  1.文章详情页右上角增加评论数和点赞数。
+
+  2.增加查看评论页。
+
+  3.修改返回图标，夜间模式按钮图标。
+</code></pre><h1 id="2017-09-03修复"><a href="#2017-09-03修复" class="headerlink" title="2017/09/03修复"></a>2017/09/03修复</h1><pre><code>vue版本日夜间模式刷新bug修复
+
+利用vue的watch监视状态存到localstorage中，再监视日夜间状态与缓存是否一致
+</code></pre><h1 id="2017-09-02增加"><a href="#2017-09-02增加" class="headerlink" title="2017/09/02增加"></a>2017/09/02增加</h1><pre><code>vue版增加夜间模式
+
+使用vuex处理夜间模式状态
+
+（刷新页面会使夜间模式变成日间模式）注：2017/09/03已修复
+</code></pre><h1 id="2017-08-09增加"><a href="#2017-08-09增加" class="headerlink" title="2017/08/09增加"></a>2017/08/09增加</h1><pre><code>vue版本增加下拉刷新页面功能，并且增加判断防止底部加载更多时多次发起请求。
+</code></pre><h1 id="2017-08-08增加"><a href="#2017-08-08增加" class="headerlink" title="2017/08/08增加"></a>2017/08/08增加</h1><pre><code>使用vue2.0-cli+vue-router+axios+mint-ui制作相同的页面展示（实现功能如上‘仅实现’）。
+</code></pre><h1 id="2017-08-02优化"><a href="#2017-08-02优化" class="headerlink" title="2017/08/02优化"></a>2017/08/02优化</h1><pre><code>优化首页banner，改用插件，做滑动切换效果。
+</code></pre><h1 id="2017-07-30优化"><a href="#2017-07-30优化" class="headerlink" title="2017/07/30优化"></a>2017/07/30优化</h1><pre><code>优化首页banner以及详情页顶部图片，适配分辨率图片不变形。
+</code></pre><h1 id="2017-07-25修改"><a href="#2017-07-25修改" class="headerlink" title="2017/07/25修改"></a>2017/07/25修改</h1><pre><code>1，把详情页面展示从清空原页面渲染请求内容改为，新增一个文章详情页面。
+
+2，模拟点击文章跳到详情页面后，返回时页面返回到之前跳出的位置。
+</code></pre><h1 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h1><ul>
+<li><p>内容部分使用了 <a href="https://segmentfault.com/a/1190000009242864" target="_blank" rel="noopener">https://segmentfault.com/a/1190000009242864</a> 整理的api，在此表示感谢。 </p>
+</li>
+<li><p>另图片加载时遇到了图片防盗链问题，最后在 <a href="https://github.com/biaodigit/vue-news" target="_blank" rel="noopener">https://github.com/biaodigit/vue-news</a> 里找到了相应的处理方法，在此表示感谢。</p>
+</li>
+<li><p>建议PC模式下使用chrome移动端模式浏览观看。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/练习/" rel="tag">#练习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/04/Vuex学习/" rel="next" title="Vuex学习">
+                <i class="fa fa-chevron-left"></i> Vuex学习
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/08/CSS学习：position/" rel="prev" title="CSS学习：position">
+                CSS学习：position <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://raw.githubusercontent.com/rason00/rason/gh-pages/img/rasonlogo.gif" alt="Rason">
+          <p class="site-author-name" itemprop="name">Rason</p>
+          <p class="site-description motion-element" itemprop="description">It's not insane！ It's ideal！A normal psychotic！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">75</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/rason00" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#仿知乎日报app页面（17-09-08vue版新增模块）"><span class="nav-number">1.</span> <span class="nav-text">仿知乎日报app页面（17/09/08vue版新增模块）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缘由："><span class="nav-number">2.</span> <span class="nav-text">缘由：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Demo："><span class="nav-number">3.</span> <span class="nav-text">Demo：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码："><span class="nav-number">4.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#仅实现："><span class="nav-number">5.</span> <span class="nav-text">仅实现：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2017-09-08增加"><span class="nav-number">6.</span> <span class="nav-text">2017/09/08增加</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2017-09-03修复"><span class="nav-number">7.</span> <span class="nav-text">2017/09/03修复</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2017-09-02增加"><span class="nav-number">8.</span> <span class="nav-text">2017/09/02增加</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2017-08-09增加"><span class="nav-number">9.</span> <span class="nav-text">2017/08/09增加</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2017-08-08增加"><span class="nav-number">10.</span> <span class="nav-text">2017/08/08增加</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2017-08-02优化"><span class="nav-number">11.</span> <span class="nav-text">2017/08/02优化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2017-07-30优化"><span class="nav-number">12.</span> <span class="nav-text">2017/07/30优化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2017-07-25修改"><span class="nav-number">13.</span> <span class="nav-text">2017/07/25修改</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#感谢"><span class="nav-number">14.</span> <span class="nav-text">感谢</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+
+
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!-- 添加访问量 开始 -->
+<!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<!-- 添加访问量 结束 -->
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rason</span>
+</div>
+
+<!-- 添加访问量开始 -->
+<!-- <div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div> -->
+<!-- 添加访问量结束 -->
+
+<!-- <div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+ -->
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

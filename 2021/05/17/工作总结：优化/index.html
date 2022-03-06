@@ -1,0 +1,860 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="vue,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="项目分析及优化：优化首屏加载时间及打包大小这是入职公司试用期时做的优化内容，主要是部门老大对公司原项目的首屏加载时间过长，及请求内容过多，以及希望可以优化打包大小，所以根据需求，作出了下面针对性的一些配置操作，及分析处理了下打包体积。">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工作总结：优化">
+<meta property="og:url" content="http://yoursite.com/2021/05/17/工作总结：优化/index.html">
+<meta property="og:site_name" content="Rason">
+<meta property="og:description" content="项目分析及优化：优化首屏加载时间及打包大小这是入职公司试用期时做的优化内容，主要是部门老大对公司原项目的首屏加载时间过长，及请求内容过多，以及希望可以优化打包大小，所以根据需求，作出了下面针对性的一些配置操作，及分析处理了下打包体积。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-05-17T14:05:56.192Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="工作总结：优化">
+<meta name="twitter:description" content="项目分析及优化：优化首屏加载时间及打包大小这是入职公司试用期时做的优化内容，主要是部门老大对公司原项目的首屏加载时间过长，及请求内容过多，以及希望可以优化打包大小，所以根据需求，作出了下面针对性的一些配置操作，及分析处理了下打包体积。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/05/17/工作总结：优化/">
+
+  <title> 工作总结：优化 | Rason </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c0b175368f6e60b955380864b509c3fc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s6.cnzz.com/stat.php?id=1259942288&web_id=1259942288" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Rason</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Rason 博客</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                工作总结：优化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2021-05-17T21:40:43+08:00" content="2021-05-17">
+              2021-05-17
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/工作总结/" itemprop="url" rel="index">
+                    <span itemprop="name">工作总结</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="项目分析及优化：优化首屏加载时间及打包大小"><a href="#项目分析及优化：优化首屏加载时间及打包大小" class="headerlink" title="项目分析及优化：优化首屏加载时间及打包大小"></a>项目分析及优化：优化首屏加载时间及打包大小</h1><p>这是入职公司试用期时做的优化内容，主要是部门老大对公司原项目的首屏加载时间过长，及请求内容过多，以及希望可以优化打包大小，所以根据需求，作出了下面针对性的一些配置操作，及分析处理了下打包体积。</p>
+<a id="more"></a>
+<h2 id="一、说明"><a href="#一、说明" class="headerlink" title="一、说明"></a>一、说明</h2><h3 id="1-分析环境"><a href="#1-分析环境" class="headerlink" title="1. 分析环境"></a>1. 分析环境</h3><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">操作系统：Windows10 （64位）</span><br><span class="line">处理器：Intel(R)Core(TM) i5-8400 CPU @ 2.8GHz 2.81 GHz</span><br><span class="line">内存：8.00GB</span><br><span class="line">node：v10.15.3</span><br><span class="line">npm：v6.4.1</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这是当初公司电脑的配置，因为要结合打包时间，所以记录了一下</p>
+</blockquote>
+<h3 id="2-注意事项"><a href="#2-注意事项" class="headerlink" title="2. 注意事项"></a>2. 注意事项</h3><p><strong>注：以下测试根据测试环境及机器性能等各方面因数，会存在一定误差，以下数据仅取测试时的数据记录，仅供参考。</strong></p>
+<h2 id="二、项目构建时间"><a href="#二、项目构建时间" class="headerlink" title="二、项目构建时间"></a>二、项目构建时间</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>npm run serve</th>
+<th>npm run build</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1次</td>
+<td>~100s</td>
+<td>~225s</td>
+</tr>
+<tr>
+<td>2次</td>
+<td>~55s</td>
+<td>~170s</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>打包文件夹（<code>dist/v3</code>）大小<code>76.3MB</code>，其中<code>js</code>文件夹<code>31.4MB</code>,<code>css</code>文件夹<code>41.5MB</code></p>
+<p>以上可见<code>js</code>和<code>css</code>文件比较大，后续可注意分析其中原因。</p>
+</blockquote>
+<h2 id="三、资源加载效率"><a href="#三、资源加载效率" class="headerlink" title="三、资源加载效率"></a>三、资源加载效率</h2><h3 id="本地开发环境"><a href="#本地开发环境" class="headerlink" title="本地开发环境"></a>本地开发环境</h3><h4 id="1-首屏加载数据"><a href="#1-首屏加载数据" class="headerlink" title="1.首屏加载数据"></a>1.首屏加载数据</h4><ol>
+<li>npm run serve</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>request</th>
+<th>transferred</th>
+<th>resources</th>
+<th>finish</th>
+<th>DOMContentLoaded</th>
+<th>load</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>545</td>
+<td>123MB</td>
+<td>16.5MB</td>
+<td>~2.68s</td>
+<td>~1.17s</td>
+<td>~1.96s</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>打包gizp压缩</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>request</th>
+<th>transferred</th>
+<th>resources</th>
+<th>finish</th>
+<th>DOMContentLoaded</th>
+<th>load</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>802</td>
+<td>10.3MB</td>
+<td>3.6MB</td>
+<td>~2.24s</td>
+<td>~965ms</td>
+<td>~1.48s</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>以上可见<code>request</code>数量过大，后续优化可从此方面入手</p>
+</blockquote>
+<h2 id="四、优化方案"><a href="#四、优化方案" class="headerlink" title="四、优化方案"></a>四、优化方案</h2><h3 id="1-按需加载js和css文件"><a href="#1-按需加载js和css文件" class="headerlink" title="1.按需加载js和css文件"></a>1.按需加载<code>js</code>和<code>css</code>文件</h3><p>打包后查看<code>index.html</code>文件可以发现主页文档把全部的<code>css</code>和<code>js</code>都引入进去了（几百个css和js的引入）</p>
+<blockquote>
+<p>问题原因可能是项目多页面应用，并且使用类似异步组件，<code>vue-cli3</code>打包时自动分离各个组件的<code>js</code>和<code>css</code>，而多页面应用了同一个<code>html</code>模板文件，并且配置了静态资源相关引入自动化，导致<code>html</code>里面自动注入了全部文件。</p>
+</blockquote>
+<h4 id="a-优化注入文件，按需加载"><a href="#a-优化注入文件，按需加载" class="headerlink" title="a.优化注入文件，按需加载"></a>a.优化注入文件，按需加载</h4><ol>
+<li>禁止自动注入<code>js</code>和<code>css</code></li>
+</ol>
+<p>修改<code>vue.config.js</code>给<code>pages</code>中每个入口加入<code>inject: false</code>禁止自动注入静态文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">pages: &#123;</span><br><span class="line">  index: &#123;</span><br><span class="line">    entry: <span class="string">'xxx'</span>,</span><br><span class="line">    template: <span class="string">'public/index.html'</span>,</span><br><span class="line">    filename: <span class="string">'index.html'</span>,</span><br><span class="line">    title: <span class="string">'xxx'</span>,</span><br><span class="line">    ...</span><br><span class="line">    inject: <span class="literal">false</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>修改模板文件（<code>public/index.html</code>），手动循环注入<code>js</code>和<code>css</code></li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">htmlWebpackPlugin.options.title</span> %&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%</span> <span class="attr">for</span> (<span class="attr">var</span> <span class="attr">chunk</span> <span class="attr">in</span> <span class="attr">htmlWebpackPlugin.files.css</span>) &#123; %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span>(<span class="attr">htmlWebpackPlugin.files.css</span>[<span class="attr">chunk</span>]) &#123; %&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"&lt;% htmlWebpackPlugin.files.css[chunk] %&gt;"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%</span> <span class="attr">for</span> (<span class="attr">var</span> <span class="attr">chunk</span> <span class="attr">in</span> <span class="attr">htmlWebpackPlugin.files.js</span>) &#123; %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span>(<span class="attr">htmlWebpackPlugin.files.js</span>[<span class="attr">chunk</span>]) &#123; %&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"&lt;% htmlWebpackPlugin.files.js[chunk] %&gt;"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="b-验证效果"><a href="#b-验证效果" class="headerlink" title="b. 验证效果"></a>b. 验证效果</h4><h5 id="本地开发环境-1"><a href="#本地开发环境-1" class="headerlink" title="本地开发环境"></a>本地开发环境</h5><h5 id="1-首屏加载数据-1"><a href="#1-首屏加载数据-1" class="headerlink" title="1.首屏加载数据"></a>1.首屏加载数据</h5><ol>
+<li>npm run serve</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>request</th>
+<th>transferred</th>
+<th>resources</th>
+<th>finish</th>
+<th>DOMContentLoaded</th>
+<th>load</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>35</td>
+<td>16.5MB</td>
+<td>16.5MB</td>
+<td>~1.38s</td>
+<td>~1.07s</td>
+<td>~1.88s</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>对比原数据，<code>request</code>：从<code>545</code>减少到了<code>35</code>，减少了<code>93.57%</code></p>
+</blockquote>
+<ol start="2">
+<li>打包gizp压缩</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>request</th>
+<th>transferred</th>
+<th>resources</th>
+<th>finish</th>
+<th>DOMContentLoaded</th>
+<th>load</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>35</td>
+<td>1.2MB</td>
+<td>3.6MB</td>
+<td>~549ms</td>
+<td>~356ms</td>
+<td>~542ms</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p> 对比原数据，<code>request</code>：从<code>802</code>减少到了<code>35</code>，减少了<code>95.63%</code></p>
+</blockquote>
+<h3 id="2-优化打包css"><a href="#2-优化打包css" class="headerlink" title="2.优化打包css"></a>2.优化打包<code>css</code></h3><p>结合<code>css</code>的引入和打包后样式文件的观察分析</p>
+<blockquote>
+<p>打包后每个<code>css</code>样式文件都包含了上面的代码，代码来源是全局引入的公共样式。</p>
+<p>结合分析项目的公共样式引入方法及打包机制。</p>
+<ol>
+<li>引入方法不正确<ul>
+<li>现引入公共样式的方法应该只是引入公共变量和方法，不该把样式也引入。</li>
+</ul>
+</li>
+<li>公共<code>less</code>文件书写有误<ul>
+<li><code>common.less</code>里面作为变量的样式没有处理，使得打包时<code>webpack</code>将其识别为样式文件，打包转译到了每一个<code>css</code>文件中，导致出现大量重复无用的样式代码。</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<p>针对以上问题分析优化修改</p>
+<h4 id="a-处理公共样式文件，分离出变量和样式文件。"><a href="#a-处理公共样式文件，分离出变量和样式文件。" class="headerlink" title="a. 处理公共样式文件，分离出变量和样式文件。"></a>a. 处理公共样式文件，分离出变量和样式文件。</h4><blockquote>
+<p>把作为变量的<code>less</code>文件都用上<code>（）</code>处理，让<code>webpack</code>打包转译时忽略其是样式文件</p>
+</blockquote>
+<h4 id="b-修改引入变量和样式的方法"><a href="#b-修改引入变量和样式的方法" class="headerlink" title="b. 修改引入变量和样式的方法"></a>b. 修改引入变量和样式的方法</h4><ol>
+<li><p>公共样式引入：在每个入口的<code>main.js</code>中引入</p>
+</li>
+<li><p>公共变量和方法引入：修改<code>vue.config.js</code> 配置</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">pluginOptions: &#123;</span><br><span class="line">  <span class="string">'style-resources-loader'</span>: &#123;</span><br><span class="line">    preProcessor: <span class="string">'less'</span>,</span><br><span class="line">    patterns: [</span><br><span class="line">      <span class="comment">// 公共变量及方法文件</span></span><br><span class="line">      path.resolve(__dirname, <span class="string">'xxxxx'</span>)</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h4 id="c-验证效果"><a href="#c-验证效果" class="headerlink" title="c. 验证效果"></a>c. 验证效果</h4><h5 id="1-项目构建时间"><a href="#1-项目构建时间" class="headerlink" title="1.项目构建时间"></a>1.项目构建时间</h5><table>
+<thead>
+<tr>
+<th></th>
+<th>npm run serve</th>
+<th>npm run build</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1次</td>
+<td>~35s</td>
+<td>~63s</td>
+</tr>
+<tr>
+<td>2次</td>
+<td>~30s</td>
+<td>~53s</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>打包文件夹（<code>dist/v3</code>）大小<code>36.3MB</code>，其中<code>js</code>文件夹<code>29.1MB</code>,<code>css</code>文件夹<code>4.4MB</code></p>
+<p>综上所示，优化<code>css</code>文件后：</p>
+<p>构建时间：</p>
+<ol>
+<li><code>npm run serve</code>：<strong>1次</strong>：<code>~100s</code>减少到<code>~35s</code>，减少<code>65%</code>。<strong>2次</strong>：<code>~50s</code>减少到<code>~30s</code>，减少<code>40%</code></li>
+<li><code>npm run build</code>：<strong>1次</strong>：<code>~225s</code>减少到<code>~63s</code>，减少<code>72%</code>。<strong>2次</strong>：<code>~170s</code>减少到<code>~53s</code>，减少<code>68.82%</code></li>
+</ol>
+<p>文件大小：</p>
+<p><code>dist/v3</code>：<code>76.3MB</code>减少到<code>36.3MB</code>，减少<code>52.42%</code></p>
+<p><code>js</code>：<code>31.4MB</code>减少到<code>29.1MB</code>，减少<code>7.32%</code></p>
+<p><code>css</code>：<code>41.5MB</code>减少到<code>4.4MB</code>，减少<code>89.39%</code></p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上是当初刚入职时，由于公司项目正在最后版本上线冲刺，然后我新员工没有能安排的任务，所以就给了这样一个优化需求，具体方法其实也是针对性的以部门老大提出的希望能改变的方向去进行一些配置操作，来达到需求的呈现效果，当中可能会有一些不太适合的配置操作，但是一切都是以需求为目的的开发配置的，所以就是这样成效最快的进行配置了，当然期间为了针对需求目的，也是查阅了很多资料就是了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue/" rel="tag">#vue</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/05/04/vue3.0源码学习-reactive/" rel="next" title="vue3.0源码学习-reactive">
+                <i class="fa fa-chevron-left"></i> vue3.0源码学习-reactive
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/05/18/工作总结：使用JSX/" rel="prev" title="工作总结：使用JSX">
+                工作总结：使用JSX <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://raw.githubusercontent.com/rason00/rason/gh-pages/img/rasonlogo.gif" alt="Rason">
+          <p class="site-author-name" itemprop="name">Rason</p>
+          <p class="site-description motion-element" itemprop="description">It's not insane！ It's ideal！A normal psychotic！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">75</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/rason00" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#项目分析及优化：优化首屏加载时间及打包大小"><span class="nav-number">1.</span> <span class="nav-text">项目分析及优化：优化首屏加载时间及打包大小</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、说明"><span class="nav-number">1.1.</span> <span class="nav-text">一、说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-分析环境"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 分析环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-注意事项"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、项目构建时间"><span class="nav-number">1.2.</span> <span class="nav-text">二、项目构建时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、资源加载效率"><span class="nav-number">1.3.</span> <span class="nav-text">三、资源加载效率</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本地开发环境"><span class="nav-number">1.3.1.</span> <span class="nav-text">本地开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-首屏加载数据"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">1.首屏加载数据</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、优化方案"><span class="nav-number">1.4.</span> <span class="nav-text">四、优化方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-按需加载js和css文件"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.按需加载js和css文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-优化注入文件，按需加载"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">a.优化注入文件，按需加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-验证效果"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">b. 验证效果</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#本地开发环境-1"><span class="nav-number">1.4.1.2.1.</span> <span class="nav-text">本地开发环境</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-首屏加载数据-1"><span class="nav-number">1.4.1.2.2.</span> <span class="nav-text">1.首屏加载数据</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-优化打包css"><span class="nav-number">1.4.2.</span> <span class="nav-text">2.优化打包css</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-处理公共样式文件，分离出变量和样式文件。"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">a. 处理公共样式文件，分离出变量和样式文件。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-修改引入变量和样式的方法"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">b. 修改引入变量和样式的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-验证效果"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">c. 验证效果</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-项目构建时间"><span class="nav-number">1.4.2.3.1.</span> <span class="nav-text">1.项目构建时间</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+
+
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!-- 添加访问量 开始 -->
+<!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<!-- 添加访问量 结束 -->
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rason</span>
+</div>
+
+<!-- 添加访问量开始 -->
+<!-- <div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div> -->
+<!-- 添加访问量结束 -->
+
+<!-- <div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+ -->
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

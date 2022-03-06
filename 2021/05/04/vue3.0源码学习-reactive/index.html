@@ -1,0 +1,675 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="vue,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="vue3.0 源码学习-reactive最近在寻在学习方向，然后就想学习源码，看看能理解多少，算是个尝试，clone 了 vue3 的库，然后结合一些视频和网上的教程，尝试去理解 vue3 的源码思路，于是就拥有了下面这篇学习笔记，vue3.0 源码学习-reactive 篇。">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue3.0源码学习-reactive">
+<meta property="og:url" content="http://yoursite.com/2021/05/04/vue3.0源码学习-reactive/index.html">
+<meta property="og:site_name" content="Rason">
+<meta property="og:description" content="vue3.0 源码学习-reactive最近在寻在学习方向，然后就想学习源码，看看能理解多少，算是个尝试，clone 了 vue3 的库，然后结合一些视频和网上的教程，尝试去理解 vue3 的源码思路，于是就拥有了下面这篇学习笔记，vue3.0 源码学习-reactive 篇。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-05-06T01:18:21.750Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue3.0源码学习-reactive">
+<meta name="twitter:description" content="vue3.0 源码学习-reactive最近在寻在学习方向，然后就想学习源码，看看能理解多少，算是个尝试，clone 了 vue3 的库，然后结合一些视频和网上的教程，尝试去理解 vue3 的源码思路，于是就拥有了下面这篇学习笔记，vue3.0 源码学习-reactive 篇。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/05/04/vue3.0源码学习-reactive/">
+
+  <title> vue3.0源码学习-reactive | Rason </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c0b175368f6e60b955380864b509c3fc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s6.cnzz.com/stat.php?id=1259942288&web_id=1259942288" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Rason</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Rason 博客</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                vue3.0源码学习-reactive
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2021-05-04T22:56:12+08:00" content="2021-05-04">
+              2021-05-04
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="vue3-0-源码学习-reactive"><a href="#vue3-0-源码学习-reactive" class="headerlink" title="vue3.0 源码学习-reactive"></a>vue3.0 源码学习-reactive</h1><p>最近在寻在学习方向，然后就想学习源码，看看能理解多少，算是个尝试，clone 了 vue3 的库，然后结合一些视频和网上的教程，尝试去理解 vue3 的源码思路，于是就拥有了下面这篇学习笔记，vue3.0 源码学习-reactive 篇。</p>
+<a id="more"></a>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ol>
+<li><code>reactive</code>初始化数据时发生了什么</li>
+<li><code>effect</code>副作用是怎么更新的</li>
+</ol>
+<h3 id="creative初始化数据"><a href="#creative初始化数据" class="headerlink" title="creative初始化数据"></a><code>creative</code>初始化数据</h3><p><code>let data = reactive(obj)</code>时发生了什么，其实这个网上很多的教程说明了，就是一个用<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy" target="_blank" rel="noopener"><code>proxy</code></a>代理拦截了<code>get</code>和<code>set</code>操作，初始化的过程重点是在<code>get</code>和<code>set</code>中的收集依赖和触发更新机制。</p>
+<blockquote>
+<p>结合 vue3 的<code>reacrive</code>源码路径<code>packages/reactivity/src/reactive.ts</code>去看初始化的代码流程。</p>
+</blockquote>
+<h4 id="get收集依赖"><a href="#get收集依赖" class="headerlink" title="get收集依赖"></a><code>get</code>收集依赖</h4><p>依赖收集的函数在<a href="https://github.com/vuejs/vue-next/blob/master/packages/reactivity/src/effect.ts" target="_blank" rel="noopener"><code>packages/reactivity/src/effect.ts</code></a>中的<code>track</code>函数中实现，具体可点击源码路径链接跳转查看。</p>
+<p>其实重点是实现依赖收集的方法，理解它是怎么存储依赖，其存储的数据格式是怎么样的，后期触发<code>set</code>的时候如何利用收集的依赖触发更新机制，所以以下是我自己对照一些教程自己敲了一遍简化版本<code>track</code>函数的实现：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> targetMap = <span class="keyword">new</span> <span class="built_in">WeakMap</span>(); <span class="comment">// 依赖存储</span></span><br><span class="line"><span class="keyword">let</span> activeEffect = <span class="literal">undefined</span>; <span class="comment">// 当前执行的副作用</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 依赖收集</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;object&#125;</span> <span class="variable">target</span></span> - 目标对象</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">key</span></span> - 对象键名</span></span><br><span class="line"><span class="comment"> * 收集的数据格式，重点就是要吧数据整理成下面的格式</span></span><br><span class="line"><span class="comment"> * targetMap&lt;WeakMap&gt;: &#123;</span></span><br><span class="line"><span class="comment"> *   target&lt;Map&gt;: &#123;</span></span><br><span class="line"><span class="comment"> *     key&lt;Set&gt;: [effect,effect...]</span></span><br><span class="line"><span class="comment"> *   &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">track</span>(<span class="params">target, key</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (activeEffect === <span class="literal">undefined</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 初始化结构</span></span><br><span class="line">  <span class="keyword">let</span> depsMap = targetMap.get(target); <span class="comment">// 查询</span></span><br><span class="line">  <span class="keyword">if</span> (!depsMap) &#123;</span><br><span class="line">    <span class="comment">// 如没有就初始化一个Map数据赋值</span></span><br><span class="line">    targetMap.set(target, (depsMap = <span class="keyword">new</span> <span class="built_in">Map</span>()));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> dep = depsMap.get(key); <span class="comment">// 查询</span></span><br><span class="line">  <span class="keyword">if</span> (!dep) &#123;</span><br><span class="line">    <span class="comment">// 如没有就初始化一个Set数据赋值</span></span><br><span class="line">    depsMap.set(key, (dep = <span class="keyword">new</span> <span class="built_in">Set</span>()));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 依赖收集绑定数据</span></span><br><span class="line">  <span class="keyword">if</span> (!dep.has(activeEffect)) &#123;</span><br><span class="line">    <span class="comment">// 如未收集过的就进行add收集</span></span><br><span class="line">    dep.add(activeEffect);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当中<code>activeEffect</code>是需要关联上副作用<code>effect</code>的实现的，后面会整体关联起来总结一遍流程。</p>
+</blockquote>
+<h4 id="set触发更新"><a href="#set触发更新" class="headerlink" title="set触发更新"></a><code>set</code>触发更新</h4><p>初始化中我们在<code>get</code>收集好的依赖（<code>activeEffect</code>副作用）在我们<code>set</code>的时候回去找到对应的依赖（副作用）触发更新。</p>
+<blockquote>
+<p>理解起来就是，我们在更新一些双向绑定的数据的时候，会动态的触发视图的更新，或者一些函数的执行，就像我们一直用的计算属性和侦听器<br><code>computed</code>和<code>watch</code>，它们就是利用更新副作用原理来实现的。</p>
+</blockquote>
+<p><code>set</code>的更新函数源码是在<a href="https://github.com/vuejs/vue-next/blob/master/packages/reactivity/src/effect.ts" target="_blank" rel="noopener"><code>packages/reactivity/src/effect.ts</code></a>中的<code>trigger</code>函数，具体可点击源码路径链接跳转查看</p>
+<p>同样的，看源码好像很复杂，然后我也是结合网上的一些教程，自己敲了个简化版的<code>trigger</code>来主要看下它怎么获取依赖执行更新</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 执行更新</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;object&#125;</span> <span class="variable">target</span></span> - 目标对象</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">key</span></span> - 对象键名</span></span><br><span class="line"><span class="comment"> * 触发更新，主要是通过target和key去到依赖收集targetMap里找出对应的副作用effect去执行</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">trigger</span>(<span class="params">target, key</span>) </span>&#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * targetMap的格式，根据target和key一步步的拿到最里面的effect</span></span><br><span class="line"><span class="comment">   * targetMap&lt;WeakMap&gt;: &#123;</span></span><br><span class="line"><span class="comment">   *   target&lt;Map&gt;: &#123;</span></span><br><span class="line"><span class="comment">   *     key&lt;Set&gt;: [effect,effect...]</span></span><br><span class="line"><span class="comment">   *   &#125;</span></span><br><span class="line"><span class="comment">   * &#125;</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">const</span> depsMap = targetMap.get(target); <span class="comment">// 查询</span></span><br><span class="line">  <span class="keyword">if</span> (!depsMap) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> effects = <span class="keyword">new</span> <span class="built_in">Set</span>(); <span class="comment">// 存储待执行的依赖（副作用）</span></span><br><span class="line">  <span class="keyword">let</span> deps = depsMap.get(key); <span class="comment">// 查询</span></span><br><span class="line">  <span class="keyword">if</span> (deps) &#123;</span><br><span class="line">    deps.forEach(<span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">      effects.add(e);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> run = <span class="function">(<span class="params">e</span>) =&gt;</span> e(); <span class="comment">// run写成一个函数，是后面computed的执行也会用它</span></span><br><span class="line">  effects.forEach(run); <span class="comment">// 触发更新（执行副作用）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>最后的<code>effects.forEach(run)</code>循环去触发更新是配合上<code>get</code>中收集依赖（副作用<code>effect</code>），最后会串联一起总结一遍。</p>
+</blockquote>
+<p>最后是串联<code>get</code>和<code>set</code>的依赖收集和触发更新的副作用<code>effect</code>，它的创建函数源码在<a href="https://github.com/vuejs/vue-next/blob/master/packages/reactivity/src/effect.ts" target="_blank" rel="noopener"><code>packages/reactivity/src/effect.ts</code></a>中的<code>createReactiveEffect</code>函数，具体可点击源码路径链接跳转查看</p>
+<p>以下是简化版的实现</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> effectStack = []; <span class="comment">// 栈操作</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 创建副作用</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;function&#125;</span> <span class="variable">fn</span></span> - 函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;object&#125;</span> <span class="variable">options</span></span> - 配置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createReactiveEffect</span>(<span class="params">fn, options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> effect = <span class="function"><span class="keyword">function</span> <span class="title">reactiveEffect</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!effectStack.includes(effect)) &#123;</span><br><span class="line">      <span class="comment">// 不在栈中</span></span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        effectStack.push(effect); <span class="comment">// 入栈</span></span><br><span class="line">        activeEffect = effect; <span class="comment">// 赋值</span></span><br><span class="line">        <span class="keyword">return</span> fn();</span><br><span class="line">      &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="comment">// 无论上面是否报错，必执行初始化</span></span><br><span class="line">        effectStack.pop(); <span class="comment">// 出栈</span></span><br><span class="line">        activeEffect = effectStack[effectStack.length - <span class="number">1</span>];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> effect;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>整体<code>get</code>、<code>set</code>和<code>effect</code>的关系，这里将在我实现的简化版的代码中整理流程思路。以下是配合流程梳理的简化版<code>reactive</code>代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> reactiveMap = <span class="keyword">new</span> <span class="built_in">WeakMap</span>();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reactive</span>(<span class="params">target</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> createReactiveObject(target, <span class="literal">false</span>, mutableHandlers, reactiveMap);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 是否是对象</span></span><br><span class="line"><span class="keyword">const</span> isObject = <span class="function">(<span class="params">val</span>) =&gt;</span> val !== <span class="literal">null</span> &amp;&amp; <span class="keyword">typeof</span> val === <span class="string">"object"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createReactiveObject</span>(<span class="params">target, isReadonly, baseHandlers, proxyMap</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 非对象直接返回</span></span><br><span class="line">  <span class="keyword">if</span> (!isObject(target)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.warn(<span class="string">"该数据不能使用reactive"</span>);</span><br><span class="line">    <span class="keyword">return</span> target;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 相同的代理对象</span></span><br><span class="line">  <span class="comment">// let obj = &#123; msg: '1' &#125;</span></span><br><span class="line">  <span class="comment">// let data = reactive(obj)</span></span><br><span class="line">  <span class="comment">// let m = reactive(obj)</span></span><br><span class="line">  <span class="keyword">const</span> existingProxy = proxyMap.get(target);</span><br><span class="line">  <span class="keyword">if</span> (existingProxy) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"相同的代理对象"</span>);</span><br><span class="line">    <span class="keyword">return</span> existingProxy;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 创建proxy</span></span><br><span class="line">  <span class="keyword">const</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(target, baseHandlers);</span><br><span class="line">  <span class="comment">// 记录已代理（proxy）的数据</span></span><br><span class="line">  proxyMap.set(target, proxy);</span><br><span class="line">  <span class="keyword">return</span> proxy;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">get</span> = createGetter();</span><br><span class="line">const <span class="keyword">set</span> = createSetter();</span><br><span class="line"></span><br><span class="line">// 创建proxy的代理函数</span><br><span class="line">const mutableHandlers = &#123;</span><br><span class="line">  <span class="keyword">get</span>,</span><br><span class="line">  <span class="keyword">set</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// <span class="keyword">get</span></span><br><span class="line">function createGetter() &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params">target, key, receiver</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> res = <span class="built_in">Reflect</span>.get(target, key, receiver);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`获取：<span class="subst">$&#123;key&#125;</span> - <span class="subst">$&#123;target[key]&#125;</span>`</span>);</span><br><span class="line">    <span class="comment">// 依赖搜集</span></span><br><span class="line">    track(target, key);</span><br><span class="line">    <span class="comment">// 如果是嵌套的obiect，递归</span></span><br><span class="line">    <span class="keyword">if</span> (isObject(res)) &#123;</span><br><span class="line">      <span class="keyword">return</span> reactive(res);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// set</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createSetter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">set</span>(<span class="params">target, key, value, receiver</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> oldValue = target[key];</span><br><span class="line">    <span class="comment">// 数组会设置length，判断长度一致return</span></span><br><span class="line">    <span class="keyword">if</span> (oldValue === value) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> res = <span class="built_in">Reflect</span>.set(target, key, value, receiver);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`设置：<span class="subst">$&#123;key&#125;</span> - <span class="subst">$&#123;target[key]&#125;</span>`</span>);</span><br><span class="line">    trigger(target, key); <span class="comment">// 触发更新</span></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 依赖搜集</span></span><br><span class="line"><span class="keyword">const</span> targetMap = <span class="keyword">new</span> <span class="built_in">WeakMap</span>();</span><br><span class="line"><span class="keyword">let</span> activeEffect = <span class="literal">undefined</span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 依赖收集</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;object&#125;</span> <span class="variable">target</span></span> - 目标对象</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">key</span></span> - 对象键名</span></span><br><span class="line"><span class="comment"> * 收集的数据格式，重点就是要吧数据整理成下面的格式</span></span><br><span class="line"><span class="comment"> * targetMap&lt;WeakMap&gt;: &#123;</span></span><br><span class="line"><span class="comment"> *   target&lt;Map&gt;: &#123;</span></span><br><span class="line"><span class="comment"> *     key&lt;Set&gt;: [effect,effect...]</span></span><br><span class="line"><span class="comment"> *   &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">track</span>(<span class="params">target, key</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (activeEffect === <span class="literal">undefined</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 初始化结构</span></span><br><span class="line">  <span class="keyword">let</span> depsMap = targetMap.get(target); <span class="comment">// 查询</span></span><br><span class="line">  <span class="keyword">if</span> (!depsMap) &#123;</span><br><span class="line">    <span class="comment">// 如没有就初始化一个Map数据赋值</span></span><br><span class="line">    targetMap.set(target, (depsMap = <span class="keyword">new</span> <span class="built_in">Map</span>()));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> dep = depsMap.get(key); <span class="comment">// 查询</span></span><br><span class="line">  <span class="keyword">if</span> (!dep) &#123;</span><br><span class="line">    <span class="comment">// 如没有就初始化一个Set数据赋值</span></span><br><span class="line">    depsMap.set(key, (dep = <span class="keyword">new</span> <span class="built_in">Set</span>()));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 依赖收集绑定数据</span></span><br><span class="line">  <span class="keyword">if</span> (!dep.has(activeEffect)) &#123;</span><br><span class="line">    <span class="comment">// 如未收集过的就进行add收集</span></span><br><span class="line">    dep.add(activeEffect);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 执行更新</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;object&#125;</span> <span class="variable">target</span></span> - 目标对象</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">key</span></span> - 对象键名</span></span><br><span class="line"><span class="comment"> * 触发更新，主要是通过target和key去到依赖收集targetMap里找出对应的副作用effect去执行</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">trigger</span>(<span class="params">target, key</span>) </span>&#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * targetMap的格式，根据target和key一步步的拿到最里面的effect</span></span><br><span class="line"><span class="comment">   * targetMap&lt;WeakMap&gt;: &#123;</span></span><br><span class="line"><span class="comment">   *   target&lt;Map&gt;: &#123;</span></span><br><span class="line"><span class="comment">   *     key&lt;Set&gt;: [effect,effect...]</span></span><br><span class="line"><span class="comment">   *   &#125;</span></span><br><span class="line"><span class="comment">   * &#125;</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">const</span> depsMap = targetMap.get(target); <span class="comment">// 查询</span></span><br><span class="line">  <span class="keyword">if</span> (!depsMap) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> effects = <span class="keyword">new</span> <span class="built_in">Set</span>(); <span class="comment">// 存储待执行的依赖（副作用）</span></span><br><span class="line">  <span class="keyword">let</span> deps = depsMap.get(key); <span class="comment">// 查询</span></span><br><span class="line">  <span class="keyword">if</span> (deps) &#123;</span><br><span class="line">    deps.forEach(<span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">      effects.add(e);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> run = <span class="function">(<span class="params">e</span>) =&gt;</span> e(); <span class="comment">// run写成一个函数，是后面computed的执行也会用它</span></span><br><span class="line">  effects.forEach(run); <span class="comment">// 触发更新（执行副作用）</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 副作用</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;function&#125;</span> <span class="variable">fn</span></span> - 函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;object&#125;</span> <span class="variable">options</span></span> - 配置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">effect</span>(<span class="params">fn, options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> effect = createReactiveEffect(fn, options);</span><br><span class="line">  effect(); <span class="comment">// 现执行一次，其实是有options设置判断是否执行的，如像在wacth的时候可以设置第一次是否执行之类的，这里就先不判断其他的实现了。</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> effectStack = []; <span class="comment">// 栈操作</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 创建副作用</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;function&#125;</span> <span class="variable">fn</span></span> - 函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;object&#125;</span> <span class="variable">options</span></span> - 配置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createReactiveEffect</span>(<span class="params">fn, options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> effect = <span class="function"><span class="keyword">function</span> <span class="title">reactiveEffect</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!effectStack.includes(effect)) &#123;</span><br><span class="line">      <span class="comment">// 不在栈中</span></span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        effectStack.push(effect); <span class="comment">// 入栈</span></span><br><span class="line">        activeEffect = effect;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"入栈并且赋值activeEffect"</span>);</span><br><span class="line">        <span class="keyword">return</span> fn();</span><br><span class="line">      &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="comment">// 无论上面是否报错，必执行初始化</span></span><br><span class="line">        effectStack.pop(); <span class="comment">// 出栈</span></span><br><span class="line">        activeEffect = effectStack[effectStack.length - <span class="number">1</span>];</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"出栈并且初始化activeEffect"</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> effect;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如上的简化版执行下面的测试</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">msg</span>: <span class="string">"1"</span> &#125;;</span><br><span class="line"><span class="keyword">let</span> data = reactive(obj);</span><br><span class="line">effect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"触发effect副作用:"</span> + data.msg);</span><br><span class="line">  <span class="comment">// data.msg 获取数据，所以触发了get</span></span><br><span class="line">&#125;);</span><br><span class="line">data.msg = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将会打印出下面的流程：</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 入栈并且赋值activeEffect      ==》createReactiveEffect中的try</span></span><br><span class="line"><span class="comment">// 获取：msg - 1                ==》createReactiveEffect中的return fn() 触发了get函数，触发依赖的收集</span></span><br><span class="line"><span class="comment">// 触发effect副作用:1            ==》createReactiveEffect中的return fn()执行了</span></span><br><span class="line"><span class="comment">// 出栈并且初始化activeEffect     ==》createReactiveEffect中的finally继续初始化</span></span><br><span class="line"><span class="comment">// 设置：msg - 2                ==》data.msg = 2设置值，触发了更新</span></span><br><span class="line"><span class="comment">// 入栈并且赋值activeEffect      ==》在get收集的依赖里重新触发了收集的依赖（副作用函数）</span></span><br><span class="line"><span class="comment">// 获取：msg - 2                ==》再次触发了get依赖收集新的依赖值</span></span><br><span class="line"><span class="comment">// 触发effect副作用:2            ==》完整触发副作用函数createReactiveEffect中的return fn()执行了</span></span><br><span class="line"><span class="comment">// 出栈并且初始化activeEffect     ==》finally继续初始化</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue/" rel="tag">#vue</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/06/webpack4-个人配置/" rel="next" title="webpack4 个人配置">
+                <i class="fa fa-chevron-left"></i> webpack4 个人配置
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/05/17/工作总结：优化/" rel="prev" title="工作总结：优化">
+                工作总结：优化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://raw.githubusercontent.com/rason00/rason/gh-pages/img/rasonlogo.gif" alt="Rason">
+          <p class="site-author-name" itemprop="name">Rason</p>
+          <p class="site-description motion-element" itemprop="description">It's not insane！ It's ideal！A normal psychotic！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">75</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/rason00" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue3-0-源码学习-reactive"><span class="nav-number">1.</span> <span class="nav-text">vue3.0 源码学习-reactive</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#目标"><span class="nav-number">1.1.</span> <span class="nav-text">目标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#creative初始化数据"><span class="nav-number">1.1.1.</span> <span class="nav-text">creative初始化数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#get收集依赖"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">get收集依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set触发更新"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">set触发更新</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.2.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+
+
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!-- 添加访问量 开始 -->
+<!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<!-- 添加访问量 结束 -->
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rason</span>
+</div>
+
+<!-- 添加访问量开始 -->
+<!-- <div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div> -->
+<!-- 添加访问量结束 -->
+
+<!-- <div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+ -->
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
